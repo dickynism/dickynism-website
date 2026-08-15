@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar container" id="mainNav" aria-label="">
+      <a class="brand" href="#home" id="brandLink" aria-label="">
+        <span class="brand-dot"></span>
+        <span id="brandName"></span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-menu" id="navMenu"></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-shell" id="heroContent"></div>
+    </section>
+
+    <section class="capability-strip" id="capabilitySection" aria-label="">
+      <div class="container strip-track" id="capabilityStrip"></div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid" id="aboutContent"></div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal" id="projectHeading"></div>
+        <div class="project-tabs reveal" id="projectTabs" aria-label=""></div>
+        <div class="project-grid" id="projectGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading reveal" id="serviceHeading"></div>
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-heading reveal" id="processHeading"></div>
+        <div class="process-grid" id="processGrid"></div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container contact-shell reveal" id="contactContent"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner" id="footerContent"></div>
+  </footer>
+
+  <div class="video-modal" id="videoModal" hidden aria-hidden="true">
+    <div class="video-modal-backdrop" data-close-video></div>
+    <div class="video-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+      <button class="video-modal-close" id="videoModalClose" type="button" data-close-video></button>
+      <div class="video-player-shell" id="videoPlayer"></div>
+      <div class="video-modal-meta">
+        <span id="videoModalCategory"></span>
+        <h2 id="videoModalTitle"></h2>
+      </div>
+    </div>
+  </div>
+
+  <script src="content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
