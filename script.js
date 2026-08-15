@@ -17,6 +17,8 @@ const elements = {
   servicesGrid: document.querySelector("#servicesGrid"),
   processHeading: document.querySelector("#processHeading"),
   processGrid: document.querySelector("#processGrid"),
+  faqHeading: document.querySelector("#faqHeading"),
+  faqList: document.querySelector("#faqList"),
   contactContent: document.querySelector("#contactContent"),
   footerContent: document.querySelector("#footerContent"),
   videoModal: document.querySelector("#videoModal"),
@@ -356,6 +358,17 @@ function renderProcess() {
     .join("");
 }
 
+function renderFaq() {
+  elements.faqList.innerHTML = content.faq.items
+    .map((item) => `
+      <details class="faq-item">
+        <summary>${escapeHTML(item.q)}</summary>
+        <p>${escapeHTML(item.a)}</p>
+      </details>
+    `)
+    .join("");
+}
+
 function renderContact() {
   const buttons = content.contact.links
     .filter((link) => link.showInContact)
@@ -681,6 +694,8 @@ function renderWebsite() {
   renderServices();
   renderSectionHeading(elements.processHeading, content.process.label, content.process.headline);
   renderProcess();
+  renderSectionHeading(elements.faqHeading, content.faq.label, content.faq.headline);
+  renderFaq();
   renderContact();
   renderFooter();
   bindEvents();

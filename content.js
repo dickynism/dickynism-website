@@ -237,6 +237,38 @@ const websiteContent = {
     ]
   },
 
+  // EDIT FAQ DI SINI
+  faq: {
+    label: "FAQ",
+    headline: "Pertanyaan yang Sering Ditanyakan",
+    items: [
+      {
+        q: "Berapa revisi yang disertakan?",
+        a: "Setiap project termasuk 2x revisi. Revisi tambahan dihitung per request."
+      },
+      {
+        q: "Berapa lama proses pengerjaannya?",
+        a: "Tergantung scope: 1 video ads biasanya 3-5 hari kerja, sudah termasuk script & editing."
+      },
+      {
+        q: "Tools AI apa yang dipakai?",
+        a: "AI video generation (Seedance, Kling, FLUX) membantu produksi. Hasil akhir tetap di-edit dan di-review manual agar sesuai dengan brand."
+      },
+      {
+        q: "Apakah hasil video bebas dipakai untuk iklan berbayar?",
+        a: "Ya, semua deliverable siap pakai untuk Meta Ads, TikTok, dan platform lainnya."
+      },
+      {
+        q: "Format apa yang didukung?",
+        a: "9:16 (Reels/Shorts), 1:1, dan 16:9 - menyesuaikan kebutuhan campaign."
+      },
+      {
+        q: "Bagaimana alur kerjasamanya?",
+        a: "Diskusi brief - proposal & harga - produksi (script, visual, edit) - revisi - deliver."
+      }
+    ]
+  },
+
   // EDIT CONTACT DI SINI
   contact: {
     label: "Start a Project",
