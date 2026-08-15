@@ -106,6 +106,7 @@ const websiteContent = {
         platform: "Meta Ads, Instagram Reels",
         link: "https://drive.google.com/open?id=1102dQFULTB5iDX33KWeBiZ7N1WhQWKWe&usp=drive_fs",
         videoSource: "assets/videos/mealblend-ai-ads.mp4",
+        thumbnail: "assets/thumbnails/mealblend-ai-ads.jpg",
         orientation: "vertical",
         tags: ["AI Video", "Meta Ads", "Reels"]
       },
@@ -116,6 +117,7 @@ const websiteContent = {
         platform: "Instagram Reels, Meta Ads",
         link: "https://drive.google.com/file/d/14Zq5Ei77HC7m7dbPRfKTkKDChCPT6uF_/view?usp=sharing",
         videoSource: "assets/videos/burnx-matcha-ugc.mp4",
+        thumbnail: "assets/thumbnails/burnx-matcha-ugc.jpg",
         orientation: "vertical",
         tags: ["UGC", "Testimonial", "CTA"]
       },
@@ -126,6 +128,7 @@ const websiteContent = {
         platform: "Meta Ads, Reels",
         link: "https://drive.google.com/open?id=1K0jCt2jH136E_6elWicPTy6kM3v0_oBG&usp=drive_fs",
         videoSource: "assets/videos/mealblend-men-motion.mp4",
+        thumbnail: "assets/thumbnails/mealblend-men-motion.jpg",
         orientation: "vertical",
         tags: ["Motion", "Performance", "Reels"]
       },
@@ -136,6 +139,7 @@ const websiteContent = {
         platform: "Instagram Reels, Meta Ads",
         link: "https://drive.google.com/file/d/1EQw5btXT9qpADDt9JUfiGKhNv0WsZT9p/view?usp=sharing",
         videoSource: "assets/videos/artisan-tea-launch.mp4",
+        thumbnail: "assets/thumbnails/artisan-tea-launch.jpg",
         orientation: "vertical",
         tags: ["Launch", "Product", "Social"]
       },
@@ -146,6 +150,7 @@ const websiteContent = {
         platform: "Instagram Reels, Meta Ads",
         link: "https://drive.google.com/file/d/1AJFmfuvECBhKg_KJmHSqN-TYujoEttCj/view?usp=sharing",
         videoSource: "assets/videos/padel-lifestyle-ugc.mp4",
+        thumbnail: "assets/thumbnails/padel-lifestyle-ugc.jpg",
         orientation: "vertical",
         tags: ["Lifestyle", "UGC", "Wellness"]
       },
@@ -156,6 +161,7 @@ const websiteContent = {
         platform: "Meta Ads",
         link: "https://drive.google.com/open?id=1SZaS_IIXGIA1VHu-XL-UvQPm_g6Xty3Q&usp=drive_fs",
         videoSource: "assets/videos/before-after-transformation.mp4",
+        thumbnail: "assets/thumbnails/before-after-transformation.jpg",
         orientation: "vertical",
         tags: ["AI", "Story", "Conversion"]
       },
@@ -166,6 +172,7 @@ const websiteContent = {
         platform: "Website, Instagram Reels",
         link: "https://drive.google.com/open?id=1W0M7HwaWjy2gmXUqVqw-0oc1Js860FF_&usp=drive_fs",
         videoSource: "assets/videos/ai-product-commercial.mp4",
+        thumbnail: "assets/thumbnails/ai-product-commercial.jpg",
         orientation: "vertical",
         tags: ["Commercial", "Brand", "Product"]
       },
@@ -175,6 +182,7 @@ const websiteContent = {
         description: "Fast-paced event recap shaped around key moments, atmosphere, and clean transitions.",
         platform: "Instagram, YouTube Shorts",
         link: "https://drive.google.com/file/d/1-OPcAuM0LJ7rf6vQA2bVJTvaB5MSrvkb/view?usp=sharing",
+        thumbnail: "assets/thumbnails/event-highlight-editing.jpg",
         orientation: "vertical",
         tags: ["Event", "Editing", "Shorts"]
       },
@@ -185,6 +193,7 @@ const websiteContent = {
         platform: "YouTube, Instagram Reels",
         link: "https://drive.google.com/open?id=1krbTRcBTjue_Z7L8SbVoT5xrnRtWcq_T&usp=drive_fs",
         videoSource: "assets/videos/cinematic-brand.mp4",
+        thumbnail: "assets/thumbnails/cinematic-brand.jpg",
         orientation: "vertical",
         tags: ["Cinematic", "Color", "Story"]
       }

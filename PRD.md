@@ -109,7 +109,7 @@ ID: "Perjalanan saya dimulai sebagai videografer freelance — company profile, 
 - Label kategori: AI Ads / UGC Style / Commercial / Event / Cinematic
 - Deskripsi project: GUNAKAN deskripsi yang sudah ada di content.js (sudah bagus) — terjemahkan EN natural. JANGAN ganti.
 - Halaman detail: judul, kategori + platform (eyebrow), video player, satu paragraf cerita dari deskripsi existing, tombol "Order via WhatsApp" (sekunder).
-- **Thumbnail:** dibuat dengan GPT Image (akun ChatGPT) — gaya KONSISTEN semua project: dark cinematic, tipografi tebal modern (judul project), subtitle uppercase kecil, aksen kuning #FFD21A, rasio 4:5 (1080×1350). File lokal `assets/thumbnails/[slug].jpg`. Prompt pack ada di `THUMBNAILS.md`.
+- **Thumbnail:** file lokal `assets/thumbnails/[slug].jpg` — FRAME ASLI dari video (bukan AI-generated). Semua thumbnail TAMPIL seragam: kartu aspect-ratio 4/5 + `object-fit: cover` + ukuran kartu konsisten (CSS WAJIB enforce ini — jangan pernah pakai ukuran asli gambar). JANGAN tambahkan teks overlay di gambar.
 
 ### Contact
 - H1 ID: "Ceritakan project Anda." (EN: "Tell me about your project.")
