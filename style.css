@@ -222,3 +222,16 @@ h1 em, h2 em, h3 em { font-style: italic; font-family: Georgia, 'Times New Roman
 [data-reveal] { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1); transition-delay:var(--i,0ms); }
 [data-reveal].in { opacity:1; transform:none; }
 @media (prefers-reduced-motion:reduce){ [data-reveal] { opacity:1; transform:none; transition:none; } }
+
+/* ===== Tombol WhatsApp mengambang ===== */
+.wa-float { position:fixed; right:20px; bottom:20px; z-index:900; display:flex; align-items:center; gap:10px; height:54px; padding:0 22px 0 16px; border-radius:999px; background:var(--accent); color:var(--accent-ink); font-weight:600; font-size:15px; text-decoration:none; box-shadow:0 10px 30px rgba(255,210,26,.35); transition:transform .2s ease,box-shadow .2s ease; animation:floatIn .5s .8s backwards; }
+.wa-float:hover { transform:translateY(-3px); box-shadow:0 14px 38px rgba(255,210,26,.5); }
+.wa-float:active { transform:scale(.95); }
+.wa-float-icon { display:flex; }
+.wa-float svg { width:26px; height:26px; flex-shrink:0; }
+.wa-float-label { white-space:nowrap; }
+.wa-float::before { content:""; position:absolute; inset:0; border-radius:999px; background:var(--accent); z-index:-1; animation:waPulse 2.6s ease-out infinite; }
+@keyframes floatIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+@keyframes waPulse { 0% { transform:scale(1); opacity:.45; } 70% { transform:scale(1.28); opacity:0; } 100% { transform:scale(1.28); opacity:0; } }
+@media (max-width:640px) { .wa-float { right:14px; bottom:14px; height:50px; padding:0 16px 0 12px; } .wa-float svg { width:24px; height:24px; } }
+@media (prefers-reduced-motion:reduce) { .wa-float::before { display:none; } .wa-float { animation:none; } }
