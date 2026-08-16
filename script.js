@@ -1,711 +1,159 @@
-const content = window.websiteContent;
+(() => {
+  "use strict";
+  const { projects, translations } = window.siteData;
+  const root = document.documentElement;
+  const depth = document.body.dataset.depth || "";
+  const page = document.body.dataset.page || "home";
+  let lang = localStorage.getItem("lang") || root.lang || "id";
+  if (!translations[lang]) lang = "id";
 
-const elements = {
-  brandName: document.querySelector("#brandName"),
-  brandLink: document.querySelector("#brandLink"),
-  mainNav: document.querySelector("#mainNav"),
-  navMenu: document.querySelector("#navMenu"),
-  menuToggle: document.querySelector(".menu-toggle"),
-  heroContent: document.querySelector("#heroContent"),
-  capabilitySection: document.querySelector("#capabilitySection"),
-  capabilityStrip: document.querySelector("#capabilityStrip"),
-  aboutContent: document.querySelector("#aboutContent"),
-  projectHeading: document.querySelector("#projectHeading"),
-  projectTabs: document.querySelector("#projectTabs"),
-  projectGrid: document.querySelector("#projectGrid"),
-  serviceHeading: document.querySelector("#serviceHeading"),
-  servicesGrid: document.querySelector("#servicesGrid"),
-  processHeading: document.querySelector("#processHeading"),
-  processGrid: document.querySelector("#processGrid"),
-  faqHeading: document.querySelector("#faqHeading"),
-  faqList: document.querySelector("#faqList"),
-  contactContent: document.querySelector("#contactContent"),
-  footerContent: document.querySelector("#footerContent"),
-  videoModal: document.querySelector("#videoModal"),
-  videoModalClose: document.querySelector("#videoModalClose"),
-  videoPlayer: document.querySelector("#videoPlayer"),
-  videoModalCategory: document.querySelector("#videoModalCategory"),
-  videoModalTitle: document.querySelector("#videoModalTitle")
-};
-
-let activeCategory = content.portfolio.allCategoryLabel;
-let lastVideoTrigger = null;
-
-function escapeHTML(value = "") {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function formatMultiline(value = "") {
-  return escapeHTML(value).replaceAll("\n", "<br>");
-}
-
-function getLinkTarget(url = "") {
-  return url.startsWith("http") ? "_blank" : "_self";
-}
-
-function getButtonClass(style = "outline") {
-  const styles = {
-    dark: "btn-dark",
-    light: "btn-light",
-    outline: "btn-outline"
+  const path = (value) => depth + value;
+  const get = (object, key) => key.split(".").reduce((value, part) => value && value[part], object);
+  const drivePreview = (url) => {
+    const match = url.match(/\/d\/([^/?]+)|[?&]id=([^&]+)/);
+    return match ? `https://drive.google.com/file/d/${match[1] || match[2]}/preview` : url;
   };
 
-  return styles[style] || styles.outline;
-}
-
-function getProjectCategories() {
-  const categories = content.portfolio.projects.map((project) => project.category);
-  return [content.portfolio.allCategoryLabel, ...new Set(categories)];
-}
-
-function getGoogleDriveId(url = "") {
-  const pathMatch = url.match(/drive\.google\.com\/file\/d\/([^/?#]+)/i);
-  if (pathMatch) return pathMatch[1];
-
-  try {
-    const parsedUrl = new URL(url);
-    if (parsedUrl.hostname.includes("drive.google.com")) {
-      return parsedUrl.searchParams.get("id") || "";
-    }
-  } catch {
-    return "";
-  }
-
-  return "";
-}
-
-function getYouTubeId(url = "") {
-  try {
-    const parsedUrl = new URL(url);
-    const hostname = parsedUrl.hostname.replace("www.", "");
-
-    if (hostname === "youtu.be") {
-      return parsedUrl.pathname.split("/").filter(Boolean)[0] || "";
-    }
-
-    if (hostname.endsWith("youtube.com")) {
-      if (parsedUrl.pathname === "/watch") return parsedUrl.searchParams.get("v") || "";
-      const pathParts = parsedUrl.pathname.split("/").filter(Boolean);
-      if (["shorts", "embed"].includes(pathParts[0])) return pathParts[1] || "";
-    }
-  } catch {
-    return "";
-  }
-
-  return "";
-}
-
-function isDirectVideo(url = "") {
-  return /\.(mp4|webm|ogg|mov)(?:[?#].*)?$/i.test(url);
-}
-
-function getProjectMedia(project) {
-  const source = project.videoSource || project.link || "";
-  const driveId = getGoogleDriveId(source);
-  const linkedDriveId = getGoogleDriveId(project.link || "");
-  const youtubeId = getYouTubeId(source);
-
-  if (driveId) {
-    return {
-      thumbnail: project.thumbnail || `https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId)}&sz=w1000`,
-      playerType: "external",
-      playerUrl: project.link || source
-    };
-  }
-
-  if (youtubeId) {
-    return {
-      thumbnail: project.thumbnail || `https://i.ytimg.com/vi/${encodeURIComponent(youtubeId)}/hqdefault.jpg`,
-      playerType: "embed",
-      playerUrl: `https://www.youtube.com/embed/${encodeURIComponent(youtubeId)}?autoplay=1&rel=0`
-    };
-  }
-
-  if (isDirectVideo(source)) {
-    return {
-      thumbnail: project.thumbnail || (linkedDriveId
-        ? `https://drive.google.com/thumbnail?id=${encodeURIComponent(linkedDriveId)}&sz=w1000`
-        : ""),
-      playerType: "video",
-      playerUrl: source
-    };
-  }
-
-  return {
-    thumbnail: project.thumbnail || "",
-    playerType: "external",
-    playerUrl: project.link || source
-  };
-}
-
-function renderSeo() {
-  document.title = content.site.title;
-  const metaDescription = document.querySelector("meta[name='description']");
-  if (metaDescription) {
-    metaDescription.setAttribute("content", content.site.description);
-  }
-}
-
-function renderNavigation() {
-  elements.mainNav.setAttribute("aria-label", content.site.accessibility.navigationLabel);
-  elements.brandLink.setAttribute("aria-label", content.site.accessibility.brandHomeLabel);
-  elements.menuToggle.setAttribute("aria-label", content.site.accessibility.menuOpenLabel);
-  elements.brandName.textContent = content.site.brandName;
-
-  const navLinks = content.navigation
-    .map((item) => `<a href="${escapeHTML(item.target)}">${escapeHTML(item.label)}</a>`)
-    .join("");
-
-  const navButton = `<a class="nav-cta" href="${escapeHTML(content.navButton.target)}">${escapeHTML(content.navButton.label)}</a>`;
-  elements.navMenu.innerHTML = navLinks + navButton;
-}
-
-/* HERO LOAD ANIMATION */
-function renderHero() {
-  elements.heroContent.innerHTML = `
-    <div class="hero-intro hero-load-item">
-      <p>${escapeHTML(content.hero.smallText)}</p>
-      <span>${escapeHTML(content.hero.role)}</span>
-    </div>
-
-    <div class="hero-title hero-load-item">
-      <h1>${formatMultiline(content.hero.headline)}</h1>
-    </div>
-
-    <div class="hero-side">
-      <div class="portrait-wrap hero-portrait" data-parallax="0.08">
-        <img src="${escapeHTML(content.site.profileImage)}" alt="${escapeHTML(content.site.accessibility.profileAlt)}">
-      </div>
-      <p class="hero-description hero-load-item">${escapeHTML(content.hero.description)}</p>
-      <div class="hero-actions">
-        <a class="btn btn-dark" href="${escapeHTML(content.hero.primaryButton.target)}">${escapeHTML(content.hero.primaryButton.label)}</a>
-        <a class="btn btn-light" href="${escapeHTML(content.hero.secondaryButton.target)}">${escapeHTML(content.hero.secondaryButton.label)}</a>
-      </div>
-    </div>
-  `;
-}
-
-function renderCapabilityStrip() {
-  elements.capabilitySection.setAttribute("aria-label", content.site.accessibility.capabilityLabel);
-  elements.capabilityStrip.innerHTML = content.capabilityStrip
-    .map((item) => `<span>${escapeHTML(item)}</span>`)
-    .join("");
-}
-
-function renderAbout() {
-  const paragraphs = content.about.paragraphs
-    .map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`)
-    .join("");
-
-  const badges = content.about.badges
-    .map((badge) => `<span>${escapeHTML(badge)}</span>`)
-    .join("");
-
-  elements.aboutContent.innerHTML = `
-    <div class="section-kicker reveal">
-      <p>${escapeHTML(content.about.label)}</p>
-    </div>
-
-    <div class="about-content reveal">
-      <h2>${escapeHTML(content.about.headline)}</h2>
-      <div class="about-copy">${paragraphs}</div>
-      <div class="badge-list" aria-label="${escapeHTML(content.site.accessibility.creativeHighlightsLabel)}">${badges}</div>
-    </div>
-  `;
-}
-
-function renderSectionHeading(element, label, headline) {
-  element.innerHTML = `
-    <p>${escapeHTML(label)}</p>
-    <h2>${escapeHTML(headline)}</h2>
-  `;
-}
-
-function renderProjectTabs() {
-  const categories = getProjectCategories();
-  elements.projectTabs.setAttribute("aria-label", content.site.accessibility.projectCategoriesLabel);
-
-  if (!categories.includes(activeCategory)) {
-    activeCategory = content.portfolio.allCategoryLabel;
-  }
-
-  elements.projectTabs.innerHTML = categories
-    .map((category) => {
-      const activeClass = category === activeCategory ? " is-active" : "";
-      return `<button class="tab-button${activeClass}" type="button" data-category="${escapeHTML(category)}">${escapeHTML(category)}</button>`;
-    })
-    .join("");
-}
-
-/* CARD HOVER EFFECT */
-function renderProjectCard(project, index) {
-  const tags = (project.tags || []).map((tag) => `<span>${escapeHTML(tag)}</span>`).join("");
-  const target = getLinkTarget(project.link);
-  const allowedOrientations = ["vertical", "landscape"];
-  const orientation = allowedOrientations.includes(project.orientation)
-    ? project.orientation
-    : content.portfolio.defaultOrientation;
-  const projectIndex = content.portfolio.projects.indexOf(project);
-  const media = getProjectMedia(project);
-  const canPlayInline = media.playerType !== "external";
-  const titleTag = canPlayInline ? "button" : "a";
-  const titleAction = canPlayInline
-    ? `type="button" data-watch-project="${projectIndex}"`
-    : `href="${escapeHTML(project.link)}" target="${target}" rel="noopener"`;
-  const placeholder = `
-    <div class="project-media-placeholder">
-      <span>${escapeHTML(project.category)}</span>
-      <strong>${escapeHTML(content.portfolio.placeholderLabel)}</strong>
-    </div>
-  `;
-  const mediaBlock = media.playerType === "video"
-    ? `
-      <div class="project-media project-media-trigger project-media-inline ${escapeHTML(orientation)}" data-inline-media="${projectIndex}">
-        ${placeholder}
-        <video
-          class="project-inline-video"
-          data-project-video="${projectIndex}"
-          src="${escapeHTML(media.playerUrl)}"
-          ${media.thumbnail ? `poster="${escapeHTML(media.thumbnail)}"` : ""}
-          controls
-          muted
-          playsinline
-          preload="none"
-          aria-label="${escapeHTML(content.portfolio.playLabel)} ${escapeHTML(project.title)}"
-        ></video>
-        <span class="project-category">${escapeHTML(project.category)}</span>
-        <span class="project-play" aria-hidden="true"><i></i></span>
-        <div class="project-video-error" role="status">
-          <strong>${escapeHTML(content.portfolio.videoErrorLabel)}</strong>
-          <a href="${escapeHTML(project.link)}" target="${target}" rel="noopener">${escapeHTML(content.portfolio.videoErrorAction)}</a>
+  function renderChrome() {
+    const t = translations[lang];
+    document.querySelector("#siteHeader").innerHTML = `
+      <nav class="navbar container" aria-label="${t.nav.menu}">
+        <a class="brand" href="${path("index.html")}">DICKYNISM.INK</a>
+        <button class="menu-toggle" type="button" aria-label="${t.nav.menu}" aria-expanded="false"><span></span><span></span></button>
+        <div class="nav-menu" id="navMenu">
+          ${["home","portfolio","services","about","contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key === "home" ? "index.html" : `${key}.html`)}">${t.nav[key]}</a>`).join("")}
+          <a class="btn btn-primary" href="${path("contact.html")}">${t.nav.cta}</a>
+          <div class="language-toggle" aria-label="${t.nav.language}"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button></div>
         </div>
-      </div>
-    `
-    : `
-      <${canPlayInline ? "button" : "a"}
-        class="project-media project-media-trigger ${escapeHTML(orientation)}"
-        ${canPlayInline
-          ? `type="button" data-watch-project="${projectIndex}"`
-          : `href="${escapeHTML(project.link)}" target="${target}" rel="noopener"`
-        }
-        aria-label="${escapeHTML(content.portfolio.playLabel)} ${escapeHTML(project.title)}"
-      >
-        ${placeholder}
-        ${media.thumbnail
-          ? `<img src="${escapeHTML(media.thumbnail)}" alt="${escapeHTML(project.title)} preview" loading="lazy">`
-          : ""
-        }
-        <span class="project-category">${escapeHTML(project.category)}</span>
-        <span class="project-play" aria-hidden="true"><i></i></span>
-      </${canPlayInline ? "button" : "a"}>
-    `;
+      </nav>`;
+    document.querySelector("#siteFooter").innerHTML = `<div class="container footer-inner"><span class="footer-brand">DICKYNISM.INK</span><a href="https://www.instagram.com/dickynism/?hl=en">Instagram</a><a href="https://www.linkedin.com/in/dicky-christa-kurniawan-11405a1ab/">LinkedIn</a><a href="https://wa.me/6282228009011">WhatsApp</a><a href="mailto:halo.dickynism@gmail.com">halo.dickynism@gmail.com</a></div>`;
+    document.querySelectorAll("[data-lang]").forEach(button => {
+      button.classList.toggle("active", button.dataset.lang === lang);
+      button.addEventListener("click", () => { localStorage.setItem("lang", button.dataset.lang); lang = button.dataset.lang; render(); });
+    });
+    const toggle = document.querySelector(".menu-toggle");
+    toggle.addEventListener("click", () => {
+      const open = document.querySelector("#navMenu").classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+      document.body.classList.toggle("menu-open", open);
+    });
+  }
 
-  return `
-    <article class="project-card reveal reveal-card" style="--reveal-delay: ${Math.min(index * 90, 360)}ms">
-      ${mediaBlock}
-      <div class="project-content">
-        <h3><${titleTag} class="project-title-link" ${titleAction}>${escapeHTML(project.title)}</${titleTag}></h3>
-        <p>${escapeHTML(project.description)}</p>
-        <span class="project-platform"><strong>${escapeHTML(content.portfolio.platformLabel)}</strong>${escapeHTML(project.platform)}</span>
-        <div class="project-tags">${tags}</div>
-        <div class="project-actions">
-          ${canPlayInline
-            ? `<button class="project-link" type="button" data-watch-project="${projectIndex}"><span class="project-link-play" aria-hidden="true"></span>${escapeHTML(content.portfolio.buttonLabel)}</button>`
-            : `<a class="project-link" href="${escapeHTML(project.link)}" target="${target}" rel="noopener"><span class="project-link-play" aria-hidden="true"></span>${escapeHTML(content.portfolio.buttonLabel)}</a>`
-          }
+  function projectCards(items) {
+    return items.map(project => `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}"><a class="project-card-link" href="${path(`portfolio/${project.slug}.html`)}"><div class="project-thumb"><img src="${path(project.thumbnail)}" alt="${project.title}" width="1080" height="1350" loading="lazy"></div><span class="project-category">${project.category}</span><h3>${project.title}</h3></a></article>`).join("");
+  }
+  function stats(t) { return `<div class="stats-grid">${t.stats.map(item => `<div class="stat"><div class="stat-value">${item[0]}</div><div class="stat-label">${item[1]}</div></div>`).join("")}</div>`; }
+  function timeline(t) {
+    const companies = [["2019","GREAT VISINEMA"],["2021","EIGHT PRODUCTION"],["2022","PT. Tristar Global Indonesia"],["2024","PT. Aksara Digital Creative"],["2025","PT. SFS Group (Spencers Indonesia)"]];
+    return `<div class="timeline">${companies.map((item,i) => `<div class="timeline-row"><span class="timeline-year">${item[0]}</span><span class="timeline-company">${item[1]}</span><span class="timeline-role">${t.timeline.roles[i]}</span></div>`).join("")}</div>`;
+  }
+  function head(label,title,level="h2") { return `<div class="section-head"><span class="eyebrow">${label}</span><${level}>${title}</${level}></div>`; }
+
+  function renderHome(t) {
+    document.querySelector("#pageContent").innerHTML = `
+      <section class="hero"><div class="container hero-inner"><div class="hero-topline"><span class="eyebrow">${t.hero.eyebrow}</span><span class="availability"><span class="status-dot"></span>${t.hero.badge}</span></div><h1>${t.hero.before}<em>${t.hero.highlight}</em>${t.hero.after}</h1><p class="hero-description">${t.hero.description}</p><div class="button-row"><a class="btn btn-primary" href="#work">${t.hero.primary}</a><a class="btn btn-secondary" href="contact.html">${t.hero.secondary}</a></div></div></section>
+      <div class="marquee"><div class="marquee-track container"><span>SPENCERS INDONESIA</span><span>BURNX</span><span>PADEL</span></div></div>
+      <section class="section"><div class="container">${stats(t)}</div></section>
+      <section class="section"><div class="container">${head(t.expertise.label,t.expertise.title)}<div class="expertise-grid">${t.expertise.items.map((item,i)=>`<article class="expertise-item"><span class="number">${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div></div></section>
+      <section class="section"><div class="container">${head(t.about.label,t.about.title)}<div class="about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan" loading="lazy">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></div></section>
+      <section class="section" id="work"><div class="container">${head(t.common.selected,t.portfolio.title)}<div class="portfolio-grid">${projectCards(projects.slice(0,6))}</div><div class="portfolio-more"><a class="btn btn-secondary" href="portfolio.html">${t.common.allWork}</a></div></div></section>
+      <section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>
+      <section class="section cta-band"><div class="container cta-inner"><h2>${t.common.ctaTitle}</h2><a class="btn btn-primary" href="contact.html">${t.common.start}</a></div></section>`;
+  }
+
+  function renderPortfolio(t) {
+    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.portfolio.eyebrow}</span><h1>${t.portfolio.title}</h1></div></section><section class="section"><div class="container"><div class="filters"><button class="filter-button active" data-filter="all">${t.portfolio.all}</button>${[...new Set(projects.map(p=>p.category))].map(category=>`<button class="filter-button" data-filter="${category}">${category}</button>`).join("")}</div><div class="portfolio-grid" id="portfolioGrid">${projectCards(projects)}</div></div></section>`;
+    document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click",()=>{
+      document.querySelectorAll("[data-filter]").forEach(item=>item.classList.remove("active")); button.classList.add("active");
+      document.querySelectorAll(".project-card").forEach(card=>card.hidden=button.dataset.filter!=="all"&&card.dataset.category!==button.dataset.filter);
+    }));
+  }
+
+  function renderServices(t) {
+    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.services.eyebrow}</span><h1>${t.services.title}</h1></div></section><section class="section"><div class="container"><div class="services-grid">${t.services.items.map((item,i)=>`<article class="service-card"><span class="number">${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div></div></section><section class="section"><div class="container">${head(t.common.process,lang==="id"?"Alur kerja yang jelas, tanpa kerumitan yang tidak perlu.":"A Clear Workflow, without Unnecessary Complexity")}<div class="process-list">${t.services.process.map((item,i)=>`<div class="process-row"><span>${String(i+1).padStart(2,"0")}</span><p>${item[0]}</p><small>${item[1]}</small></div>`).join("")}</div></div></section>`;
+  }
+  function renderAbout(t) {
+    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.about.label}</span><h1>${t.about.title}</h1></div></section><section class="section"><div class="container about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></section><section class="section"><div class="container">${stats(t)}</div></section><section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>`;
+  }
+  function renderContact(t) {
+    document.querySelector("#contactTitle").innerHTML=t.contact.title;
+    document.querySelector("#contactSub").textContent=t.contact.sub;
+    document.querySelectorAll("[data-i18n]").forEach(el=>{ const value=get(t,el.dataset.i18n); if(value) el.textContent=value; });
+    document.querySelectorAll("#project-type option[data-service]").forEach((option,i)=>option.textContent=t.services.items[i][0]);
+    document.querySelectorAll("#budget option[data-budget]").forEach((option,i)=>option.textContent=t.contact.budget[i]);
+    document.querySelector("#faqList").innerHTML=t.faqItems.map(item=>`<div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">${item[0]}</button><div class="faq-answer">${item[1]}</div></div>`).join("");
+    document.querySelectorAll(".faq-question").forEach(button=>button.addEventListener("click",()=>{ const item=button.parentElement; item.classList.toggle("open"); button.setAttribute("aria-expanded",String(item.classList.contains("open"))); }));
+  }
+  function renderDetail(t) {
+    const slug=document.body.dataset.slug;
+    const project=projects.find(item=>item.slug===slug);
+    if(!project) return;
+    const media=project.videoSource ? `<video controls preload="none" poster="${path(project.thumbnail)}"><source src="${path(project.videoSource)}" type="video/mp4"></video>` : `<iframe src="${drivePreview(project.link)}" title="${project.title}" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    document.title=`${project.title} | DICKYNISM.INK`;
+    document.querySelector("meta[name=description]").content=lang==="id"?project.descriptionId:project.description;
+    document.querySelector("meta[property='og:title']").content=project.title;
+    document.querySelector("meta[property='og:description']").content=lang==="id"?project.descriptionId:project.description;
+    document.querySelector("#pageContent").innerHTML=`<section class="section" style="padding-top:152px"><div class="container detail-shell"><div class="video-wrap">${media}</div><div class="detail-copy"><span class="eyebrow">${project.category} · ${project.platform}</span><h1>${project.title}</h1><p>${lang==="id"?project.descriptionId:project.description}</p>${(lang==="id"?project.storyId:project.story||"").split("\n\n").map(p=>`<p>${p}</p>`).join("")}<a class="btn btn-secondary" href="https://wa.me/6282228009011">${t.common.order}</a><a class="fallback-link" href="${project.link}" target="_blank" rel="noopener">${t.common.fallback}</a></div></div></section>`;
+  }
+
+  function openModal(slug) {
+    const project = projects.find(item => item.slug === slug); if (!project) return;
+    const t = translations[lang];
+    const media = project.videoSource
+      ? `<video controls autoplay muted playsinline preload="auto" poster="${path(project.thumbnail)}"><source src="${path(project.videoSource)}" type="video/mp4"></video>`
+      : `<iframe src="${drivePreview(project.link)}" title="${project.title}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    document.querySelector("#modalBody").innerHTML = `
+      <div class="modal-video">${media}</div>
+      <div class="modal-info">
+        <span class="eyebrow">${project.category} · ${project.platform}</span>
+        <h3>${project.title}</h3>
+        <p>${lang === "id" ? project.descriptionId : project.description}</p>
+        ${(lang === "id" ? project.storyId : project.story || "").split("\n\n").map(p => `<p>${p}</p>`).join("")}
+        <div class="modal-actions">
+          <a class="btn btn-secondary" href="https://wa.me/6282228009011">${t.common.order}</a>
+          <a class="fallback-link" href="${project.link}" target="_blank" rel="noopener">${t.common.fallback}</a>
+          <a class="modal-detail-link" href="${path(`portfolio/${project.slug}.html`)}">${lang === "id" ? "Lihat cerita lengkap" : "View full story"}</a>
         </div>
-      </div>
-    </article>
-  `;
-}
-
-function renderProjects() {
-  const allLabel = content.portfolio.allCategoryLabel;
-  const filteredProjects = activeCategory === allLabel
-    ? content.portfolio.projects
-    : content.portfolio.projects.filter((project) => project.category === activeCategory);
-
-  elements.projectGrid.innerHTML = filteredProjects.map(renderProjectCard).join("");
-  bindInlineVideoPreviews();
-  observeRevealElements();
-}
-
-function renderServices() {
-  elements.servicesGrid.innerHTML = content.services.items
-    .map((service, index) => `
-      <article class="service-card reveal reveal-card" style="--reveal-delay: ${Math.min(index * 90, 360)}ms">
-        <span>${String(index + 1).padStart(2, "0")}</span>
-        <h3>${escapeHTML(service.title)}</h3>
-        <p>${escapeHTML(service.description)}</p>
-      </article>
-    `)
-    .join("");
-}
-
-function renderProcess() {
-  elements.processGrid.innerHTML = content.process.steps
-    .map((step, index) => `
-      <article class="process-card reveal reveal-card" style="--reveal-delay: ${Math.min(index * 90, 360)}ms">
-        <span>${String(index + 1).padStart(2, "0")}</span>
-        <p>${escapeHTML(step)}</p>
-      </article>
-    `)
-    .join("");
-}
-
-function renderFaq() {
-  elements.faqList.innerHTML = content.faq.items
-    .map((item) => `
-      <details class="faq-item">
-        <summary>${escapeHTML(item.q)}</summary>
-        <p>${escapeHTML(item.a)}</p>
-      </details>
-    `)
-    .join("");
-}
-
-function renderContact() {
-  const buttons = content.contact.links
-    .filter((link) => link.showInContact)
-    .map((link) => `
-      <a class="btn ${getButtonClass(link.style)}" href="${escapeHTML(link.url)}" target="${getLinkTarget(link.url)}" rel="noopener">${escapeHTML(link.label)}</a>
-    `)
-    .join("");
-
-  elements.contactContent.innerHTML = `
-    <div>
-      <p class="contact-label">${escapeHTML(content.contact.label)}</p>
-      <h2>${escapeHTML(content.contact.headline)}</h2>
-      <p>${escapeHTML(content.contact.description)}</p>
-      <p class="contact-note">${escapeHTML(content.contact.note)}</p>
-    </div>
-    <div class="contact-actions">${buttons}</div>
-  `;
-}
-
-function renderFooter() {
-  const socialLinks = content.contact.links
-    .filter((link) => link.showInFooter)
-    .map((link) => `<a href="${escapeHTML(link.url)}" target="_blank" rel="noopener">${escapeHTML(link.label)}</a>`)
-    .join("");
-
-  elements.footerContent.innerHTML = `
-    <div>
-      <strong>${escapeHTML(content.site.brandName)}</strong>
-      <p>${escapeHTML(content.site.footerDescription)}</p>
-    </div>
-    <p>&copy; ${new Date().getFullYear()} ${escapeHTML(content.site.brandName)}. ${escapeHTML(content.site.copyrightText)}</p>
-    <div class="footer-links">${socialLinks}</div>
-  `;
-}
-
-function setActiveCategory(category) {
-  activeCategory = category;
-  renderProjectTabs();
-  renderProjects();
-}
-
-function pauseOtherProjectVideos(activeVideo) {
-  elements.projectGrid.querySelectorAll(".project-inline-video").forEach((video) => {
-    if (video === activeVideo || video.paused) return;
-    video.pause();
-    delete video.dataset.hoverPlaying;
-    delete video.dataset.userPlaying;
-  });
-}
-
-function bindInlineVideoPreviews() {
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
-
-  elements.projectGrid.querySelectorAll(".project-media-inline").forEach((mediaElement) => {
-    const video = mediaElement.querySelector(".project-inline-video");
-    if (!video) return;
-
-    mediaElement.addEventListener("mouseenter", () => {
-      if (!canHover.matches || video.dataset.userPlaying === "true") return;
-
-      pauseOtherProjectVideos(video);
-      video.muted = true;
-      video.dataset.hoverPlaying = "true";
-      video.play().catch(() => {
-        delete video.dataset.hoverPlaying;
-      });
+      </div>`;
+    const modal = document.querySelector("#videoModal");
+    modal.hidden = false; document.body.style.overflow = "hidden";
+    const video = modal.querySelector("video"); if (video) video.play().catch(() => {});
+  }
+  function closeModal() {
+    const modal = document.querySelector("#videoModal"); if (!modal || modal.hidden) return;
+    modal.hidden = true; modal.querySelector("#modalBody").innerHTML = ""; document.body.style.overflow = "";
+  }
+  function initModal() {
+    if (document.querySelector("#videoModal")) return;
+    const modal = document.createElement("div"); modal.className = "modal"; modal.id = "videoModal"; modal.hidden = true;
+    modal.innerHTML = `<div class="modal-backdrop" data-modal-close></div><div class="modal-dialog" role="dialog" aria-modal="true"><button class="modal-close" data-modal-close aria-label="Tutup">&times;</button><div class="modal-body" id="modalBody"></div></div>`;
+    document.body.appendChild(modal);
+    document.addEventListener("click", e => {
+      const closer = e.target.closest("[data-modal-close]");
+      if (closer) { closeModal(); return; }
+      const link = e.target.closest(".project-card-link");
+      if (link && e.button === 0 && !e.metaKey && !e.ctrlKey) { e.preventDefault(); openModal(link.closest(".project-card").dataset.slug); }
     });
-
-    mediaElement.addEventListener("mouseleave", () => {
-      if (video.dataset.hoverPlaying !== "true" || video.dataset.userPlaying === "true") return;
-      video.pause();
-      delete video.dataset.hoverPlaying;
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+  }
+  let revealObserver = null;
+  function initReveal() {
+    if (!("IntersectionObserver" in window)) return;
+    if (!revealObserver) revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("in"); revealObserver.unobserve(entry.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    const targets = document.querySelectorAll(".hero, .page-hero, .section > .container > *, .project-card, .service-card, .expertise-item, .process-row, .timeline-row, .faq-item, .stat, .cta-band");
+    targets.forEach((el, i) => {
+      if (!el.hasAttribute("data-reveal")) { el.setAttribute("data-reveal", ""); el.style.setProperty("--i", (i % 6) * 70 + "ms"); }
+      if (!el.classList.contains("in")) revealObserver.observe(el);
     });
-
-    video.addEventListener("click", () => {
-      video.dataset.userPlaying = "true";
-      delete video.dataset.hoverPlaying;
-    });
-
-    video.addEventListener("play", () => {
-      pauseOtherProjectVideos(video);
-      mediaElement.classList.add("is-playing");
-    });
-
-    video.addEventListener("pause", () => {
-      mediaElement.classList.remove("is-playing");
-    });
-
-    video.addEventListener("ended", () => {
-      mediaElement.classList.remove("is-playing");
-      delete video.dataset.hoverPlaying;
-      delete video.dataset.userPlaying;
-    });
-
-    video.addEventListener("error", () => {
-      mediaElement.classList.add("has-video-error");
-      mediaElement.classList.remove("is-playing");
-    });
-  });
-}
-
-function playInlineProject(projectIndex) {
-  const video = elements.projectGrid.querySelector(`[data-project-video="${projectIndex}"]`);
-  if (!video) return false;
-
-  pauseOtherProjectVideos(video);
-  video.dataset.userPlaying = "true";
-  delete video.dataset.hoverPlaying;
-  video.muted = false;
-  video.closest(".project-media")?.scrollIntoView({ behavior: "smooth", block: "center" });
-  video.play().catch(() => {
-    video.muted = true;
-    video.play().catch(() => {
-      video.closest(".project-media")?.classList.add("has-video-error");
-    });
-  });
-
-  return true;
-}
-
-function openProjectPlayer(projectIndex, trigger) {
-  const project = content.portfolio.projects[projectIndex];
-  if (!project) return;
-
-  const media = getProjectMedia(project);
-  if (media.playerType === "video" && playInlineProject(projectIndex)) {
-    return;
   }
 
-  if (media.playerType === "external") {
-    window.open(project.link, getLinkTarget(project.link), "noopener");
-    return;
+  function render() {
+    root.lang=lang; renderChrome();
+    const t=translations[lang];
+    if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
+    initModal(); initReveal();
   }
-
-  const allowedOrientations = ["vertical", "landscape"];
-  const orientation = allowedOrientations.includes(project.orientation)
-    ? project.orientation
-    : content.portfolio.defaultOrientation;
-
-  lastVideoTrigger = trigger;
-  elements.videoModalClose.setAttribute("aria-label", content.portfolio.closePlayerLabel);
-  elements.videoModalClose.innerHTML = "<span aria-hidden=\"true\">&times;</span>";
-  elements.videoModalCategory.textContent = project.category;
-  elements.videoModalTitle.textContent = project.title;
-  elements.videoPlayer.className = `video-player-shell ${orientation}`;
-
-  elements.videoPlayer.innerHTML = `
-    <iframe
-      src="${escapeHTML(media.playerUrl)}"
-      title="${escapeHTML(project.title)}"
-      allow="autoplay; fullscreen"
-      allowfullscreen
-    ></iframe>
-  `;
-
-  elements.videoModal.hidden = false;
-  elements.videoModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-  window.requestAnimationFrame(() => elements.videoModal.classList.add("is-open"));
-  elements.videoModalClose.focus();
-}
-
-function closeProjectPlayer() {
-  if (elements.videoModal.hidden) return;
-
-  elements.videoModal.classList.remove("is-open");
-  elements.videoModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
-
-  window.setTimeout(() => {
-    elements.videoModal.hidden = true;
-    elements.videoPlayer.innerHTML = "";
-    if (lastVideoTrigger?.isConnected) lastVideoTrigger.focus();
-    lastVideoTrigger = null;
-  }, 260);
-}
-
-function toggleMobileMenu(forceClose = false) {
-  const shouldOpen = forceClose ? false : !elements.navMenu.classList.contains("is-open");
-  elements.navMenu.classList.toggle("is-open", shouldOpen);
-  elements.menuToggle.classList.toggle("is-open", shouldOpen);
-  elements.menuToggle.setAttribute("aria-expanded", String(shouldOpen));
-  document.body.classList.toggle("menu-open", shouldOpen);
-}
-
-/* SCROLL REVEAL ANIMATION */
-function observeRevealElements() {
-  const revealElements = document.querySelectorAll(".reveal:not(.is-visible)");
-
-  if (!("IntersectionObserver" in window)) {
-    revealElements.forEach((element) => element.classList.add("is-visible"));
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries, activeObserver) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        const delay = Number.parseInt(entry.target.style.getPropertyValue("--reveal-delay"), 10) || 0;
-        window.setTimeout(() => {
-          entry.target.style.removeProperty("--reveal-delay");
-          if (entry.target.classList.contains("reveal-card")) {
-            entry.target.classList.remove("reveal", "reveal-card");
-          }
-        }, delay + 950);
-        activeObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  revealElements.forEach((element) => observer.observe(element));
-}
-
-function observeActiveSection() {
-  const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll(".nav-menu a[href^='#']");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-
-      navLinks.forEach((link) => {
-        const isActive = link.getAttribute("href") === `#${entry.target.id}`;
-        link.classList.toggle("active", isActive);
-      });
-    });
-  }, {
-    rootMargin: "-35% 0px -55% 0px",
-    threshold: 0
-  });
-
-  sections.forEach((section) => observer.observe(section));
-}
-
-function enableSmoothScroll() {
-  document.addEventListener("click", (event) => {
-    const link = event.target.closest("a[href^='#']");
-    if (!link) return;
-
-    const targetElement = document.querySelector(link.getAttribute("href"));
-    if (!targetElement) return;
-
-    event.preventDefault();
-    toggleMobileMenu(true);
-    targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-}
-
-/* GRADIENT ANIMATION */
-/* PARALLAX RINGAN */
-function enableLightParallax() {
-  /* REDUCED MOTION SUPPORT */
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const parallaxItems = document.querySelectorAll("[data-parallax]");
-
-  if (reduceMotion || parallaxItems.length === 0) return;
-
-  let isTicking = false;
-
-  function updateParallax() {
-    parallaxItems.forEach((item) => {
-      const speed = Number.parseFloat(item.dataset.parallax) || 0.08;
-      const rect = item.getBoundingClientRect();
-      const viewportOffset = rect.top + rect.height / 2 - window.innerHeight / 2;
-      const movement = Math.max(Math.min(viewportOffset * -speed, 18), -18);
-      item.style.setProperty("--parallax-y", `${movement}px`);
-    });
-
-    isTicking = false;
-  }
-
-  function requestParallaxUpdate() {
-    if (isTicking) return;
-    isTicking = true;
-    window.requestAnimationFrame(updateParallax);
-  }
-
-  updateParallax();
-  window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
-  window.addEventListener("resize", requestParallaxUpdate);
-}
-
-function bindEvents() {
-  elements.projectTabs.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-category]");
-    if (!button) return;
-    setActiveCategory(button.dataset.category);
-  });
-
-  elements.menuToggle.addEventListener("click", () => toggleMobileMenu());
-
-  elements.projectGrid.addEventListener("click", (event) => {
-    const trigger = event.target.closest("[data-watch-project]");
-    if (!trigger) return;
-    openProjectPlayer(Number.parseInt(trigger.dataset.watchProject, 10), trigger);
-  });
-
-  elements.projectGrid.addEventListener("error", (event) => {
-    if (event.target.matches(".project-media img")) {
-      event.target.hidden = true;
-    }
-  }, true);
-
-  elements.videoModal.addEventListener("click", (event) => {
-    if (event.target.closest("[data-close-video]")) closeProjectPlayer();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !elements.videoModal.hidden) closeProjectPlayer();
-  });
-}
-
-function renderWebsite() {
-  renderSeo();
-  renderNavigation();
-  renderHero();
-  renderCapabilityStrip();
-  renderAbout();
-  renderSectionHeading(elements.projectHeading, content.portfolio.label, content.portfolio.headline);
-  renderProjectTabs();
-  renderProjects();
-  renderSectionHeading(elements.serviceHeading, content.services.label, content.services.headline);
-  renderServices();
-  renderSectionHeading(elements.processHeading, content.process.label, content.process.headline);
-  renderProcess();
-  renderSectionHeading(elements.faqHeading, content.faq.label, content.faq.headline);
-  renderFaq();
-  renderContact();
-  renderFooter();
-  bindEvents();
-  enableSmoothScroll();
-  enableLightParallax();
-  observeRevealElements();
-  observeActiveSection();
-  window.requestAnimationFrame(() => {
-    document.body.classList.add("page-loaded");
-  });
-}
-
-renderWebsite();
+  render();
+})();

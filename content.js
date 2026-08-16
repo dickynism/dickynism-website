@@ -1,318 +1,42 @@
-const websiteContent = {
-  // EDIT INFORMASI WEBSITE DI SINI
-  site: {
-    title: "Dicky Creative Works | Short-Form Video Ads & Creative Direction",
-    description: "Portfolio Dicky Creative Works untuk short-form video ads, UGC-style creative, script writing, product commercial, dan video editing.",
-    brandName: "Dicky Creative Works",
-    profileImage: "assets/profile.png",
-    footerDescription: "Short-Form Video Ads, Script & Creative Direction",
-    copyrightText: "All rights reserved.",
-    accessibility: {
-      navigationLabel: "Main navigation",
-      brandHomeLabel: "Dicky Creative Works home",
-      menuOpenLabel: "Open navigation menu",
-      capabilityLabel: "Capabilities",
-      creativeHighlightsLabel: "Creative highlights",
-      projectCategoriesLabel: "Project categories",
-      profileAlt: "Dicky Creative Works profile portrait"
-    }
+const projects = [
+  { slug: "mealblend-ai-ads", title: "Spencer's MealBlend - AI Short Video Ads", category: "AI Ads", description: "Serangkaian iklan vertikal berbantuan AI yang mengeksplorasi berbagai hook dan angle visual untuk pengujian campaign Meta.", descriptionId: "Serangkaian iklan vertikal berbantuan AI yang mengeksplorasi berbagai hook dan angle visual untuk pengujian campaign Meta.", story: "MealBlend butuh creative baru untuk campaign Meta. Tantangannya: angle yang berbeda dari iklan sebelumnya, tanpa memperlambat ritme produksi.\n\nPendekatannya: saya bikin serangkaian iklan vertikal berbantuan AI dengan beberapa hook dan sudut visual sekaligus. Setiap variasi dirancang untuk diuji cepat — biar tim media dapat data lebih banyak soal angle mana yang paling bekerja.\n\nHasilnya: satu set iklan siap tayang, siap diuji, dan siap dipelajari.", storyId: "MealBlend butuh creative baru untuk campaign Meta. Tantangannya: angle yang berbeda dari iklan sebelumnya, tanpa memperlambat ritme produksi.\n\nPendekatannya: saya bikin serangkaian iklan vertikal berbantuan AI dengan beberapa hook dan sudut visual sekaligus. Setiap variasi dirancang untuk diuji cepat — biar tim media dapat data lebih banyak soal angle mana yang paling bekerja.\n\nHasilnya: satu set iklan siap tayang, siap diuji, dan siap dipelajari.", platform: "Meta Ads, Instagram Reels", link: "https://drive.google.com/open?id=1102dQFULTB5iDX33KWeBiZ7N1WhQWKWe&usp=drive_fs", videoSource: "assets/videos/mealblend-ai-ads.mp4", thumbnail: "assets/thumbnails/mealblend-ai-ads.jpg" },
+  { slug: "burnx-matcha-ugc", title: "BurnX Matcha - UGC Style Testimonial Ads", category: "UGC Style", description: "Creative berbasis testimoni yang memadukan pain point relatable, manfaat yang masuk akal, dan CTA direct-response.", descriptionId: "Creative berbasis testimoni yang memadukan pain point relatable, manfaat yang masuk akal, dan CTA direct-response.", story: "Kategori weight management rawan overclaim — dan audiensnya makin skeptis. Iklan produk biasa nggak akan dipercaya.\n\nPendekatannya: gaya UGC testimoni. Cerita dibuka dari pain point yang relatable, diarahkan ke manfaat yang tetap masuk akal, ditutup dengan CTA yang jelas. Visual dibuat terasa organik — seperti konten creator, bukan iklan pabrikan.\n\nHasilnya: creative yang terasa jujur. Persis yang dibutuhkan di kategori sensitif seperti ini.", storyId: "Kategori weight management rawan overclaim — dan audiensnya makin skeptis. Iklan produk biasa nggak akan dipercaya.\n\nPendekatannya: gaya UGC testimoni. Cerita dibuka dari pain point yang relatable, diarahkan ke manfaat yang tetap masuk akal, ditutup dengan CTA yang jelas. Visual dibuat terasa organik — seperti konten creator, bukan iklan pabrikan.\n\nHasilnya: creative yang terasa jujur. Persis yang dibutuhkan di kategori sensitif seperti ini.", platform: "Instagram Reels, Meta Ads", link: "https://drive.google.com/file/d/14Zq5Ei77HC7m7dbPRfKTkKDChCPT6uF_/view?usp=sharing", videoSource: "assets/videos/burnx-matcha-ugc.mp4", thumbnail: "assets/thumbnails/burnx-matcha-ugc.jpg" },
+  { slug: "mealblend-men-motion", title: "MealBlend Men - Motion Graphic Ads", category: "AI Ads", description: "Iklan berbasis motion yang menyampaikan penawaran dengan cepat, dengan visual yang tetap premium.", descriptionId: "Iklan berbasis motion yang menyampaikan penawaran dengan cepat, dengan visual yang tetap premium.", story: "Segmen pria aktif nggak suka basa-basi. Mereka mau tahu manfaatnya cepat — tanpa narasi bertele-tele.\n\nPendekatannya: iklan motion graphic dengan ritme cepat dan visual premium. Setiap frame menyampaikan satu informasi: produk, manfaat, ajakan.\n\nHasilnya: iklan yang ringkas dan tegas. Selaras dengan audiens yang menghargai kejelasan.", storyId: "Segmen pria aktif nggak suka basa-basi. Mereka mau tahu manfaatnya cepat — tanpa narasi bertele-tele.\n\nPendekatannya: iklan motion graphic dengan ritme cepat dan visual premium. Setiap frame menyampaikan satu informasi: produk, manfaat, ajakan.\n\nHasilnya: iklan yang ringkas dan tegas. Selaras dengan audiens yang menghargai kejelasan.", platform: "Meta Ads, Reels", link: "https://drive.google.com/open?id=1K0jCt2jH136E_6elWicPTy6kM3v0_oBG&usp=drive_fs", videoSource: "assets/videos/mealblend-men-motion.mp4", thumbnail: "assets/thumbnails/mealblend-men-motion.jpg" },
+  { slug: "artisan-tea-launch", title: "Artisan Tea Series - Product Launch Video", category: "Commercial", description: "Reel peluncuran yang memadukan visual produk atmosferis dengan pesan ringkas untuk media sosial.", descriptionId: "Reel peluncuran yang memadukan visual produk atmosferis dengan pesan ringkas untuk media sosial.", story: "Meluncurkan produk baru berarti memperkenalkan rasanya dan suasananya — bukan cuma barangnya.\n\nPendekatannya: reel launch yang memadukan detail produk, seduhan, dan tekstur, dengan pesan yang siap dikonsumsi di media sosial. Ritmenya tenang, tapi tetap modern.\n\nHasilnya: pembukaan yang berkesan premium, tanpa terasa kaku.", storyId: "Meluncurkan produk baru berarti memperkenalkan rasanya dan suasananya — bukan cuma barangnya.\n\nPendekatannya: reel launch yang memadukan detail produk, seduhan, dan tekstur, dengan pesan yang siap dikonsumsi di media sosial. Ritmenya tenang, tapi tetap modern.\n\nHasilnya: pembukaan yang berkesan premium, tanpa terasa kaku.", platform: "Instagram Reels, Meta Ads", link: "https://drive.google.com/file/d/1EQw5btXT9qpADDt9JUfiGKhNv0WsZT9p/view?usp=sharing", videoSource: "assets/videos/artisan-tea-launch.mp4", thumbnail: "assets/thumbnails/artisan-tea-launch.jpg" },
+  { slug: "padel-lifestyle-ugc", title: "Padel Lifestyle UGC Ads", category: "UGC Style", description: "Konsep lifestyle bergaya UGC untuk audiens active-wellness yang mudah mengenali konten yang dibuat-buat.", descriptionId: "Konsep lifestyle bergaya UGC untuk audiens active-wellness yang mudah mengenali konten yang dibuat-buat.", story: "Audiens active-wellness langsung tahu kalau sebuah konten dibuat-buat. Untuk campaign lifestyle, keaslian adalah segalanya.\n\nPendekatannya: UGC yang mengikuti bahasa visual komunitas padel — momen santai setelah main, peralatan, suasana lapangan. Pesan produk disisipkan natural, seperti rekomendasi dari teman satu klub.\n\nHasilnya: creative yang terasa native di platform sosial, relevan untuk audiens yang aktif berolahraga.", storyId: "Audiens active-wellness langsung tahu kalau sebuah konten dibuat-buat. Untuk campaign lifestyle, keaslian adalah segalanya.\n\nPendekatannya: UGC yang mengikuti bahasa visual komunitas padel — momen santai setelah main, peralatan, suasana lapangan. Pesan produk disisipkan natural, seperti rekomendasi dari teman satu klub.\n\nHasilnya: creative yang terasa native di platform sosial, relevan untuk audiens yang aktif berolahraga.", platform: "Instagram Reels, Meta Ads", link: "https://drive.google.com/file/d/1AJFmfuvECBhKg_KJmHSqN-TYujoEttCj/view?usp=sharing", videoSource: "assets/videos/padel-lifestyle-ugc.mp4", thumbnail: "assets/thumbnails/padel-lifestyle-ugc.jpg" },
+  { slug: "before-after-transformation", title: "Before After Transformation Concept", category: "AI Ads", description: "Narasi before-after yang jelas — menyampaikan transformasi tanpa kehilangan kredibilitas.", descriptionId: "Narasi before-after yang jelas — menyampaikan transformasi tanpa kehilangan kredibilitas.", story: "Kategori ini sering jatuh pada klaim berlebihan. Tantangan kreatifnya: menyampaikan transformasi tanpa kehilangan kredibilitas.\n\nPendekatannya: narasi before-after yang visual dan sederhana. Perubahan cara berpakaian, rasa percaya diri — bukan angka-angka berlebihan. Pesan langsung tertangkap di beberapa detik pertama.\n\nHasilnya: konsep yang jujur, tapi tetap memotivasi audiens untuk bertindak.", storyId: "Kategori ini sering jatuh pada klaim berlebihan. Tantangan kreatifnya: menyampaikan transformasi tanpa kehilangan kredibilitas.\n\nPendekatannya: narasi before-after yang visual dan sederhana. Perubahan cara berpakaian, rasa percaya diri — bukan angka-angka berlebihan. Pesan langsung tertangkap di beberapa detik pertama.\n\nHasilnya: konsep yang jujur, tapi tetap memotivasi audiens untuk bertindak.", platform: "Meta Ads", link: "https://drive.google.com/open?id=1SZaS_IIXGIA1VHu-XL-UvQPm_g6Xty3Q&usp=drive_fs", videoSource: "assets/videos/before-after-transformation.mp4", thumbnail: "assets/thumbnails/before-after-transformation.jpg" },
+  { slug: "ai-product-commercial", title: "AI Product Commercial Video", category: "Commercial", description: "Commercial produk berbantuan AI — presentasi premium, ritme visual kuat, brand yang diingat.", descriptionId: "Commercial produk berbantuan AI — presentasi premium, ritme visual kuat, brand yang diingat.", story: "Product commercial yang baik harus bikin produk terlihat layak dimiliki — dalam hitungan detik.\n\nPendekatannya: presentasi premium dengan ritme visual yang kuat. Setiap shot disusun untuk membangun kesan kualitas, dari close-up detail sampai komposisi bersih. AI generation membantu menghadirkan visual yang sulit dicapai dengan footage biasa.\n\nHasilnya: commercial yang meninggalkan kesan brand yang solid dan modern.", storyId: "Product commercial yang baik harus bikin produk terlihat layak dimiliki — dalam hitungan detik.\n\nPendekatannya: presentasi premium dengan ritme visual yang kuat. Setiap shot disusun untuk membangun kesan kualitas, dari close-up detail sampai komposisi bersih. AI generation membantu menghadirkan visual yang sulit dicapai dengan footage biasa.\n\nHasilnya: commercial yang meninggalkan kesan brand yang solid dan modern.", platform: "Website, Instagram Reels", link: "https://drive.google.com/open?id=1W0M7HwaWjy2gmXUqVqw-0oc1Js860FF_&usp=drive_fs", videoSource: "assets/videos/ai-product-commercial.mp4", thumbnail: "assets/thumbnails/ai-product-commercial.jpg" },
+  { slug: "event-highlight-editing", title: "Event Highlight Editing", category: "Event", description: "Rekap event bertempo cepat — dibangun dari momen terkuat, dengan transisi yang bersih.", descriptionId: "Rekap event bertempo cepat — dibangun dari momen terkuat, dengan transisi yang bersih.", story: "Setiap event punya momen yang layak dikenang. Tugas highlight video: menangkap energinya sebelum perhatian penonton hilang.\n\nPendekatannya: rekap cepat yang dibangun dari momen terkuat, dipilih dengan teliti, disambung transisi yang bersih. Musik dan ritme editing bekerja sama menjaga energi dari awal sampai akhir.\n\nHasilnya: highlight yang siap dipakai untuk dokumentasi, promosi event berikutnya, atau konten sosial.", storyId: "Setiap event punya momen yang layak dikenang. Tugas highlight video: menangkap energinya sebelum perhatian penonton hilang.\n\nPendekatannya: rekap cepat yang dibangun dari momen terkuat, dipilih dengan teliti, disambung transisi yang bersih. Musik dan ritme editing bekerja sama menjaga energi dari awal sampai akhir.\n\nHasilnya: highlight yang siap dipakai untuk dokumentasi, promosi event berikutnya, atau konten sosial.", platform: "Instagram, YouTube Shorts", link: "https://drive.google.com/file/d/1-OPcAuM0LJ7rf6vQA2bVJTvaB5MSrvkb/view?usp=sharing", thumbnail: "assets/thumbnails/event-highlight-editing.jpg" },
+  { slug: "cinematic-brand", title: "Cinematic Brand Video", category: "Cinematic", description: "Edit brand sinematik — mood, pacing, warna, dan storytelling yang jelas dalam satu keseimbangan.", descriptionId: "Edit brand sinematik — mood, pacing, warna, dan storytelling yang jelas dalam satu keseimbangan.", story: "Brand video sinematik bukan sekadar kumpulan shot indah. Ia harus punya mood, ritme, dan cerita.\n\nPendekatannya: editing yang menyeimbangkan empat elemen. Mood lewat footage dan musik. Pacing yang menjaga penonton tetap terlibat. Warna yang membangun atmosfer konsisten. Storytelling yang mengarahkan emosi.\n\nHasilnya: brand video yang terasa premium dan meninggalkan kesan — bukan cuma dokumentasi visual.", storyId: "Brand video sinematik bukan sekadar kumpulan shot indah. Ia harus punya mood, ritme, dan cerita.\n\nPendekatannya: editing yang menyeimbangkan empat elemen. Mood lewat footage dan musik. Pacing yang menjaga penonton tetap terlibat. Warna yang membangun atmosfer konsisten. Storytelling yang mengarahkan emosi.\n\nHasilnya: brand video yang terasa premium dan meninggalkan kesan — bukan cuma dokumentasi visual.", platform: "YouTube, Instagram Reels", link: "https://drive.google.com/open?id=1krbTRcBTjue_Z7L8SbVoT5xrnRtWcq_T&usp=drive_fs", videoSource: "assets/videos/cinematic-brand.mp4", thumbnail: "assets/thumbnails/cinematic-brand.jpg" }
+];
+
+const translations = {
+  id: {
+    nav: { home: "Home", portfolio: "Portfolio", services: "Services", about: "About", contact: "Contact", cta: "Mulai Proyek", menu: "Buka navigasi", language: "Pilih bahasa" },
+    common: { selected: "Karya Terpilih", allWork: "Semua Karya", viewProject: "Lihat Project", order: "Order via WhatsApp", start: "Mulai Percakapan", ctaTitle: "Mari bikin sesuatu yang <em>berarti</em>.", categories: "Kategori", process: "Proses", faq: "FAQ", direct: "Kontak Langsung", fallback: "Buka video di Google Drive", back: "Kembali ke Portfolio" },
+    hero: { eyebrow: "CREATIVE VIDEO SPECIALIST — SURABAYA", badge: "TERSEDIA UNTUK PROYEK", before: "Video pendek yang ", highlight: "bekerja", after: ". Bukan sekadar keren.", description: "Banyak orang bisa bikin video yang bagus secara visual. Yang jarang: orang yang ngerti brief, paham konteks brand, dan bikin video yang hasilnya beneran nyambung ke audiens. Itu yang saya kerjakan — dari riset angle, hook, script, sampai final cut.", primary: "Lihat Karya", secondary: "Hubungi Saya" },
+    stats: [["5+", "Tahun pengalaman"], ["40+", "Proyek selesai"], ["6", "Kategori layanan"], ["1+", "Tahun di Spencers Indonesia"]],
+    expertise: { label: "Keahlian", title: "Empat disiplin. <em>Satu arah.</em>", items: [["Performance Video Ads", "Short-form ads dari riset audiens dan objective campaign. Hook kuat di 3 detik pertama, alur yang mengarah ke satu aksi."], ["UGC & Social Creative", "Video natural yang terasa organik, tapi dirancang dengan struktur yang terbukti bekerja. Untuk Reels, Shorts, dan Meta Ads."], ["Creative Direction", "Storyboard, shot direction, dan referensi visual. Bikin tim dan klien satu halaman dari awal."], ["Editing & AI Video", "Editing presisi yang menjaga pacing, diperkuat AI video generation untuk ide yang susah diwujudkan dengan footage biasa."]] },
+    about: { label: "Tentang", title: "Perjalanan yang membentuk cara saya <em>bercerita</em>.", text: "Perjalanan saya dimulai dari balik kamera — company profile, konten sosial media, video YouTube. Dari freelance, saya tumbuh lewat production house, tim marketing brand, sampai sekarang di PT. SFS Group (Spencers Indonesia) sebagai creative video.\n\nHari-hari saya: mengubah product insight jadi video ads yang siap tayang. Riset angle, tulis hook, susun script, arahkan visual, edit sampai final polish. Fokus saya short-form untuk Meta, Reels, dan Shorts — format yang harus menangkap perhatian cepat dan mengarahkan ke satu aksi.\n\nSaya percaya video ads yang bagus bukan cuma enak dilihat. Ia dibangun untuk performa — dan performa dimulai dari pemahaman: siapa audiensnya, masalah apa yang mereka hadapi, dan kenapa produk ini jawabannya.\n\nDi luar kerja, saya terus bereksperimen dengan AI video generation — karena cara orang bikin dan konsumsi konten berubah cepat, dan saya mau berada di sisi depan perubahannya. Kadang juga main padel atau motret olahraga." },
+    timeline: { label: "Perjalanan Karier", title: "Setiap peran punya sesuatu yang saya bawa sampai <em>sekarang</em>.", roles: ["Freelance Videografer & Video Editor", "Video Editor", "Social Media Staff", "Videografer & Photografer", "Creative Video"] },
+    portfolio: { eyebrow: "PORTFOLIO", title: "Karya yang dikerjakan dengan <em>serius</em>.", description: "Beberapa project yang saya kerjakan dengan serius — dan cerita di baliknya.", all: "Semua" },
+    services: { eyebrow: "LAYANAN", title: "Dukungan creative dari ide sampai <em>final cut</em>.", items: [["Performance Video Ads", "Konsep short-form ads dari audience insight, product angle, dan objective campaign. Termasuk riset hook dan struktur video per platform. Cocok untuk brand yang mau menguji banyak angle dengan cepat."], ["UGC-Style Creative", "Video bergaya UGC yang natural dan relatable untuk Reels, Shorts, dan Meta Ads. Terasa organik tanpa kehilangan arah pesan. Pilihan yang tepat untuk membangun kepercayaan audiens."], ["Script, Hook & CTA", "Hook, script, messaging angle, dan CTA yang bikin video lebih fokus dan mudah dipahami. Narasi yang mengarahkan penonton dari perhatian ke aksi. Bisa untuk satu video atau seri konten."], ["Creative Direction", "Storyboard, shot direction, referensi visual, dan creative brief siap produksi. Menjembatani ide dan eksekusi — biar tim dan klien punya arah yang sama."], ["Product & Brand Video", "Video produk dengan presentasi yang clean dan premium, selaras dengan karakter brand. Visual yang menarik, pesan yang jelas. Cocok untuk launch, campaign, dan katalog."], ["Editing & Creative Review", "Editing, pacing, visual polish, dan review creative sampai video siap publikasi. Menyempurnakan footage mentah atau video yang sudah ada — untuk tim yang butuh perspektif baru."]], process: [["Menentukan goal & deliverables", "Video untuk apa, dipasang di mana, dan seperti apa ukuran suksesnya — disepakati di awal biar nggak melenceng."], ["Meriset audience & offer", "Siapa targetnya, apa masalahnya, dan pesan apa yang paling relevan untuk mereka."], ["Membangun angle, hook & script", "Angle kreatif, hook 3 detik pertama, dan naskah yang mengarahkan penonton ke satu aksi."], ["Mengembangkan visual direction", "Storyboard, referensi visual, dan tone warna yang selaras dengan brand."], ["Memproduksi atau mengedit video", "Eksekusi: syuting, editing, motion, atau AI generation sesuai kebutuhan project."], ["Review, refine & deliver", "Penyempurnaan bersama, revisi, dan deliver dalam format siap tayang untuk setiap platform."]] },
+    contact: { eyebrow: "CONTACT", title: "Siap berkarya bareng? Ceritakan <em>project kamu</em>.", sub: "Belum punya brief lengkap? Gambaran produk dan goal sudah cukup — detailnya bisa kita diskusikan bersama.", fields: { name: "NAMA", email: "EMAIL", whatsapp: "NO. WHATSAPP", type: "JENIS PROJECT", budget: "ESTIMASI BUDGET", brief: "CERITAKAN BRIEF", submit: "Kirim Brief", choose: "Pilih" }, budget: ["Di bawah Rp2 juta", "Rp2-5 juta", "Rp5-10 juta", "Di atas Rp10 juta", "Perlu didiskusikan"] },
+    faqItems: [["Berapa revisi yang disertakan?", "Setiap project termasuk 2x revisi. Revisi tambahan dihitung per request."], ["Berapa lama proses pengerjaannya?", "Tergantung scope: 1 video ads biasanya 3-5 hari kerja, sudah termasuk script & editing."], ["Tools AI apa yang dipakai?", "AI video generation (Seedance, Kling, FLUX) membantu produksi. Hasil akhir tetap di-edit dan di-review manual agar sesuai dengan brand."], ["Apakah hasil video bebas dipakai untuk iklan berbayar?", "Ya, semua deliverable siap pakai untuk Meta Ads, TikTok, dan platform lainnya."], ["Format apa yang didukung?", "9:16 (Reels/Shorts), 1:1, dan 16:9 — menyesuaikan kebutuhan campaign."], ["Bagaimana alur kerjasamanya?", "Diskusi brief — proposal & harga — produksi (script, visual, edit) — revisi — deliver."]]
   },
-
-  navigation: [
-    { label: "Home", target: "#home" },
-    { label: "Projects", target: "#projects" },
-    { label: "Services", target: "#services" },
-    { label: "About", target: "#about" },
-    { label: "Contact", target: "#contact" }
-  ],
-
-  navButton: {
-    label: "Start a Project",
-    target: "#contact"
-  },
-
-  // EDIT HERO DI SINI
-  hero: {
-    smallText: "Creative Video & Script Writer",
-    role: "Available for freelance & project-based work",
-    headline: "Short-Form Ads\nBuilt to Perform",
-    description: "Saya membantu brand mengubah product insight menjadi video ads yang cepat menarik perhatian, mudah dipahami, dan siap digunakan untuk campaign.",
-    primaryButton: {
-      label: "View Work",
-      target: "#projects"
-    },
-    secondaryButton: {
-      label: "Contact Dicky",
-      target: "#contact"
-    }
-  },
-
-  capabilityStrip: [
-    "Creative built for attention, clarity, and action",
-    "AI-Assisted Video",
-    "Meta Ads",
-    "Instagram Reels",
-    "YouTube Shorts",
-    "Script Writing",
-    "Video Editing"
-  ],
-
-  // EDIT ABOUT DI SINI
-  about: {
-    label: "About Dicky",
-    headline: "Turning Product Insights into Videos People Want to Watch",
-    paragraphs: [
-      "Saya mengembangkan short-form video untuk paid ads dan organic content, mulai dari riset angle, hook, script, hingga arahan visual. Tujuannya sederhana: membuat pesan brand lebih cepat dipahami dan lebih menarik untuk ditonton.",
-      "Setiap project dikerjakan dengan perpaduan storytelling, marketing awareness, dan visual direction. Selain ads, saya juga menangani product commercial, event highlight, serta cinematic editing untuk kebutuhan brand."
-    ],
-    badges: [
-      "Audience & Angle Research",
-      "Hook Development",
-      "Script & Storyboard",
-      "Visual Direction",
-      "Performance Mindset",
-      "Platform-Native Format"
-    ]
-  },
-
-  // EDIT PORTFOLIO DI SINI
-  portfolio: {
-    label: "Selected Work",
-    headline: "Ads, Product Stories, and Visuals Made for Digital",
-    allCategoryLabel: "All",
-    buttonLabel: "Watch Project",
-    closePlayerLabel: "Close video player",
-    playLabel: "Play",
-    placeholderLabel: "Short Video Preview",
-    videoErrorLabel: "Preview tidak dapat diputar langsung.",
-    videoErrorAction: "Buka video",
-    platformLabel: "Format",
-    defaultOrientation: "vertical",
-
-    // Tambahkan portfolio baru dengan copy-paste salah satu contoh object di bawah.
-    // Jika category diganti atau ditambah, tab filter akan otomatis mengikuti.
-    // Gunakan orientation: "vertical" untuk video Reels/Shorts 9:16.
-    // Jika nanti ada video horizontal, gunakan orientation: "landscape".
-    // Thumbnail Google Drive dan YouTube akan diambil otomatis dari link.
-    // Agar video bisa diputar langsung di card, tambahkan videoSource berupa URL/file .mp4.
-    // Contoh: videoSource: "assets/videos/nama-video.mp4"
-    // Link Google Drive tetap bisa dipakai untuk mengambil thumbnail otomatis.
-    // Untuk link lain, kamu tetap bisa menambahkan thumbnail: "assets/nama-file.jpg".
-    projects: [
-      {
-        title: "Spencer's MealBlend - AI Short Video Ads",
-        category: "AI Ads",
-        description: "A series of AI-assisted vertical ads exploring multiple hooks and visual angles for Meta campaign testing.",
-        platform: "Meta Ads, Instagram Reels",
-        link: "https://drive.google.com/open?id=1102dQFULTB5iDX33KWeBiZ7N1WhQWKWe&usp=drive_fs",
-        videoSource: "assets/videos/mealblend-ai-ads.mp4",
-        thumbnail: "assets/thumbnails/mealblend-ai-ads.jpg",
-        orientation: "vertical",
-        tags: ["AI Video", "Meta Ads", "Reels"]
-      },
-      {
-        title: "BurnX Matcha - UGC Style Testimonial Ads",
-        category: "UGC Style",
-        description: "Testimonial-led creative combining a relatable pain point, clear product benefit, and direct-response CTA.",
-        platform: "Instagram Reels, Meta Ads",
-        link: "https://drive.google.com/file/d/14Zq5Ei77HC7m7dbPRfKTkKDChCPT6uF_/view?usp=sharing",
-        videoSource: "assets/videos/burnx-matcha-ugc.mp4",
-        thumbnail: "assets/thumbnails/burnx-matcha-ugc.jpg",
-        orientation: "vertical",
-        tags: ["UGC", "Testimonial", "CTA"]
-      },
-      {
-        title: "MealBlend Men - Motion Graphic Ads",
-        category: "AI Ads",
-        description: "Motion-led product ad designed to communicate the offer quickly while keeping the visual premium.",
-        platform: "Meta Ads, Reels",
-        link: "https://drive.google.com/open?id=1K0jCt2jH136E_6elWicPTy6kM3v0_oBG&usp=drive_fs",
-        videoSource: "assets/videos/mealblend-men-motion.mp4",
-        thumbnail: "assets/thumbnails/mealblend-men-motion.jpg",
-        orientation: "vertical",
-        tags: ["Motion", "Performance", "Reels"]
-      },
-      {
-        title: "Artisan Tea Series - Product Launch Video",
-        category: "Commercial",
-        description: "Launch reel pairing atmospheric product visuals with concise, social-first messaging.",
-        platform: "Instagram Reels, Meta Ads",
-        link: "https://drive.google.com/file/d/1EQw5btXT9qpADDt9JUfiGKhNv0WsZT9p/view?usp=sharing",
-        videoSource: "assets/videos/artisan-tea-launch.mp4",
-        thumbnail: "assets/thumbnails/artisan-tea-launch.jpg",
-        orientation: "vertical",
-        tags: ["Launch", "Product", "Social"]
-      },
-      {
-        title: "Padel Lifestyle UGC Ads",
-        category: "UGC Style",
-        description: "UGC-style lifestyle concept built around a relatable active-wellness audience.",
-        platform: "Instagram Reels, Meta Ads",
-        link: "https://drive.google.com/file/d/1AJFmfuvECBhKg_KJmHSqN-TYujoEttCj/view?usp=sharing",
-        videoSource: "assets/videos/padel-lifestyle-ugc.mp4",
-        thumbnail: "assets/thumbnails/padel-lifestyle-ugc.jpg",
-        orientation: "vertical",
-        tags: ["Lifestyle", "UGC", "Wellness"]
-      },
-      {
-        title: "Before After Transformation Concept",
-        category: "AI Ads",
-        description: "A clear before-after narrative designed to make the product outcome easy to understand.",
-        platform: "Meta Ads",
-        link: "https://drive.google.com/open?id=1SZaS_IIXGIA1VHu-XL-UvQPm_g6Xty3Q&usp=drive_fs",
-        videoSource: "assets/videos/before-after-transformation.mp4",
-        thumbnail: "assets/thumbnails/before-after-transformation.jpg",
-        orientation: "vertical",
-        tags: ["AI", "Story", "Conversion"]
-      },
-      {
-        title: "AI Product Commercial Video",
-        category: "Commercial",
-        description: "AI-assisted product commercial focused on premium presentation, visual rhythm, and brand recall.",
-        platform: "Website, Instagram Reels",
-        link: "https://drive.google.com/open?id=1W0M7HwaWjy2gmXUqVqw-0oc1Js860FF_&usp=drive_fs",
-        videoSource: "assets/videos/ai-product-commercial.mp4",
-        thumbnail: "assets/thumbnails/ai-product-commercial.jpg",
-        orientation: "vertical",
-        tags: ["Commercial", "Brand", "Product"]
-      },
-      {
-        title: "Event Highlight Editing",
-        category: "Event",
-        description: "Fast-paced event recap shaped around key moments, atmosphere, and clean transitions.",
-        platform: "Instagram, YouTube Shorts",
-        link: "https://drive.google.com/file/d/1-OPcAuM0LJ7rf6vQA2bVJTvaB5MSrvkb/view?usp=sharing",
-        thumbnail: "assets/thumbnails/event-highlight-editing.jpg",
-        orientation: "vertical",
-        tags: ["Event", "Editing", "Shorts"]
-      },
-      {
-        title: "Cinematic Brand Video",
-        category: "Cinematic",
-        description: "Cinematic brand edit balancing mood, pacing, color, and clear visual storytelling.",
-        platform: "YouTube, Instagram Reels",
-        link: "https://drive.google.com/open?id=1krbTRcBTjue_Z7L8SbVoT5xrnRtWcq_T&usp=drive_fs",
-        videoSource: "assets/videos/cinematic-brand.mp4",
-        thumbnail: "assets/thumbnails/cinematic-brand.jpg",
-        orientation: "vertical",
-        tags: ["Cinematic", "Color", "Story"]
-      }
-    ]
-  },
-
-  // EDIT SERVICES DI SINI
-  services: {
-    label: "Services",
-    headline: "Creative Support from First Idea to Final Cut",
-    items: [
-      {
-        title: "Performance Video Ads",
-        description: "Konsep short-form ads yang dibangun dari audience insight, product angle, dan objective campaign."
-      },
-      {
-        title: "UGC-Style Creative",
-        description: "Video bergaya natural dan relatable untuk Instagram Reels, YouTube Shorts, serta Meta Ads."
-      },
-      {
-        title: "Script, Hook & CTA",
-        description: "Hook, script, messaging angle, dan CTA yang membuat alur video lebih fokus dan mudah dipahami."
-      },
-      {
-        title: "Creative Direction",
-        description: "Storyboard, shot direction, reference visual, dan creative brief yang siap digunakan saat produksi."
-      },
-      {
-        title: "Product & Brand Video",
-        description: "Video produk dengan presentasi yang clean, premium, dan tetap selaras dengan karakter brand."
-      },
-      {
-        title: "Editing & Creative Review",
-        description: "Editing, pacing, visual polish, dan review creative untuk menghasilkan video yang siap dipublikasikan."
-      }
-    ]
-  },
-
-  // EDIT PROCESS DI SINI
-  process: {
-    label: "Process",
-    headline: "A Clear Workflow, without Unnecessary Complexity",
-    steps: [
-      "Define the goal and deliverables",
-      "Research the audience and offer",
-      "Build the angle, hook, and script",
-      "Develop the visual direction",
-      "Produce or edit the video",
-      "Review, refine, and deliver"
-    ]
-  },
-
-  // EDIT FAQ DI SINI
-  faq: {
-    label: "FAQ",
-    headline: "Pertanyaan yang Sering Ditanyakan",
-    items: [
-      {
-        q: "Berapa revisi yang disertakan?",
-        a: "Setiap project termasuk 2x revisi. Revisi tambahan dihitung per request."
-      },
-      {
-        q: "Berapa lama proses pengerjaannya?",
-        a: "Tergantung scope: 1 video ads biasanya 3-5 hari kerja, sudah termasuk script & editing."
-      },
-      {
-        q: "Tools AI apa yang dipakai?",
-        a: "AI video generation (Seedance, Kling, FLUX) membantu produksi. Hasil akhir tetap di-edit dan di-review manual agar sesuai dengan brand."
-      },
-      {
-        q: "Apakah hasil video bebas dipakai untuk iklan berbayar?",
-        a: "Ya, semua deliverable siap pakai untuk Meta Ads, TikTok, dan platform lainnya."
-      },
-      {
-        q: "Format apa yang didukung?",
-        a: "9:16 (Reels/Shorts), 1:1, dan 16:9 - menyesuaikan kebutuhan campaign."
-      },
-      {
-        q: "Bagaimana alur kerjasamanya?",
-        a: "Diskusi brief - proposal & harga - produksi (script, visual, edit) - revisi - deliver."
-      }
-    ]
-  },
-
-  // EDIT CONTACT DI SINI
-  contact: {
-    label: "Start a Project",
-    headline: "Punya produk, brief, atau ide yang ingin dikembangkan?",
-    description: "Ceritakan target audiens, objective campaign, dan format yang dibutuhkan. Saya akan membantu mengubahnya menjadi konsep video yang jelas dan siap dikerjakan.",
-    note: "Belum punya brief lengkap? Tidak masalah. Gambaran singkat tentang produk dan goal sudah cukup untuk memulai.",
-    links: [
-      {
-        label: "Chat via WhatsApp",
-        url: "https://wa.me/6282228009011",
-        style: "light",
-        showInContact: true,
-        showInFooter: false
-      },
-      {
-        label: "Send an Email",
-        url: "mailto:halo.dickynism@gmail.com",
-        style: "dark",
-        showInContact: true,
-        showInFooter: false
-      },
-      {
-        label: "Instagram",
-        url: "https://www.instagram.com/dickynism/?hl=en",
-        showInContact: false,
-        showInFooter: true
-      },
-      {
-        label: "LinkedIn",
-        url: "https://www.linkedin.com/in/dicky-christa-kurniawan-11405a1ab/",
-        showInContact: false,
-        showInFooter: true
-      }
-    ]
+  en: {
+    nav: { home: "Home", portfolio: "Portfolio", services: "Services", about: "About", contact: "Contact", cta: "Start a Project", menu: "Open navigation", language: "Choose language" },
+    common: { selected: "Selected Work", allWork: "All Work", viewProject: "View Project", order: "Order via WhatsApp", start: "Start a Conversation", ctaTitle: "Let's make something <em>meaningful</em>.", categories: "Categories", process: "Process", faq: "FAQ", direct: "Direct Contact", fallback: "Open video in Google Drive", back: "Back to Portfolio" },
+    hero: { eyebrow: "CREATIVE VIDEO SPECIALIST — SURABAYA", badge: "AVAILABLE FOR PROJECTS", before: "Short-form video that ", highlight: "works", after: ". Not just looks good.", description: "A lot of people can make videos that look good. What's rare: someone who understands the brief, gets the brand context, and makes videos that actually connect with the audience. That's what I do — from angle research, hooks, and scripts to the final cut.", primary: "View Work", secondary: "Contact Me" },
+    stats: [["5+", "Years of experience"], ["40+", "Projects delivered"], ["6", "Service categories"], ["1+", "Year at Spencers Indonesia"]],
+    expertise: { label: "Expertise", title: "Four disciplines. <em>One direction.</em>", items: [["Performance Video Ads", "Short-form ads built from audience research and campaign objectives. A strong hook in the first 3 seconds, a flow that leads to one action."], ["UGC & Social Creative", "Natural videos that feel organic, but structured around what's proven to work. For Reels, Shorts, and Meta Ads."], ["Creative Direction", "Storyboards, shot direction, and visual references. Keeping the team and the client on the same page from day one."], ["Editing & AI Video", "Precise editing that protects pacing, powered by AI video generation for ideas that are hard to realize with regular footage."]] },
+    about: { label: "About", title: "A journey that shaped how I <em>tell stories</em>.", text: "My journey began behind the camera — company profiles, social media content, YouTube videos. From freelance, I grew through production houses and brand marketing teams, and now at PT. SFS Group (Spencers Indonesia) as a creative video.\n\nDay to day, I turn product insights into ready-to-run video ads. Angle research, hook writing, scripts, visual direction, editing to final polish. My focus is short-form for Meta, Reels, and Shorts — formats that must grab attention fast and lead to a single action.\n\nI believe good video ads aren't just nice to look at. They're built to perform — and performance starts with understanding: who the audience is, what problem they face, and why this product is the answer.\n\nOutside work, I keep experimenting with AI video generation — because the way people create and consume content changes fast, and I want to be at the front of that change. I also play padel and shoot sports photography sometimes." },
+    timeline: { label: "Career Timeline", title: "Every role left something I carry to <em>this day</em>.", roles: ["Freelance Videographer & Video Editor", "Video Editor", "Social Media Staff", "Videographer & Photographer", "Creative Video"] },
+    portfolio: { eyebrow: "PORTFOLIO", title: "Work taken <em>seriously</em>.", description: "A few projects I worked on with care — and the stories behind them.", all: "All" },
+    services: { eyebrow: "SERVICES", title: "Creative support from idea to <em>final cut</em>.", items: [["Performance Video Ads", "Short-form ad concepts from audience insights, product angles, and campaign objectives. Includes hook research and per-platform video structure. Great for brands that want to test many angles quickly."], ["UGC-Style Creative", "Natural, relatable UGC-style videos for Reels, Shorts, and Meta Ads. Feels organic without losing the message. A solid choice for building audience trust."], ["Script, Hook & CTA", "Hooks, scripts, messaging angles, and CTAs that make videos more focused and easier to understand. Narratives that guide viewers from attention to action. For single videos or full content series."], ["Creative Direction", "Production-ready storyboards, shot direction, visual references, and creative briefs. Bridging ideas and execution — so the team and the client share the same direction."], ["Product & Brand Video", "Product videos with a clean, premium presentation aligned with the brand's character. Attractive visuals, clear message. Ideal for launches, campaigns, and catalogs."], ["Editing & Creative Review", "Editing, pacing, visual polish, and creative review until the video is publication-ready. Perfecting raw footage or existing videos — for teams that need a fresh perspective."]], process: [["Define the goal & deliverables", "What the video is for, where it runs, and what success looks like — agreed upfront so nothing drifts."], ["Research the audience & offer", "Who the target is, what their problem is, and which message matters most to them."], ["Build the angle, hook & script", "The creative angle, the 3-second hook, and a script that guides viewers to one action."], ["Develop the visual direction", "Storyboards, visual references, and a color tone aligned with the brand."], ["Produce or edit the video", "Execution: filming, editing, motion, or AI generation depending on the project."], ["Review, refine & deliver", "Collaborative refinement, revisions, and delivery in a ready-to-run format for every platform."]] },
+    contact: { eyebrow: "CONTACT", title: "Ready to create together? Tell me about <em>your project</em>.", sub: "Don't have a complete brief yet? A product overview and goal are enough — we can discuss the details together.", fields: { name: "NAME", email: "EMAIL", whatsapp: "WHATSAPP NUMBER", type: "PROJECT TYPE", budget: "ESTIMATED BUDGET", brief: "TELL ME THE BRIEF", submit: "Send Brief", choose: "Choose" }, budget: ["Below Rp2 million", "Rp2-5 million", "Rp5-10 million", "Above Rp10 million", "Needs discussion"] },
+    faqItems: [["How many revisions are included?", "Each project includes 2 revisions. Additional revisions are charged per request."], ["How long does the process take?", "It depends on the scope: one video ad usually takes 3-5 working days, including script and editing."], ["What AI tools do you use?", "AI video generation tools (Seedance, Kling, FLUX) support production. The final result is still edited and reviewed manually to fit the brand."], ["Can the videos be used for paid advertising?", "Yes, all deliverables are ready for Meta Ads, TikTok, and other platforms."], ["What formats are supported?", "9:16 (Reels/Shorts), 1:1, and 16:9 — adapted to campaign needs."], ["What does the collaboration process look like?", "Brief discussion — proposal & pricing — production (script, visuals, edit) — revisions — delivery."]]
   }
 };
 
-window.websiteContent = websiteContent;
+window.siteData = { projects, translations };
