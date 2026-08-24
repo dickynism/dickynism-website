@@ -414,6 +414,19 @@ textarea:focus-visible {
   border-left: 10px solid var(--text);
   pointer-events: none;
 }
+
+.project-hover-video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #050505;
+}
+.project-thumb::after { z-index: 2; }
+.project-thumb::before { z-index: 3; }
+
 .project-card:hover .project-thumb img { transform: scale(1.035); }
 .project-card:hover .project-thumb::after {
   background-color: var(--accent);
