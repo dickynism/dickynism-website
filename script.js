@@ -50,13 +50,81 @@
   function head(label,title,level="h2") { return `<div class="section-head"><span class="eyebrow">${label}</span><${level}>${title}</${level}></div>`; }
 
   function renderHome(t) {
+    const heroProjects = projects.slice(0, 4);
     document.querySelector("#pageContent").innerHTML = `
-      <section class="hero"><div class="container hero-inner"><div class="hero-topline"><span class="eyebrow">${t.hero.eyebrow}</span><span class="availability"><span class="status-dot"></span>${t.hero.badge}</span></div><h1>${t.hero.before}<em>${t.hero.highlight}</em>${t.hero.after}</h1><p class="hero-description">${t.hero.description}</p><div class="button-row"><a class="btn btn-primary" href="#work">${t.hero.primary}</a><a class="btn btn-secondary" href="contact.html">${t.hero.secondary}</a></div></div></section>
-      <section class="section"><div class="container">${head(t.expertise.label,t.expertise.title)}<div class="expertise-grid">${t.expertise.items.map((item,i)=>`<article class="expertise-item"><span class="number">${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div></div></section>
-      <section class="section"><div class="container">${head(t.about.label,t.about.title)}<div class="about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan" loading="lazy">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></div></section>
-      <section class="section" id="work"><div class="container">${head(t.common.selected,t.portfolio.title)}<div class="portfolio-grid">${projectCards(projects.slice(0,6))}</div><div class="portfolio-more"><a class="btn btn-secondary" href="portfolio.html">${t.common.allWork}</a></div></div></section>
-      <section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>
-      <section class="section cta-band"><div class="container cta-inner"><h2>${t.common.ctaTitle}</h2><a class="btn btn-primary" href="contact.html">${t.common.start}</a></div></section>`;
+      <section class="hero hero-showcase">
+        <div class="container hero-stage">
+          <div class="hero-topline">
+            <span class="eyebrow">${t.hero.eyebrow}</span>
+            <span class="availability"><span class="status-dot"></span>${t.hero.badge}</span>
+          </div>
+
+          <div class="hero-showcase-main">
+            <div class="hero-role-list" aria-label="${t.expertise.label}">
+              ${t.expertise.items.slice(0, 4).map((item, index) => `
+                <button class="hero-role ${index === 0 ? "active" : ""}" type="button" data-hero-role="${index}" aria-pressed="${index === 0 ? "true" : "false"}">
+                  <span>${String(index + 1).padStart(2, "0")}</span>
+                  <strong>${item[0]}</strong>
+                </button>
+              `).join("")}
+            </div>
+
+            <div class="hero-preview-stack">
+              ${heroProjects.map((project, index) => `
+                <a class="hero-preview-card ${index === 0 ? "active" : ""}" href="${path("portfolio/" + project.slug + ".html")}" data-hero-preview="${index}" data-slug="${project.slug}" aria-label="${project.title}">
+                  <img src="${path(project.thumbnail)}" alt="" width="1080" height="1920">
+                  <span>${project.title}</span>
+                </a>
+              `).join("")}
+            </div>
+          </div>
+
+          <div class="hero-bottom">
+            <div class="hero-statement">
+              <h1>${t.hero.before}<em>${t.hero.highlight}</em>${t.hero.after}</h1>
+            </div>
+            <div class="hero-summary">
+              <p>${t.hero.description}</p>
+              <div class="button-row">
+                <a class="btn btn-primary" href="#work">${t.hero.primary}</a>
+                <a class="btn btn-secondary" href="${path("contact.html")}">${t.hero.secondary}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="work">
+        <div class="container">
+          ${head(t.common.selected, t.portfolio.title)}
+          <div class="portfolio-grid">${projectCards(projects.slice(0, 6))}</div>
+          <div class="portfolio-more"><a class="btn btn-secondary" href="portfolio.html">${t.common.allWork}</a></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          ${head(t.about.label, t.about.title)}
+          <div class="about-story">
+            <img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan" loading="lazy">
+            ${t.about.text.split("\n\n").map(p => `<p>${p}</p>`).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          ${head(t.timeline.label, t.timeline.title)}
+          ${timeline(t)}
+        </div>
+      </section>
+
+      <section class="section cta-band">
+        <div class="container cta-inner">
+          <h2>${t.common.ctaTitle}</h2>
+          <a class="btn btn-primary" href="contact.html">${t.common.start}</a>
+        </div>
+      </section>`;
   }
 
   function renderPortfolio(t) {
@@ -134,6 +202,59 @@
     document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
   }
 
+
+  let heroTimer = null;
+
+  function initHeroShowcase() {
+    if (heroTimer) {
+      clearInterval(heroTimer);
+      heroTimer = null;
+    }
+
+    const roles = [...document.querySelectorAll("[data-hero-role]")];
+    const previews = [...document.querySelectorAll("[data-hero-preview]")];
+    if (!roles.length || !previews.length) return;
+
+    let activeIndex = 0;
+    const activate = (index) => {
+      activeIndex = index % Math.min(roles.length, previews.length);
+      roles.forEach((role, roleIndex) => {
+        const active = roleIndex === activeIndex;
+        role.classList.toggle("active", active);
+        role.setAttribute("aria-pressed", String(active));
+      });
+      previews.forEach((preview, previewIndex) => {
+        preview.classList.toggle("active", previewIndex === activeIndex);
+      });
+    };
+
+    const restart = () => {
+      if (heroTimer) clearInterval(heroTimer);
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      heroTimer = setInterval(() => activate(activeIndex + 1), 2400);
+    };
+
+    roles.forEach((role, index) => {
+      ["mouseenter", "focus", "click"].forEach(eventName => {
+        role.addEventListener(eventName, () => {
+          activate(index);
+          restart();
+        });
+      });
+    });
+
+    previews.forEach(preview => {
+      preview.addEventListener("click", event => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey) return;
+        event.preventDefault();
+        openModal(preview.dataset.slug);
+      });
+    });
+
+    activate(0);
+    restart();
+  }
+
   function initProjectPreviews() {
     const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -167,7 +288,7 @@
   }
 
   function initImageFallbacks() {
-    document.querySelectorAll(".project-thumb img").forEach(image => {
+    document.querySelectorAll(".project-thumb img, .hero-preview-card img").forEach(image => {
       const hideBrokenImage = () => { image.hidden = true; };
       image.addEventListener("error", hideBrokenImage, { once: true });
       if (image.complete && image.naturalWidth === 0) hideBrokenImage();
@@ -191,7 +312,7 @@
     root.lang=lang; renderChrome();
     const t=translations[lang];
     if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
-    initModal(); initImageFallbacks(); initProjectPreviews(); initReveal();
+    initModal(); initImageFallbacks(); initHeroShowcase(); initProjectPreviews(); initReveal();
   }
   render();
 })();
