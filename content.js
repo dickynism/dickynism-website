@@ -296,8 +296,8 @@ window.siteData = {
         "budget": [
           "Rp99K–Rp499K",
           "Rp500K–Rp999K",
-          "Rp1JT–Rp2.499K",
-          "Rp2.5JT–Rp4.999K",
+          "Rp1 juta–Rp2,49 juta",
+          "Rp2,5 juta–Rp4,99 juta",
           "Custom / perlu dibahas"
         ]
       },
@@ -507,7 +507,8 @@ window.siteData = {
             "Timeline dan quotation tertulis",
             "Tidak termasuk shooting",
             "Konsultasi kebutuhan awal"
-          ]
+          ],
+          "name": "Custom AI Production"
         }
       }
     },
@@ -683,8 +684,8 @@ window.siteData = {
         "budget": [
           "Rp99K–Rp499K",
           "Rp500K–Rp999K",
-          "Rp1M–Rp2,499K",
-          "Rp2.5M–Rp4,999K",
+          "Rp1M–Rp2.49M",
+          "Rp2.5M–Rp4.99M",
           "Custom / needs discussion"
         ]
       },
@@ -893,7 +894,8 @@ window.siteData = {
             "Written timeline and quotation",
             "No live shoot included",
             "Initial project consultation"
-          ]
+          ],
+          "name": "Custom AI Production"
         }
       }
     }
