@@ -112,7 +112,7 @@
           ${head(t.about.label, t.about.title)}
           <div class="about-story">
             <img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan" loading="lazy">
-            ${t.about.text.split("\n\n").map(p => `<p>${p}</p>`).join("")}
+            <div class="about-copy">${t.about.text.split("\n\n").map(p => `<p>${p}</p>`).join("")}</div>
           </div>
         </div>
       </section>
@@ -126,7 +126,7 @@
   }
 
   function renderPortfolio(t) {
-    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.portfolio.eyebrow}</span><h1>${t.portfolio.title}</h1></div></section><section class="section"><div class="container"><div class="filters"><button class="filter-button active" data-filter="all">${t.portfolio.all}</button>${[...new Set(projects.map(p=>p.category))].map(category=>`<button class="filter-button" data-filter="${category}">${category}</button>`).join("")}</div><div class="portfolio-grid" id="portfolioGrid">${projectCards(projects)}</div></div></section>`;
+    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.portfolio.eyebrow}</span><h1>${t.portfolio.title}</h1><p class="page-intro">${t.portfolio.description}</p></div></section><section class="section"><div class="container"><div class="filters"><button class="filter-button active" data-filter="all">${t.portfolio.all}</button>${[...new Set(projects.map(p=>p.category))].map(category=>`<button class="filter-button" data-filter="${category}">${category}</button>`).join("")}</div><div class="portfolio-grid" id="portfolioGrid">${projectCards(projects)}</div></div></section>`;
     document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click",()=>{
       document.querySelectorAll("[data-filter]").forEach(item=>item.classList.remove("active")); button.classList.add("active");
       document.querySelectorAll(".project-card").forEach(card=>card.hidden=button.dataset.filter!=="all"&&card.dataset.category!==button.dataset.filter);
@@ -180,7 +180,7 @@
     document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.services.eyebrow}</span><h1>${t.services.title}</h1></div></section><section class="section"><div class="container"><div class="services-grid">${t.services.items.map((item,i)=>`<article class="service-card"><span class="number">${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div></div></section><section class="section"><div class="container">${head(t.common.process,lang==="id"?"Alur kerja yang jelas, tanpa kerumitan yang tidak perlu.":"A Clear Workflow, without Unnecessary Complexity")}<div class="process-list">${t.services.process.map((item,i)=>`<div class="process-row"><span>${String(i+1).padStart(2,"0")}</span><p>${item[0]}</p><small>${item[1]}</small></div>`).join("")}</div></div></section>`;
   }
   function renderAbout(t) {
-    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.about.label}</span><h1>${t.about.title}</h1></div></section><section class="section"><div class="container about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></section><section class="section"><div class="container">${stats(t)}</div></section><section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>`;
+    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.about.label}</span><h1>${t.about.title}</h1></div></section><section class="section"><div class="container about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan"><div class="about-copy">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></div></section><section class="section"><div class="container">${stats(t)}</div></section><section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>`;
   }
   function renderContact(t) {
     document.querySelector("#contactEyebrow").textContent=t.contact.eyebrow;
