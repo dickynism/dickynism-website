@@ -19,7 +19,7 @@
     document.querySelector("#siteHeader").innerHTML = `
       <nav class="navbar container" aria-label="${t.nav.menu}">
         <a class="brand" href="${path("index.html")}" aria-label="DICKYNISM">
-          <span class="brand-stamp">DCW</span>
+          <img class="brand-mark" src="${path("assets/logo.svg")}" alt="" width="36" height="36">
           <span class="brand-word">DICKYNISM</span>
         </a>
         <button class="menu-toggle" type="button" aria-label="${t.nav.menu}" aria-expanded="false"><span></span><span></span></button>
