@@ -78,16 +78,14 @@ em { color: var(--teal); font-style: normal; }
   justify-content: space-between;
 }
 .brand { display: inline-flex; align-items: center; gap: 10px; }
-.brand-stamp {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 10px;
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: block;
+  transition: transform 280ms ease;
 }
+.brand:hover .brand-mark { transform: scale(1.04); }
 .brand-word { font-size: 14px; font-weight: 400; }
 .menu-toggle {
   width: 48px;
