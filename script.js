@@ -18,11 +18,13 @@
     const t = translations[lang];
     document.querySelector("#siteHeader").innerHTML = `
       <nav class="navbar container" aria-label="${t.nav.menu}">
-        <a class="brand" href="${path("index.html")}">DICKYNISM.INK</a>
+        <a class="brand" href="${path("index.html")}" aria-label="DICKYNISM.INK">
+          <span class="brand-stamp">DCW</span>
+          <span class="brand-word">DICKYNISM.INK</span>
+        </a>
         <button class="menu-toggle" type="button" aria-label="${t.nav.menu}" aria-expanded="false"><span></span><span></span></button>
         <div class="nav-menu" id="navMenu">
-          ${["home","portfolio","services","about","contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key === "home" ? "index.html" : `${key}.html`)}">${t.nav[key]}</a>`).join("")}
-          <a class="btn btn-primary" href="${path("contact.html")}">${t.nav.cta}</a>
+          ${["portfolio", "services", "about", "contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key + ".html")}">${t.nav[key]}</a>`).join("")}
           <div class="language-toggle" aria-label="${t.nav.language}"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button></div>
         </div>
       </nav>`;
@@ -40,8 +42,9 @@
   }
 
   function projectCards(items) {
-    return items.map(project => `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}"><a class="project-card-link" href="${path(`portfolio/${project.slug}.html`)}"><div class="project-thumb"><img src="${path(project.thumbnail)}" alt="${project.title}" width="1080" height="1350" loading="lazy"></div><span class="project-category">${project.category}</span><h3>${project.title}</h3></a></article>`).join("");
+    return items.map(project => `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}"><a class="project-card-link" href="${path("portfolio/" + project.slug + ".html")}"><div class="project-thumb"><img src="${path(project.thumbnail)}" alt="${project.title}" width="1080" height="1920" loading="lazy"></div><div class="project-caption"><span class="project-category">${project.category} · ${project.platform}</span><h3>${project.title}</h3><p class="project-tagline">${lang === "id" ? project.descriptionId : project.description}</p></div></a></article>`).join("");
   }
+
   function stats(t) { return `<div class="stats-grid">${t.stats.map(item => `<div class="stat"><div class="stat-value">${item[0]}</div><div class="stat-label">${item[1]}</div></div>`).join("")}</div>`; }
   function timeline(t) {
     const companies = [["2019","GREAT VISINEMA"],["2021","EIGHT PRODUCTION"],["2022","PT. Tristar Global Indonesia"],["2024","PT. Aksara Digital Creative"],["2025","PT. SFS Group (Spencers Indonesia)"]];
@@ -50,55 +53,31 @@
   function head(label,title,level="h2") { return `<div class="section-head"><span class="eyebrow">${label}</span><${level}>${title}</${level}></div>`; }
 
   function renderHome(t) {
-    const heroProjects = projects.slice(0, 4);
     document.querySelector("#pageContent").innerHTML = `
-      <section class="hero hero-showcase">
-        <div class="container hero-stage">
+      <section class="hero hero-editorial">
+        <div class="container hero-shell">
           <div class="hero-topline">
             <span class="eyebrow">${t.hero.eyebrow}</span>
             <span class="availability"><span class="status-dot"></span>${t.hero.badge}</span>
           </div>
-
-          <div class="hero-showcase-main">
-            <div class="hero-role-list" aria-label="${t.expertise.label}">
-              ${t.expertise.items.slice(0, 4).map((item, index) => `
-                <button class="hero-role ${index === 0 ? "active" : ""}" type="button" data-hero-role="${index}" aria-pressed="${index === 0 ? "true" : "false"}">
-                  <span>${String(index + 1).padStart(2, "0")}</span>
-                  <strong>${item[0]}</strong>
-                </button>
-              `).join("")}
-            </div>
-
-            <div class="hero-preview-stack">
-              ${heroProjects.map((project, index) => `
-                <a class="hero-preview-card ${index === 0 ? "active" : ""}" href="${path("portfolio/" + project.slug + ".html")}" data-hero-preview="${index}" data-slug="${project.slug}" aria-label="${project.title}">
-                  <img src="${path(project.thumbnail)}" alt="" width="1080" height="1920">
-                  <span>${project.title}</span>
-                </a>
-              `).join("")}
-            </div>
-          </div>
-
-          <div class="hero-bottom">
-            <div class="hero-statement">
-              <h1>${t.hero.before}<em>${t.hero.highlight}</em>${t.hero.after}</h1>
-            </div>
-            <div class="hero-summary">
+          <div class="hero-composition">
+            <h1>${t.hero.before}<em>${t.hero.highlight}</em>${t.hero.after}</h1>
+            <div class="hero-intro">
               <p>${t.hero.description}</p>
               <div class="button-row">
-                <a class="btn btn-primary" href="#work">${t.hero.primary}</a>
-                <a class="btn btn-secondary" href="${path("contact.html")}">${t.hero.secondary}</a>
+                <a class="btn btn-primary" href="#work">${t.hero.primary} <span aria-hidden="true">↘</span></a>
+                <a class="btn btn-secondary" href="contact.html">${t.hero.secondary} <span aria-hidden="true">↗</span></a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="work">
+      <section class="section work-index" id="work">
         <div class="container">
           ${head(t.common.selected, t.portfolio.title)}
           <div class="portfolio-grid">${projectCards(projects.slice(0, 6))}</div>
-          <div class="portfolio-more"><a class="btn btn-secondary" href="portfolio.html">${t.common.allWork}</a></div>
+          <div class="portfolio-more"><a class="btn btn-secondary" href="portfolio.html">${t.common.allWork} <span aria-hidden="true">→</span></a></div>
         </div>
       </section>
 
@@ -122,7 +101,7 @@
       <section class="section cta-band">
         <div class="container cta-inner">
           <h2>${t.common.ctaTitle}</h2>
-          <a class="btn btn-primary" href="contact.html">${t.common.start}</a>
+          <a class="btn btn-primary" href="contact.html">${t.common.start} <span aria-hidden="true">↗</span></a>
         </div>
       </section>`;
   }
@@ -203,57 +182,6 @@
   }
 
 
-  let heroTimer = null;
-
-  function initHeroShowcase() {
-    if (heroTimer) {
-      clearInterval(heroTimer);
-      heroTimer = null;
-    }
-
-    const roles = [...document.querySelectorAll("[data-hero-role]")];
-    const previews = [...document.querySelectorAll("[data-hero-preview]")];
-    if (!roles.length || !previews.length) return;
-
-    let activeIndex = 0;
-    const activate = (index) => {
-      activeIndex = index % Math.min(roles.length, previews.length);
-      roles.forEach((role, roleIndex) => {
-        const active = roleIndex === activeIndex;
-        role.classList.toggle("active", active);
-        role.setAttribute("aria-pressed", String(active));
-      });
-      previews.forEach((preview, previewIndex) => {
-        preview.classList.toggle("active", previewIndex === activeIndex);
-      });
-    };
-
-    const restart = () => {
-      if (heroTimer) clearInterval(heroTimer);
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      heroTimer = setInterval(() => activate(activeIndex + 1), 2400);
-    };
-
-    roles.forEach((role, index) => {
-      ["mouseenter", "focus", "click"].forEach(eventName => {
-        role.addEventListener(eventName, () => {
-          activate(index);
-          restart();
-        });
-      });
-    });
-
-    previews.forEach(preview => {
-      preview.addEventListener("click", event => {
-        if (event.button !== 0 || event.metaKey || event.ctrlKey) return;
-        event.preventDefault();
-        openModal(preview.dataset.slug);
-      });
-    });
-
-    activate(0);
-    restart();
-  }
 
   function initProjectPreviews() {
     const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -288,7 +216,7 @@
   }
 
   function initImageFallbacks() {
-    document.querySelectorAll(".project-thumb img, .hero-preview-card img").forEach(image => {
+    document.querySelectorAll(".project-thumb img").forEach(image => {
       const hideBrokenImage = () => { image.hidden = true; };
       image.addEventListener("error", hideBrokenImage, { once: true });
       if (image.complete && image.naturalWidth === 0) hideBrokenImage();
@@ -312,7 +240,7 @@
     root.lang=lang; renderChrome();
     const t=translations[lang];
     if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
-    initModal(); initImageFallbacks(); initHeroShowcase(); initProjectPreviews(); initReveal();
+    initModal(); initImageFallbacks(); initProjectPreviews(); initReveal();
   }
   render();
 })();
