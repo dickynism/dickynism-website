@@ -139,6 +139,25 @@
   }
 
   function renderPackages(t) {
+    const packageCard = (item, index) => `
+      <article class="pricing-card ${item.popular ? "featured" : ""}">
+        <div class="pricing-top">
+          <span class="package-index">${String(index + 1).padStart(2, "0")}</span>
+          ${item.popular ? `<span class="package-badge">${t.packages.popular}</span>` : ""}
+        </div>
+        <h3>${item.name}</h3>
+        <p class="package-summary">${item.summary}</p>
+        <div class="package-price">
+          <small>${t.packages.from}</small>
+          <strong>${item.price}</strong>
+          <span>${item.delivery}</span>
+        </div>
+        <ul class="package-features">${item.features.map(feature => `<li>${feature}</li>`).join("")}</ul>
+        <a class="btn ${item.popular ? "btn-primary" : "btn-secondary"}" href="contact.html?package=${item.id}">
+          ${t.packages.choose}<span aria-hidden="true">↗</span>
+        </a>
+      </article>`;
+
     document.querySelector("#pageContent").innerHTML = `
       <section class="page-hero">
         <div class="container">
@@ -147,36 +166,34 @@
           <p class="page-intro">${t.packages.description}</p>
         </div>
       </section>
-      <section class="section package-section">
+      ${t.packages.groups.map(group => `
+        <section class="section package-group-section" id="${group.id}">
+          <div class="container">
+            <div class="package-group-head">
+              <span class="eyebrow">${group.label}</span>
+              <h2>${group.title}</h2>
+              <p>${group.description}</p>
+            </div>
+            <div class="pricing-grid pricing-grid-${group.items.length}">
+              ${group.items.map(packageCard).join("")}
+            </div>
+          </div>
+        </section>`).join("")}
+      <section class="section custom-offer-section">
         <div class="container">
-          <div class="pricing-grid">
-            ${t.packages.items.map((item, i) => `
-              <article class="pricing-card ${item.popular ? "featured" : ""} ${item.id === "custom" ? "custom-package" : ""}">
-                <div class="pricing-top">
-                  <span class="package-index">${String(i + 1).padStart(2, "0")}</span>
-                  ${item.popular ? `<span class="package-badge">${t.packages.popular}</span>` : ""}
-                </div>
-                <h2>${item.name}</h2>
-                <p class="package-summary">${item.summary}</p>
-                <div class="package-price">
-                  <small>${item.id === "custom" ? "" : t.packages.from}</small>
-                  <strong>${item.price}</strong>
-                  <span>${item.delivery}</span>
-                </div>
-                <ul class="package-features">${item.features.map(feature => `<li>${feature}</li>`).join("")}</ul>
-                <a class="btn ${item.popular ? "btn-primary" : "btn-secondary"}" href="contact.html?package=${item.id}">
-                  ${item.id === "custom" ? t.packages.customCta : t.packages.choose}
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </article>`).join("")}
+          <div class="custom-offer">
+            <div>
+              <span class="eyebrow">${t.packages.custom.label}</span>
+              <h2>${t.packages.custom.title}</h2>
+              <p>${t.packages.custom.description}</p>
+              <strong>${t.packages.custom.price}</strong>
+            </div>
+            <div>
+              <ul class="package-features">${t.packages.custom.features.map(feature => `<li>${feature}</li>`).join("")}</ul>
+              <a class="btn btn-primary" href="contact.html?package=${t.packages.custom.id}">${t.packages.customCta} <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
           <p class="package-note">${t.packages.note}</p>
-        </div>
-      </section>
-      <section class="section cta-band">
-        <div class="container cta-inner">
-          <h2>${lang === "id" ? "Belum yakin memilih paket?" : "Not sure which package fits?"}</h2>
-          <a class="btn btn-primary" href="contact.html?package=custom">${t.packages.customCta} <span aria-hidden="true">↗</span></a>
         </div>
       </section>`;
   }
@@ -194,7 +211,9 @@
     document.querySelectorAll("[data-i18n]").forEach(el=>{ const value=get(t,el.dataset.i18n); if(value) el.textContent=value; });
     document.querySelectorAll("#project-type option[data-service]").forEach((option,i)=>option.textContent=t.services.items[i][0]);
     document.querySelectorAll("#budget option[data-budget]").forEach((option,i)=>option.textContent=t.contact.budget[i]);
-    document.querySelectorAll("#package-choice option[data-package]").forEach((option,i)=>option.textContent=t.packages.items[i].name+" — "+t.packages.items[i].price);
+    const packageSelect=document.querySelector("#package-choice");
+    const packageItems=t.packages.groups.flatMap(group=>group.items).concat(t.packages.custom);
+    packageSelect.innerHTML=`<option value="">${t.contact.fields.choose}</option>${packageItems.map(item=>`<option value="${item.id}">${item.name} — ${item.price}</option>`).join("")}`;
     const requestedPackage=new URLSearchParams(window.location.search).get("package");
     if(requestedPackage && document.querySelector("#package-choice")) document.querySelector("#package-choice").value=requestedPackage;
     document.querySelector("#faqTitle").textContent=t.common.faq;
