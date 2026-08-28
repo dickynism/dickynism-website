@@ -18,17 +18,17 @@
     const t = translations[lang];
     document.querySelector("#siteHeader").innerHTML = `
       <nav class="navbar container" aria-label="${t.nav.menu}">
-        <a class="brand" href="${path("index.html")}" aria-label="DICKYNISM.INK">
+        <a class="brand" href="${path("index.html")}" aria-label="DICKYNISM">
           <span class="brand-stamp">DCW</span>
-          <span class="brand-word">DICKYNISM.INK</span>
+          <span class="brand-word">DICKYNISM</span>
         </a>
         <button class="menu-toggle" type="button" aria-label="${t.nav.menu}" aria-expanded="false"><span></span><span></span></button>
         <div class="nav-menu" id="navMenu">
-          ${["portfolio", "services", "about", "contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key + ".html")}">${t.nav[key]}</a>`).join("")}
+          ${["portfolio", "services", "packages", "about", "contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key + ".html")}">${t.nav[key]}</a>`).join("")}
           <div class="language-toggle" aria-label="${t.nav.language}"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button></div>
         </div>
       </nav>`;
-    document.querySelector("#siteFooter").innerHTML = `<div class="container footer-inner"><span class="footer-brand">DICKYNISM.INK</span><a href="https://www.instagram.com/dickynism/?hl=en">Instagram</a><a href="https://www.linkedin.com/in/dicky-christa-kurniawan-11405a1ab/">LinkedIn</a><a href="https://wa.me/6282228009011">WhatsApp</a><a href="mailto:halo.dickynism@gmail.com">halo.dickynism@gmail.com</a></div>`;
+    document.querySelector("#siteFooter").innerHTML = `<div class="container footer-inner"><span class="footer-brand">DICKYNISM</span><a href="https://www.instagram.com/dickynism/?hl=en">Instagram</a><a href="https://www.linkedin.com/in/dicky-christa-kurniawan-11405a1ab/">LinkedIn</a><a href="https://wa.me/6282228009011">WhatsApp</a><a href="mailto:halo.dickynism@gmail.com">halo.dickynism@gmail.com</a></div>`;
     document.querySelectorAll("[data-lang]").forEach(button => {
       button.classList.toggle("active", button.dataset.lang === lang);
       button.addEventListener("click", () => { localStorage.setItem("lang", button.dataset.lang); lang = button.dataset.lang; render(); });
@@ -70,7 +70,7 @@
               <p>${t.hero.description}</p>
               <div class="button-row">
                 <a class="btn btn-primary" href="#work">${t.hero.primary} <span aria-hidden="true">↘</span></a>
-                <a class="btn btn-secondary" href="contact.html">${t.hero.secondary} <span aria-hidden="true">↗</span></a>
+                <a class="btn btn-secondary" href="packages.html">${t.hero.secondary} <span aria-hidden="true">↗</span></a>
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@
       <section class="section cta-band">
         <div class="container cta-inner">
           <h2>${t.common.ctaTitle}</h2>
-          <a class="btn btn-primary" href="contact.html">${t.common.start} <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-primary" href="packages.html">${t.common.start} <span aria-hidden="true">↗</span></a>
         </div>
       </section>`;
   }
@@ -133,6 +133,49 @@
     }));
   }
 
+  function renderPackages(t) {
+    document.querySelector("#pageContent").innerHTML = `
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">${t.packages.eyebrow}</span>
+          <h1>${t.packages.title}</h1>
+          <p class="page-intro">${t.packages.description}</p>
+        </div>
+      </section>
+      <section class="section package-section">
+        <div class="container">
+          <div class="pricing-grid">
+            ${t.packages.items.map((item, i) => `
+              <article class="pricing-card ${item.popular ? "featured" : ""} ${item.id === "custom" ? "custom-package" : ""}">
+                <div class="pricing-top">
+                  <span class="package-index">${String(i + 1).padStart(2, "0")}</span>
+                  ${item.popular ? `<span class="package-badge">${t.packages.popular}</span>` : ""}
+                </div>
+                <h2>${item.name}</h2>
+                <p class="package-summary">${item.summary}</p>
+                <div class="package-price">
+                  <small>${item.id === "custom" ? "" : t.packages.from}</small>
+                  <strong>${item.price}</strong>
+                  <span>${item.delivery}</span>
+                </div>
+                <ul class="package-features">${item.features.map(feature => `<li>${feature}</li>`).join("")}</ul>
+                <a class="btn ${item.popular ? "btn-primary" : "btn-secondary"}" href="contact.html?package=${item.id}">
+                  ${item.id === "custom" ? t.packages.customCta : t.packages.choose}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </article>`).join("")}
+          </div>
+          <p class="package-note">${t.packages.note}</p>
+        </div>
+      </section>
+      <section class="section cta-band">
+        <div class="container cta-inner">
+          <h2>${lang === "id" ? "Belum yakin memilih paket?" : "Not sure which package fits?"}</h2>
+          <a class="btn btn-primary" href="contact.html?package=custom">${t.packages.customCta} <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>`;
+  }
+
   function renderServices(t) {
     document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.services.eyebrow}</span><h1>${t.services.title}</h1></div></section><section class="section"><div class="container"><div class="services-grid">${t.services.items.map((item,i)=>`<article class="service-card"><span class="number">${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div></div></section><section class="section"><div class="container">${head(t.common.process,lang==="id"?"Alur kerja yang jelas, tanpa kerumitan yang tidak perlu.":"A Clear Workflow, without Unnecessary Complexity")}<div class="process-list">${t.services.process.map((item,i)=>`<div class="process-row"><span>${String(i+1).padStart(2,"0")}</span><p>${item[0]}</p><small>${item[1]}</small></div>`).join("")}</div></div></section>`;
   }
@@ -140,20 +183,25 @@
     document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.about.label}</span><h1>${t.about.title}</h1></div></section><section class="section"><div class="container about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></section><section class="section"><div class="container">${stats(t)}</div></section><section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>`;
   }
   function renderContact(t) {
+    document.querySelector("#contactEyebrow").textContent=t.contact.eyebrow;
     document.querySelector("#contactTitle").innerHTML=t.contact.title;
     document.querySelector("#contactSub").textContent=t.contact.sub;
     document.querySelectorAll("[data-i18n]").forEach(el=>{ const value=get(t,el.dataset.i18n); if(value) el.textContent=value; });
     document.querySelectorAll("#project-type option[data-service]").forEach((option,i)=>option.textContent=t.services.items[i][0]);
     document.querySelectorAll("#budget option[data-budget]").forEach((option,i)=>option.textContent=t.contact.budget[i]);
-    document.querySelector("#faqList").innerHTML=t.faqItems.map(item=>`<div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">${item[0]}</button><div class="faq-answer">${item[1]}</div></div>`).join("");
-    document.querySelectorAll(".faq-question").forEach(button=>button.addEventListener("click",()=>{ const item=button.parentElement; item.classList.toggle("open"); button.setAttribute("aria-expanded",String(item.classList.contains("open"))); }));
+    document.querySelectorAll("#package-choice option[data-package]").forEach((option,i)=>option.textContent=t.packages.items[i].name+" — "+t.packages.items[i].price);
+    const requestedPackage=new URLSearchParams(window.location.search).get("package");
+    if(requestedPackage && document.querySelector("#package-choice")) document.querySelector("#package-choice").value=requestedPackage;
+    document.querySelector("#faqTitle").textContent=t.common.faq;
+    document.querySelector("#faqList").innerHTML=t.faqItems.map(item=>`<div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>${item[0]}</span><span aria-hidden="true">+</span></button><div class="faq-answer"><p>${item[1]}</p></div></div>`).join("");
+    document.querySelectorAll(".faq-question").forEach(button=>button.addEventListener("click",()=>{ const item=button.parentElement; item.classList.toggle("open"); button.setAttribute("aria-expanded",String(item.classList.contains("open"))); button.lastElementChild.textContent=item.classList.contains("open")?"−":"+"; }));
   }
   function renderDetail(t) {
     const slug=document.body.dataset.slug;
     const project=projects.find(item=>item.slug===slug);
     if(!project) return;
     const media=project.videoSource ? `<video controls preload="none" poster="${path(project.thumbnail)}"><source src="${path(project.videoSource)}" type="video/mp4"></video>` : `<iframe src="${drivePreview(project.link)}" title="${project.title}" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-    document.title=`${project.title} | DICKYNISM.INK`;
+    document.title=`${project.title} | DICKYNISM`;
     document.querySelector("meta[name=description]").content=lang==="id"?project.descriptionId:project.description;
     document.querySelector("meta[property='og:title']").content=project.title;
     document.querySelector("meta[property='og:description']").content=lang==="id"?project.descriptionId:project.description;
@@ -258,7 +306,7 @@
   function render() {
     root.lang=lang; renderChrome();
     const t=translations[lang];
-    if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
+    if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="packages") renderPackages(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
     initModal(); initImageFallbacks(); initProjectPreviews(); initReveal();
   }
   render();
