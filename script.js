@@ -53,6 +53,10 @@
   function head(label,title,level="h2") { return `<div class="section-head"><span class="eyebrow">${label}</span><${level}>${title}</${level}></div>`; }
 
   function renderHome(t) {
+    const processTitle = lang === "id"
+      ? "Dari brief ke video yang siap diuji."
+      : "From brief to a video ready to test.";
+
     document.querySelector("#pageContent").innerHTML = `
       <section class="hero hero-editorial">
         <div class="container hero-shell">
@@ -73,6 +77,19 @@
         </div>
       </section>
 
+      <section class="section proof-section" aria-label="${lang === "id" ? "Bukti pengalaman" : "Experience proof"}">
+        <div class="container">${stats(t)}</div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          ${head(t.expertise.label, t.expertise.title)}
+          <div class="expertise-grid">
+            ${t.expertise.items.map((item, i) => `<article class="expertise-item"><span class="number">${String(i + 1).padStart(2, "0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}
+          </div>
+        </div>
+      </section>
+
       <section class="section work-index" id="work">
         <div class="container">
           ${head(t.common.selected, t.portfolio.title)}
@@ -83,18 +100,20 @@
 
       <section class="section">
         <div class="container">
-          ${head(t.about.label, t.about.title)}
-          <div class="about-story">
-            <img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan" loading="lazy">
-            ${t.about.text.split("\n\n").map(p => `<p>${p}</p>`).join("")}
+          ${head(t.common.process, processTitle)}
+          <div class="process-list">
+            ${t.services.process.map((item, i) => `<div class="process-row"><span>${String(i + 1).padStart(2, "0")}</span><p>${item[0]}</p><small>${item[1]}</small></div>`).join("")}
           </div>
         </div>
       </section>
 
       <section class="section">
         <div class="container">
-          ${head(t.timeline.label, t.timeline.title)}
-          ${timeline(t)}
+          ${head(t.about.label, t.about.title)}
+          <div class="about-story">
+            <img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan" loading="lazy">
+            ${t.about.text.split("\n\n").map(p => `<p>${p}</p>`).join("")}
+          </div>
         </div>
       </section>
 
