@@ -223,57 +223,57 @@ window.siteData = {
       // EDIT SERVICES DI SINI
       "services": {
         "eyebrow": "SERVICES",
-        "title": "Layanan video dari <em>konsep sampai final</em>.",
+        "title": "AI video dan editing tanpa <em>proses shooting</em>.",
         "items": [
           [
-            "Short-Form Video Ads",
-            "Konsep dan produksi video vertical untuk Meta Ads, Reels, dan Shorts."
+            "Hyper-Realistic AI UGC",
+            "Video bergaya creator dengan talent virtual, voice, dan lip-sync untuk testimonial, product demo, atau ads tanpa mencari talent dan lokasi."
           ],
           [
-            "UGC-Style Creative",
-            "Video bergaya creator untuk testimonial, product demo, dan promosi."
+            "AI Product Commercial",
+            "Commercial produk berbasis AI untuk launch, marketplace, social media, dan campaign dengan visual yang sulit dibuat dari footage biasa."
           ],
           [
-            "Script, Hook & CTA",
-            "Naskah singkat dengan pembuka, pesan utama, dan ajakan yang jelas."
+            "AI Realistic Short Movie",
+            "Cerita pendek cinematic berbasis AI untuk branded story, campaign, teaser, atau konten naratif tanpa produksi kamera."
           ],
           [
-            "Creative Direction",
-            "Angle, storyboard, shot list, referensi visual, dan brief untuk produksi."
+            "Long-form & Short-form Editing",
+            "Editing footage klien untuk Reels, Shorts, YouTube, podcast, interview, course, dan video promosi."
           ],
           [
-            "Product & Brand Video",
-            "Video produk, launch, company profile, dan kebutuhan campaign brand."
+            "Content Repurposing",
+            "Mengubah satu podcast, webinar, interview, atau video panjang menjadi beberapa konten pendek siap publikasi."
           ],
           [
-            "Editing & Creative Review",
-            "Editing footage, motion graphic, subtitle, format platform, dan review creative."
+            "Ad Creative Variations",
+            "Membuat beberapa versi hook, CTA, durasi, dan format dari satu materi untuk kebutuhan testing campaign."
           ]
         ],
         "process": [
           [
-            "Brief dan kebutuhan",
-            "Tentukan produk, audiens, platform, output, dan jadwal."
+            "Pilih layanan",
+            "Tentukan editing footage klien atau produksi visual berbasis AI."
           ],
           [
-            "Riset dan angle",
-            "Pilih pesan dan pendekatan yang paling relevan."
+            "Kirim materi dan brief",
+            "Bagikan footage, product asset, tujuan, referensi, serta platform tujuan."
           ],
           [
-            "Script dan visual",
-            "Siapkan hook, script, storyboard, atau shot list."
+            "Konsep dan struktur",
+            "Saya menyiapkan alur, hook, script, atau storyboard sesuai paket."
           ],
           [
-            "Produksi",
-            "Shooting, pengumpulan footage, motion, atau AI generation."
+            "Editing atau AI generation",
+            "Footage diedit atau visual dibuat melalui proses generation dan seleksi."
           ],
           [
-            "Editing",
-            "Susun pacing, subtitle, audio, warna, dan CTA."
+            "Review",
+            "Draft dikirim untuk revisi sesuai batas yang tercantum pada paket."
           ],
           [
-            "Review dan delivery",
-            "Selesaikan revisi lalu kirim file sesuai format."
+            "Final delivery",
+            "File akhir dikirim dalam format dan rasio yang disepakati."
           ]
         ]
       },
@@ -294,128 +294,221 @@ window.siteData = {
           "choose": "Pilih"
         },
         "budget": [
-          "Rp99 ribu-Rp500 ribu",
-          "Rp500 ribu-Rp2 juta",
-          "Rp2-Rp5 juta",
-          "Rp5-Rp10 juta",
+          "Rp99K–Rp499K",
+          "Rp500K–Rp999K",
+          "Rp1JT–Rp2.499K",
+          "Rp2.5JT–Rp4.999K",
           "Custom / perlu dibahas"
         ]
       },
       "faqItems": [
         [
-          "Paket mana yang cocok untuk saya?",
-          "Basic cocok jika Anda hanya membutuhkan hook dan script. Pro untuk satu video vertical dari script sampai final edit menggunakan footage klien. Max untuk campaign berisi beberapa video dan variasi hook. Custom untuk commercial, company profile, event, AI video, shooting khusus, atau kebutuhan di luar paket."
+          "Layanan mana yang cocok untuk saya?",
+          "Pilih Creative Editing Only jika Anda sudah memiliki footage. Pilih AI Video Production jika belum ada footage atau membutuhkan visual, talent virtual, dan scene yang dibuat dengan AI. Repurpose Pack cocok jika Anda memiliki satu video panjang dan membutuhkan beberapa konten pendek."
         ],
         [
-          "Apakah harga paket sudah final?",
-          "Harga yang tampil adalah harga awal sesuai scope yang tercantum. Quotation final dikirim setelah brief, materi, jadwal, lokasi, dan kebutuhan produksi diperiksa."
+          "Apakah DICKYNISM menyediakan shooting?",
+          "Tidak. Semua layanan berfokus pada editing footage dari klien atau pembuatan visual berbasis AI. Shooting, talent fisik, lokasi, dan transportasi produksi tidak termasuk."
         ],
         [
-          "Apa saja yang belum termasuk dalam harga?",
-          "Talent, lokasi berbayar, transportasi luar Surabaya, pengiriman produk, media spend, serta lisensi musik, font, stock footage, atau aset pihak ketiga belum termasuk kecuali tertulis di quotation."
+          "Apa yang perlu saya kirim sebelum project dimulai?",
+          "Untuk editing, kirim footage, logo, brand guideline, referensi, dan informasi platform. Untuk AI video, kirim foto produk, pesan utama, target audiens, referensi visual, serta informasi voice atau karakter jika diperlukan."
+        ],
+        [
+          "Mengapa harga dalam bentuk rentang?",
+          "Harga akhir dipengaruhi durasi footage mentah, durasi final, jumlah scene, kompleksitas caption atau motion, jumlah output, kualitas asset, deadline, serta tingkat konsistensi yang dibutuhkan. Estimasi final dikonfirmasi sebelum project dimulai."
+        ],
+        [
+          "Mengapa video AI lebih mahal daripada editing biasa?",
+          "AI video membutuhkan biaya kredit generation dan beberapa percobaan untuk mendapatkan gerakan, karakter, produk, dan scene yang konsisten. Setelah generation, hasilnya tetap perlu diseleksi, diperbaiki, disusun, diberi audio, dan diedit menjadi video final."
+        ],
+        [
+          "Apa yang dimaksud generation attempts?",
+          "Generation attempt adalah satu proses pembuatan atau pengulangan scene menggunakan model AI. Setiap paket memiliki batas attempt agar biaya dan timeline tetap jelas. Attempt tambahan atau perubahan besar setelah visual disetujui akan dihitung terpisah."
         ],
         [
           "Berapa kali revisi yang termasuk?",
-          "Basic termasuk 1 kali revisi. Pro dan Max termasuk 2 kali revisi sesuai scope awal. Perubahan konsep setelah disetujui atau permintaan di luar brief akan dihitung sebagai pekerjaan tambahan."
+          "Quick Edit termasuk 1 kali revisi. Paket lain termasuk 2 kali revisi sesuai brief dan konsep yang sudah disetujui. Perubahan arah, script, karakter, atau konsep setelah approval dihitung sebagai scope tambahan."
         ],
         [
           "Berapa lama pengerjaannya?",
-          "Basic sekitar 2 hari kerja, Pro 5-7 hari kerja, dan Max 14-21 hari kerja. Paket Custom mengikuti scope. Waktu dihitung setelah brief, materi, dan pembayaran awal diterima."
+          "Quick Edit membutuhkan sekitar 1-2 hari kerja. Editing reguler sekitar 2-14 hari kerja. AI video sekitar 3-21 hari kerja. Timeline final bergantung pada antrean, kelengkapan materi, dan kompleksitas project."
         ],
         [
-          "Apakah saya harus menyediakan footage?",
-          "Pro menggunakan footage dari klien. Untuk Max atau Custom, shooting dapat dimasukkan ke dalam scope. Jika belum ada footage, jelaskan kebutuhan saat mengisi form agar opsi produksi dapat disiapkan."
+          "Apakah musik, stock footage, dan AI voice sudah termasuk?",
+          "Basic music, free stock, dan AI voice standar dapat disertakan jika tercantum pada paket. Premium stock, voice berlisensi, clone voice, model AI khusus, dan aset pihak ketiga akan diinformasikan sebelum digunakan dan dapat menambah biaya."
         ],
         [
-          "Apakah video boleh digunakan untuk paid ads?",
-          "File final dapat digunakan pada channel brand dan paid ads sesuai scope project. Lisensi talent, musik, stock footage, atau aset pihak ketiga mengikuti ketentuan masing-masing dan akan dijelaskan di quotation."
+          "Apakah hasilnya boleh digunakan untuk paid ads?",
+          "Boleh untuk channel brand dan paid ads sesuai scope project. Hak penggunaan talent virtual, voice, music, stock, dan aset pihak ketiga mengikuti lisensi layanan yang digunakan dan dicantumkan pada quotation bila relevan."
         ],
         [
-          "Format file apa yang diterima?",
-          "Output utama dapat dibuat dalam 9:16, 1:1, atau 16:9. Resolusi, durasi, subtitle, dan versi platform dikonfirmasi sebelum produksi."
+          "Format video apa yang tersedia?",
+          "Format utama adalah 9:16 untuk Reels dan Shorts, 16:9 untuk YouTube, serta 1:1 untuk kebutuhan tertentu. Versi tambahan, resize, atau cutdown di luar paket dapat ditambahkan ke quotation."
         ],
         [
-          "Saya belum punya konsep atau brief lengkap. Bisa mulai?",
-          "Bisa. Kirim informasi produk, target audiens, tujuan video, platform, dan referensi yang tersedia. Saya akan membantu menyusun angle dan kebutuhan output."
-        ],
-        [
-          "Bagaimana proses paket Custom?",
-          "Isi form Custom dengan jenis project, target, output, jadwal, dan budget. Setelah brief diperiksa, Anda akan menerima rekomendasi scope, timeline, dan quotation sebelum project dimulai."
+          "Bagaimana proses Custom AI Production?",
+          "Kirim target video, durasi, jumlah karakter, jumlah scene, bahasa, format, referensi, deadline, dan budget. Setelah brief diperiksa, Anda menerima rekomendasi scope, generation allowance, timeline, serta estimasi biaya tertulis."
         ]
       ],
       // EDIT PAKET DAN HARGA DI SINI
       "packages": {
         "eyebrow": "PAKET",
-        "title": "Pilih paket sesuai <em>output yang dibutuhkan</em>.",
-        "description": "Harga awal yang jelas untuk kebutuhan kecil sampai campaign. Scope final dikonfirmasi setelah brief diperiksa.",
+        "title": "Pilih layanan berdasarkan <em>sumber videonya</em>.",
+        "description": "Gunakan Creative Editing Only jika Anda sudah memiliki footage. Pilih AI Video jika visual perlu dibuat tanpa shooting.",
         "popular": "Paling dipilih",
-        "from": "Mulai",
-        "choose": "Pilih Paket",
-        "customCta": "Kirim Brief Custom",
-        "note": "Harga belum termasuk talent, lokasi berbayar, transportasi luar Surabaya, pengiriman produk, media spend, dan lisensi aset pihak ketiga.",
-        "items": [
+        "from": "Harga",
+        "choose": "Pilih Layanan",
+        "customCta": "Minta Estimasi Custom",
+        "note": "Tidak ada shooting dalam paket. Klien menyediakan footage atau product asset. Premium stock, voice berlisensi, model AI khusus, dan generation di luar batas paket dihitung terpisah.",
+        "groups": [
           {
-            "id": "basic",
-            "name": "Basic",
-            "price": "Rp99.000",
-            "summary": "Untuk menyiapkan naskah short-form yang siap diproduksi.",
-            "delivery": "2 hari kerja",
-            "features": [
-              "3 pilihan hook",
-              "1 script video 30-45 detik",
-              "1 CTA",
-              "1 kali revisi",
-              "File script dan arahan visual singkat"
+            "id": "editing",
+            "label": "CREATIVE EDITING ONLY",
+            "title": "Footage sudah ada. Saya bantu membuatnya siap ditonton.",
+            "description": "Harga ditentukan oleh durasi footage mentah, durasi final, kompleksitas grafis, dan jumlah output.",
+            "items": [
+              {
+                "id": "quick-edit",
+                "name": "Quick Edit",
+                "price": "Rp99K",
+                "summary": "Perbaikan cepat untuk satu video pendek dengan materi yang sudah siap.",
+                "delivery": "1-2 hari kerja",
+                "features": [
+                  "1 video hingga 15 detik",
+                  "Footage maksimal 3 klip dari klien",
+                  "Trim, cut, dan susun sederhana",
+                  "Resize ke 9:16 atau 1:1",
+                  "1 kali revisi",
+                  "1 file final"
+                ]
+              },
+              {
+                "id": "short-form",
+                "name": "Short-Form Editing",
+                "price": "Rp199K–Rp499K",
+                "summary": "Editing video vertical dengan pacing, caption, dan audio yang lebih rapi.",
+                "delivery": "2-4 hari kerja",
+                "popular": true,
+                "features": [
+                  "1 video 30-60 detik",
+                  "Footage disediakan klien",
+                  "Cut, pacing, dan basic color",
+                  "Caption atau subtitle sederhana",
+                  "Basic sound design",
+                  "2 kali revisi",
+                  "Format Reels, Shorts, atau Ads"
+                ]
+              },
+              {
+                "id": "long-form",
+                "name": "Long-Form Editing",
+                "price": "Rp399K–Rp999K",
+                "summary": "Editing video panjang agar lebih ringkas, jelas, dan nyaman ditonton.",
+                "delivery": "3-7 hari kerja",
+                "features": [
+                  "1 video final 5-20 menit",
+                  "Footage mentah maksimal 60 menit",
+                  "Cut jeda, salah bicara, dan bagian tidak perlu",
+                  "Basic color dan audio cleanup",
+                  "Title dan lower third sederhana",
+                  "2 kali revisi",
+                  "1 file final 16:9"
+                ]
+              },
+              {
+                "id": "repurpose",
+                "name": "Repurpose Pack",
+                "price": "Rp1.499K–Rp4.999K",
+                "summary": "Ubah satu konten panjang menjadi beberapa short-form siap publikasi.",
+                "delivery": "7-14 hari kerja",
+                "features": [
+                  "1 source video maksimal 90 menit",
+                  "5-15 video pendek 30-60 detik",
+                  "Pemilihan momen dan hook",
+                  "Caption dan basic sound design",
+                  "Format vertical 9:16",
+                  "2 kali revisi per batch",
+                  "File final siap upload"
+                ]
+              }
             ]
           },
           {
-            "id": "pro",
-            "name": "Pro",
-            "price": "Rp1.500.000",
-            "summary": "Satu video vertical lengkap dari script sampai final edit.",
-            "delivery": "5-7 hari kerja",
-            "popular": true,
-            "features": [
-              "1 konsep dan script",
-              "1 video vertical hingga 60 detik",
-              "Editing dari footage klien",
-              "Subtitle dan basic sound design",
-              "2 kali revisi",
-              "Format siap Reels, Shorts, atau Meta Ads"
-            ]
-          },
-          {
-            "id": "max",
-            "name": "Max",
-            "price": "Rp10.000.000",
-            "summary": "Paket campaign dengan beberapa video dan variasi hook.",
-            "delivery": "14-21 hari kerja",
-            "features": [
-              "6 konsep dan script",
-              "6 video vertical hingga 60 detik",
-              "12 variasi hook",
-              "Creative direction dan shot list",
-              "1 hari shooting di Surabaya",
-              "Editing, subtitle, dan sound design",
-              "2 kali revisi per video",
-              "File final siap campaign"
-            ]
-          },
-          {
-            "id": "custom",
-            "name": "Custom",
-            "price": "Sesuai brief",
-            "summary": "Untuk commercial, company profile, event, AI video, atau scope khusus.",
-            "delivery": "Sesuai scope",
-            "features": [
-              "Scope dan output fleksibel",
-              "Pilihan shooting, motion, atau AI video",
-              "Timeline dan quotation khusus",
-              "Form brief lengkap",
-              "Konsultasi kebutuhan awal"
+            "id": "ai",
+            "label": "AI VIDEO PRODUCTION",
+            "title": "Tidak punya footage? Visual dibuat dengan AI.",
+            "description": "Harga dipengaruhi jumlah scene, durasi, konsistensi karakter atau produk, voice, dan jumlah generation.",
+            "items": [
+              {
+                "id": "ai-ugc",
+                "name": "Hyper-Realistic AI UGC",
+                "price": "Rp349K–Rp899K",
+                "summary": "Video bergaya creator dengan talent virtual untuk testimonial, demo, atau ads.",
+                "delivery": "3-7 hari kerja",
+                "popular": true,
+                "features": [
+                  "1 video 15-30 detik",
+                  "1 konsep dan script singkat",
+                  "1 talent virtual",
+                  "AI voice dan basic lip-sync",
+                  "Caption dan sound design",
+                  "Hingga 12 generation attempts",
+                  "2 kali revisi",
+                  "Format vertical 9:16"
+                ]
+              },
+              {
+                "id": "ai-commercial",
+                "name": "AI Product Commercial",
+                "price": "Rp499K–Rp1.499K",
+                "summary": "Commercial produk dengan scene AI untuk launch, ads, dan social media.",
+                "delivery": "5-10 hari kerja",
+                "features": [
+                  "1 video 15-30 detik",
+                  "1 konsep dan storyboard",
+                  "4-6 scene AI",
+                  "Integrasi product asset dari klien",
+                  "Editing, music, dan sound design",
+                  "Hingga 20 generation attempts",
+                  "2 kali revisi",
+                  "Format 9:16 atau 16:9"
+                ]
+              },
+              {
+                "id": "ai-short-movie",
+                "name": "AI Realistic Short Movie",
+                "price": "Rp1.199K–Rp3.999K",
+                "summary": "Cerita pendek cinematic dengan karakter dan rangkaian scene berbasis AI.",
+                "delivery": "7-21 hari kerja",
+                "features": [
+                  "1 video 30-60 detik",
+                  "Konsep, script, dan storyboard",
+                  "1 karakter utama",
+                  "6-10 scene AI",
+                  "Cinematic editing dan sound design",
+                  "Hingga 30 generation attempts",
+                  "2 kali revisi",
+                  "Format final sesuai platform"
+                ]
+              }
             ]
           }
-        ]
+        ],
+        "custom": {
+          "id": "custom-ai",
+          "label": "CUSTOM AI PRODUCTION",
+          "title": "Butuh durasi, karakter, atau output yang lebih kompleks?",
+          "description": "Untuk video di atas 60 detik, banyak karakter, multilingual, beberapa format, campaign volume, atau kebutuhan konsistensi tingkat lanjut.",
+          "price": "Estimasi setelah brief",
+          "features": [
+            "Scope dan jumlah output fleksibel",
+            "Generation allowance disesuaikan",
+            "Timeline dan quotation tertulis",
+            "Tidak termasuk shooting",
+            "Konsultasi kebutuhan awal"
+          ]
+        }
       }
     },
     "en": {
@@ -518,57 +611,57 @@ window.siteData = {
       },
       "services": {
         "eyebrow": "SERVICES",
-        "title": "Video services from <em>concept to final delivery</em>.",
+        "title": "AI video and editing with <em>no live shoot</em>.",
         "items": [
           [
-            "Short-Form Video Ads",
-            "Vertical video concepts and production for Meta Ads, Reels, and Shorts."
+            "Hyper-Realistic AI UGC",
+            "Creator-style video with a virtual talent, voice, and lip-sync for testimonials, product demos, or ads without arranging talent and locations."
           ],
           [
-            "UGC-Style Creative",
-            "Creator-style videos for testimonials, product demos, and promotions."
+            "AI Product Commercial",
+            "AI-generated product commercials for launches, marketplaces, social media, and campaigns that need visuals beyond regular footage."
           ],
           [
-            "Script, Hook & CTA",
-            "Concise scripts with a clear opening, main message, and call to action."
+            "AI Realistic Short Movie",
+            "Cinematic AI short stories for branded narratives, campaigns, teasers, or story-led content without camera production."
           ],
           [
-            "Creative Direction",
-            "Angles, storyboards, shot lists, visual references, and production briefs."
+            "Long-form & Short-form Editing",
+            "Client-footage editing for Reels, Shorts, YouTube, podcasts, interviews, courses, and promotional videos."
           ],
           [
-            "Product & Brand Video",
-            "Product videos, launches, company profiles, and brand campaigns."
+            "Content Repurposing",
+            "Turn one podcast, webinar, interview, or long video into multiple short-form assets ready to publish."
           ],
           [
-            "Editing & Creative Review",
-            "Footage editing, motion graphics, subtitles, platform formats, and creative review."
+            "Ad Creative Variations",
+            "Create multiple hooks, CTAs, durations, and formats from one asset for campaign testing."
           ]
         ],
         "process": [
           [
-            "Brief and requirements",
-            "Define the product, audience, platform, deliverables, and schedule."
+            "Choose a service",
+            "Select client-footage editing or AI-based visual production."
           ],
           [
-            "Research and angle",
-            "Select the most relevant message and approach."
+            "Send assets and brief",
+            "Share footage, product assets, goals, references, and target platforms."
           ],
           [
-            "Script and visuals",
-            "Prepare the hook, script, storyboard, or shot list."
+            "Concept and structure",
+            "I prepare the flow, hook, script, or storyboard included in the package."
           ],
           [
-            "Production",
-            "Filming, footage collection, motion, or AI generation."
+            "Editing or AI generation",
+            "Footage is edited or visuals are generated, reviewed, and selected."
           ],
           [
-            "Editing",
-            "Build the pacing, subtitles, audio, color, and CTA."
+            "Review",
+            "A draft is sent for the number of revision rounds listed in the package."
           ],
           [
-            "Review and delivery",
-            "Complete revisions and deliver the required formats."
+            "Final delivery",
+            "Final files are delivered in the agreed formats and aspect ratios."
           ]
         ]
       },
@@ -588,127 +681,220 @@ window.siteData = {
           "choose": "Choose"
         },
         "budget": [
-          "Rp99,000-Rp500,000",
-          "Rp500,000-Rp2 million",
-          "Rp2-Rp5 million",
-          "Rp5-Rp10 million",
+          "Rp99K–Rp499K",
+          "Rp500K–Rp999K",
+          "Rp1M–Rp2,499K",
+          "Rp2.5M–Rp4,999K",
           "Custom / needs discussion"
         ]
       },
       "faqItems": [
         [
-          "Which package should I choose?",
-          "Basic is for hooks and a script only. Pro covers one vertical video from script to final edit using client footage. Max is a campaign package with multiple videos and hook variations. Custom covers commercials, company profiles, events, AI video, dedicated filming, or work outside the listed packages."
+          "Which service should I choose?",
+          "Choose Creative Editing Only when you already have footage. Choose AI Video Production when there is no footage or when you need AI-generated visuals, virtual talent, and scenes. Repurpose Pack is suitable when you have one long video and need multiple short-form assets."
         ],
         [
-          "Are the listed prices final?",
-          "The displayed prices are starting prices for the stated scope. A final quotation is sent after reviewing the brief, materials, schedule, location, and production requirements."
+          "Does DICKYNISM provide filming?",
+          "No. Every service focuses on editing client-supplied footage or creating AI-based visuals. Live filming, physical talent, locations, and production travel are not included."
         ],
         [
-          "What is not included in the price?",
-          "Talent, paid locations, travel outside Surabaya, product shipping, media spend, and licenses for music, fonts, stock footage, or third-party assets are excluded unless stated in the quotation."
+          "What should I provide before the project starts?",
+          "For editing, provide footage, logos, brand guidelines, references, and target-platform details. For AI video, provide product images, the main message, target audience, visual references, and any voice or character requirements."
+        ],
+        [
+          "Why are prices shown as ranges?",
+          "Final pricing depends on raw-footage duration, final duration, scene count, caption or motion complexity, number of outputs, asset quality, deadline, and required consistency. A final estimate is confirmed before the project begins."
+        ],
+        [
+          "Why does AI video cost more than regular editing?",
+          "AI video uses generation credits and often requires several attempts to achieve consistent movement, characters, products, and scenes. Generated results still need selection, cleanup, sequencing, audio, and final editing."
+        ],
+        [
+          "What is a generation attempt?",
+          "A generation attempt is one scene creation or retry using an AI model. Each package includes an attempt allowance to keep cost and timing clear. Additional attempts or major changes after visual approval are charged separately."
         ],
         [
           "How many revisions are included?",
-          "Basic includes 1 revision. Pro and Max include 2 revisions within the agreed scope. A new concept after approval or requests outside the brief are treated as additional work."
+          "Quick Edit includes 1 revision. Other packages include 2 revisions within the approved brief and concept. Direction, script, character, or concept changes after approval are treated as additional scope."
         ],
         [
           "How long does delivery take?",
-          "Basic takes around 2 working days, Pro 5-7 working days, and Max 14-21 working days. Custom follows the agreed scope. Timelines begin after the brief, materials, and initial payment are received."
+          "Quick Edit takes around 1-2 working days. Regular editing takes around 2-14 working days. AI video takes around 3-21 working days. The final schedule depends on availability, asset completeness, and project complexity."
         ],
         [
-          "Do I need to provide footage?",
-          "Pro uses footage supplied by the client. Filming can be included in Max or Custom. If no footage is available, explain the requirement in the form so the right production option can be prepared."
+          "Are music, stock footage, and AI voice included?",
+          "Basic music, free stock, and standard AI voices may be included when listed in the package. Premium stock, licensed voices, voice cloning, specialist AI models, and third-party assets are disclosed before use and may add cost."
         ],
         [
-          "Can the videos be used for paid ads?",
-          "Final files can be used on brand channels and paid ads within the project scope. Talent, music, stock footage, and third-party asset licenses follow their respective terms and will be stated in the quotation."
+          "Can the final video be used for paid ads?",
+          "Yes, within the agreed project scope. Usage rights for virtual talent, voices, music, stock, and third-party assets follow the licenses of the services used and are stated in the quotation when relevant."
         ],
         [
-          "Which file formats are available?",
-          "Primary outputs can be delivered in 9:16, 1:1, or 16:9. Resolution, duration, subtitles, and platform versions are confirmed before production."
+          "Which video formats are available?",
+          "Primary formats are 9:16 for Reels and Shorts, 16:9 for YouTube, and 1:1 when required. Additional versions, resizes, or cutdowns outside the package can be added to the quotation."
         ],
         [
-          "Can we start without a finished concept or brief?",
-          "Yes. Share the product, target audience, video goal, platform, and any references you have. I can help define the angle and required deliverables."
-        ],
-        [
-          "How does a Custom package work?",
-          "Submit the Custom form with the project type, goal, deliverables, schedule, and budget. After review, you receive a recommended scope, timeline, and quotation before the project begins."
+          "How does Custom AI Production work?",
+          "Send the target outcome, duration, character count, scene count, language, format, references, deadline, and budget. After review, you receive a recommended scope, generation allowance, timeline, and written estimate."
         ]
       ],
       "packages": {
         "eyebrow": "PACKAGES",
-        "title": "Choose a package based on the <em>deliverables you need</em>.",
-        "description": "Clear starting prices for small requests through campaign work. Final scope is confirmed after the brief is reviewed.",
+        "title": "Choose a service based on <em>where the visuals come from</em>.",
+        "description": "Use Creative Editing Only when you already have footage. Choose AI Video when the visuals need to be created without a live shoot.",
         "popular": "Most popular",
-        "from": "Starting at",
-        "choose": "Choose Package",
-        "customCta": "Send a Custom Brief",
-        "note": "Prices exclude talent, paid locations, travel outside Surabaya, product shipping, media spend, and third-party asset licenses.",
-        "items": [
+        "from": "Price",
+        "choose": "Choose Service",
+        "customCta": "Request a Custom Estimate",
+        "note": "No live shoot is included. Clients provide footage or product assets. Premium stock, licensed voices, specialist AI models, and generations beyond the package allowance are charged separately.",
+        "groups": [
           {
-            "id": "basic",
-            "name": "Basic",
-            "price": "Rp99,000",
-            "summary": "A production-ready script for one short-form video.",
-            "delivery": "2 working days",
-            "features": [
-              "3 hook options",
-              "1 script for a 30-45 second video",
-              "1 CTA",
-              "1 revision",
-              "Script file and brief visual direction"
+            "id": "editing",
+            "label": "CREATIVE EDITING ONLY",
+            "title": "Already have footage? I will turn it into a finished video.",
+            "description": "Pricing depends on raw-footage duration, final duration, graphic complexity, and the number of outputs.",
+            "items": [
+              {
+                "id": "quick-edit",
+                "name": "Quick Edit",
+                "price": "Rp99K",
+                "summary": "A quick polish for one short video using production-ready assets.",
+                "delivery": "1-2 working days",
+                "features": [
+                  "1 video up to 15 seconds",
+                  "Up to 3 client-supplied clips",
+                  "Simple trimming, cutting, and arrangement",
+                  "Resize to 9:16 or 1:1",
+                  "1 revision",
+                  "1 final file"
+                ]
+              },
+              {
+                "id": "short-form",
+                "name": "Short-Form Editing",
+                "price": "Rp199K–Rp499K",
+                "summary": "Vertical video editing with stronger pacing, captions, and audio.",
+                "delivery": "2-4 working days",
+                "popular": true,
+                "features": [
+                  "1 video between 30-60 seconds",
+                  "Client-supplied footage",
+                  "Cutting, pacing, and basic color",
+                  "Simple captions or subtitles",
+                  "Basic sound design",
+                  "2 revisions",
+                  "Ready for Reels, Shorts, or Ads"
+                ]
+              },
+              {
+                "id": "long-form",
+                "name": "Long-Form Editing",
+                "price": "Rp399K–Rp999K",
+                "summary": "Long-form editing that makes the content tighter, clearer, and easier to watch.",
+                "delivery": "3-7 working days",
+                "features": [
+                  "1 final video between 5-20 minutes",
+                  "Up to 60 minutes of raw footage",
+                  "Remove pauses, mistakes, and unnecessary sections",
+                  "Basic color and audio cleanup",
+                  "Simple titles and lower thirds",
+                  "2 revisions",
+                  "1 final 16:9 file"
+                ]
+              },
+              {
+                "id": "repurpose",
+                "name": "Repurpose Pack",
+                "price": "Rp1,499K–Rp4,999K",
+                "summary": "Turn one long-form asset into multiple publish-ready short videos.",
+                "delivery": "7-14 working days",
+                "features": [
+                  "1 source video up to 90 minutes",
+                  "5-15 short videos between 30-60 seconds",
+                  "Moment and hook selection",
+                  "Captions and basic sound design",
+                  "Vertical 9:16 format",
+                  "2 revision rounds per batch",
+                  "Upload-ready final files"
+                ]
+              }
             ]
           },
           {
-            "id": "pro",
-            "name": "Pro",
-            "price": "Rp1,500,000",
-            "summary": "One complete vertical video from script to final edit.",
-            "delivery": "5-7 working days",
-            "popular": true,
-            "features": [
-              "1 concept and script",
-              "1 vertical video up to 60 seconds",
-              "Editing from client footage",
-              "Subtitles and basic sound design",
-              "2 revisions",
-              "Ready for Reels, Shorts, or Meta Ads"
-            ]
-          },
-          {
-            "id": "max",
-            "name": "Max",
-            "price": "Rp10,000,000",
-            "summary": "A campaign package with multiple videos and hook variations.",
-            "delivery": "14-21 working days",
-            "features": [
-              "6 concepts and scripts",
-              "6 vertical videos up to 60 seconds",
-              "12 hook variations",
-              "Creative direction and shot list",
-              "1 filming day in Surabaya",
-              "Editing, subtitles, and sound design",
-              "2 revisions per video",
-              "Campaign-ready final files"
-            ]
-          },
-          {
-            "id": "custom",
-            "name": "Custom",
-            "price": "Based on brief",
-            "summary": "For commercials, company profiles, events, AI video, or a specific scope.",
-            "delivery": "Based on scope",
-            "features": [
-              "Flexible scope and deliverables",
-              "Filming, motion, or AI video options",
-              "Custom timeline and quotation",
-              "Detailed brief form",
-              "Initial project consultation"
+            "id": "ai",
+            "label": "AI VIDEO PRODUCTION",
+            "title": "No footage? The visuals are created with AI.",
+            "description": "Pricing depends on scene count, duration, character or product consistency, voice, and generation volume.",
+            "items": [
+              {
+                "id": "ai-ugc",
+                "name": "Hyper-Realistic AI UGC",
+                "price": "Rp349K–Rp899K",
+                "summary": "Creator-style video with a virtual talent for testimonials, demos, or ads.",
+                "delivery": "3-7 working days",
+                "popular": true,
+                "features": [
+                  "1 video between 15-30 seconds",
+                  "1 concept and short script",
+                  "1 virtual talent",
+                  "AI voice and basic lip-sync",
+                  "Captions and sound design",
+                  "Up to 12 generation attempts",
+                  "2 revisions",
+                  "Vertical 9:16 format"
+                ]
+              },
+              {
+                "id": "ai-commercial",
+                "name": "AI Product Commercial",
+                "price": "Rp499K–Rp1,499K",
+                "summary": "An AI-scene product commercial for launches, ads, and social media.",
+                "delivery": "5-10 working days",
+                "features": [
+                  "1 video between 15-30 seconds",
+                  "1 concept and storyboard",
+                  "4-6 AI scenes",
+                  "Client-supplied product asset integration",
+                  "Editing, music, and sound design",
+                  "Up to 20 generation attempts",
+                  "2 revisions",
+                  "9:16 or 16:9 format"
+                ]
+              },
+              {
+                "id": "ai-short-movie",
+                "name": "AI Realistic Short Movie",
+                "price": "Rp1,199K–Rp3,999K",
+                "summary": "A cinematic short story using AI-generated characters and scenes.",
+                "delivery": "7-21 working days",
+                "features": [
+                  "1 video between 30-60 seconds",
+                  "Concept, script, and storyboard",
+                  "1 main character",
+                  "6-10 AI scenes",
+                  "Cinematic editing and sound design",
+                  "Up to 30 generation attempts",
+                  "2 revisions",
+                  "Final format based on platform"
+                ]
+              }
             ]
           }
-        ]
+        ],
+        "custom": {
+          "id": "custom-ai",
+          "label": "CUSTOM AI PRODUCTION",
+          "title": "Need a longer duration, more characters, or more complex deliverables?",
+          "description": "For videos over 60 seconds, multiple characters, multilingual versions, multiple formats, campaign volume, or advanced consistency requirements.",
+          "price": "Estimate after brief",
+          "features": [
+            "Flexible scope and output volume",
+            "Adjusted generation allowance",
+            "Written timeline and quotation",
+            "No live shoot included",
+            "Initial project consultation"
+          ]
+        }
       }
     }
   }
