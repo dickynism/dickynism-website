@@ -8,6 +8,11 @@
   if (!translations[lang]) lang = "id";
 
   const path = (value) => depth + value;
+  const favicon = document.createElement("link");
+  favicon.rel = "icon";
+  favicon.type = "image/svg+xml";
+  favicon.href = path("assets/logo.svg");
+  document.head.appendChild(favicon);
   const get = (object, key) => key.split(".").reduce((value, part) => value && value[part], object);
   const drivePreview = (url) => {
     const match = url.match(/\/d\/([^/?]+)|[?&]id=([^&]+)/);
