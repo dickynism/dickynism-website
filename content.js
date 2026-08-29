@@ -130,7 +130,8 @@ window.siteData = {
         "contact": "Kontak",
         "cta": "Lihat Paket",
         "menu": "Buka navigasi",
-        "language": "Pilih bahasa"
+        "language": "Pilih bahasa",
+        "faq": "FAQ"
       },
       "common": {
         "selected": "PORTFOLIO PILIHAN",
@@ -510,6 +511,11 @@ window.siteData = {
           ],
           "name": "Custom AI Production"
         }
+      },
+      "faqPage": {
+        "eyebrow": "FAQ",
+        "title": "Pertanyaan Sebelum <em>Memulai Project</em>.",
+        "description": "Jawaban tentang pilihan layanan, materi yang dibutuhkan, biaya AI generation, revisi, timeline, lisensi, dan format delivery."
       }
     },
     "en": {
@@ -522,7 +528,8 @@ window.siteData = {
         "contact": "Contact",
         "cta": "View Packages",
         "menu": "Open navigation",
-        "language": "Choose language"
+        "language": "Choose language",
+        "faq": "FAQ"
       },
       "common": {
         "selected": "SELECTED PORTFOLIO",
@@ -897,6 +904,11 @@ window.siteData = {
           ],
           "name": "Custom AI Production"
         }
+      },
+      "faqPage": {
+        "eyebrow": "FAQ",
+        "title": "Questions Before <em>Starting a Project</em>.",
+        "description": "Answers about choosing a service, required assets, AI generation costs, revisions, timelines, licenses, and delivery formats."
       }
     }
   }
