@@ -330,6 +330,11 @@
   function render() {
     root.lang=lang; renderChrome();
     const t=translations[lang];
+    if(page!=="detail") {
+      document.title=page==="home"
+        ? (lang==="id" ? "DICKYNISM — AI Video & Editing Profesional" : "DICKYNISM — AI Video & Professional Editing")
+        : `${t.nav[page] || "DICKYNISM"} | DICKYNISM`;
+    }
     if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="packages") renderPackages(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
     initModal(); initImageFallbacks(); initProjectPreviews(); initReveal();
   }
