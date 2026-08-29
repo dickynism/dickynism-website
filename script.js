@@ -8,6 +8,11 @@
   if (!translations[lang]) lang = "id";
 
   const path = (value) => depth + value;
+  const favicon = document.createElement("link");
+  favicon.rel = "icon";
+  favicon.type = "image/svg+xml";
+  favicon.href = path("assets/logo.svg");
+  document.head.appendChild(favicon);
   const get = (object, key) => key.split(".").reduce((value, part) => value && value[part], object);
   const drivePreview = (url) => {
     const match = url.match(/\/d\/([^/?]+)|[?&]id=([^&]+)/);
@@ -18,15 +23,17 @@
     const t = translations[lang];
     document.querySelector("#siteHeader").innerHTML = `
       <nav class="navbar container" aria-label="${t.nav.menu}">
-        <a class="brand" href="${path("index.html")}">DICKYNISM.INK</a>
+        <a class="brand" href="${path("index.html")}" aria-label="DICKYNISM">
+          <img class="brand-mark" src="${path("assets/logo.svg")}" alt="" width="36" height="36">
+          <span class="brand-word">DICKYNISM</span>
+        </a>
         <button class="menu-toggle" type="button" aria-label="${t.nav.menu}" aria-expanded="false"><span></span><span></span></button>
         <div class="nav-menu" id="navMenu">
-          ${["home","portfolio","services","about","contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key === "home" ? "index.html" : `${key}.html`)}">${t.nav[key]}</a>`).join("")}
-          <a class="btn btn-primary" href="${path("contact.html")}">${t.nav.cta}</a>
+          ${["portfolio", "services", "packages", "faq", "about", "contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key + ".html")}">${t.nav[key]}</a>`).join("")}
           <div class="language-toggle" aria-label="${t.nav.language}"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button></div>
         </div>
       </nav>`;
-    document.querySelector("#siteFooter").innerHTML = `<div class="container footer-inner"><span class="footer-brand">DICKYNISM.INK</span><a href="https://www.instagram.com/dickynism/?hl=en">Instagram</a><a href="https://www.linkedin.com/in/dicky-christa-kurniawan-11405a1ab/">LinkedIn</a><a href="https://wa.me/6282228009011">WhatsApp</a><a href="mailto:halo.dickynism@gmail.com">halo.dickynism@gmail.com</a></div>`;
+    document.querySelector("#siteFooter").innerHTML = `<div class="container footer-inner"><span class="footer-brand">DICKYNISM</span><a href="https://www.instagram.com/dickynism/?hl=en">Instagram</a><a href="https://www.linkedin.com/in/dicky-christa-kurniawan-11405a1ab/">LinkedIn</a><a href="https://wa.me/6282228009011">WhatsApp</a><a href="mailto:halo.dickynism@gmail.com">halo.dickynism@gmail.com</a></div>`;
     document.querySelectorAll("[data-lang]").forEach(button => {
       button.classList.toggle("active", button.dataset.lang === lang);
       button.addEventListener("click", () => { localStorage.setItem("lang", button.dataset.lang); lang = button.dataset.lang; render(); });
@@ -40,56 +47,218 @@
   }
 
   function projectCards(items) {
-    return items.map(project => `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}"><a class="project-card-link" href="${path(`portfolio/${project.slug}.html`)}"><div class="project-thumb"><img src="${path(project.thumbnail)}" alt="${project.title}" width="1080" height="1350" loading="lazy"></div><span class="project-category">${project.category}</span><h3>${project.title}</h3></a></article>`).join("");
+    return items.map(project => `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}"><a class="project-card-link" href="${path("portfolio/" + project.slug + ".html")}"><div class="project-thumb"><img src="${path(project.thumbnail)}" alt="${project.title}" width="1080" height="1920" loading="lazy"></div><div class="project-caption"><span class="project-category">${project.category} · ${project.platform}</span><h3>${project.title}</h3><p class="project-tagline">${lang === "id" ? project.descriptionId : project.description}</p></div></a></article>`).join("");
   }
+
   function stats(t) { return `<div class="stats-grid">${t.stats.map(item => `<div class="stat"><div class="stat-value">${item[0]}</div><div class="stat-label">${item[1]}</div></div>`).join("")}</div>`; }
   function timeline(t) {
     const companies = [["2019","GREAT VISINEMA"],["2021","EIGHT PRODUCTION"],["2022","PT. Tristar Global Indonesia"],["2024","PT. Aksara Digital Creative"],["2025","PT. SFS Group (Spencers Indonesia)"]];
     return `<div class="timeline">${companies.map((item,i) => `<div class="timeline-row"><span class="timeline-year">${item[0]}</span><span class="timeline-company">${item[1]}</span><span class="timeline-role">${t.timeline.roles[i]}</span></div>`).join("")}</div>`;
   }
   function head(label,title,level="h2") { return `<div class="section-head"><span class="eyebrow">${label}</span><${level}>${title}</${level}></div>`; }
+  function faqMarkup(t) {
+    return t.faqItems.map(item => `<div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>${item[0]}</span><span aria-hidden="true">+</span></button><div class="faq-answer"><p>${item[1]}</p></div></div>`).join("");
+  }
+  function initFaq() {
+    document.querySelectorAll(".faq-question").forEach(button => button.addEventListener("click", () => {
+      const item=button.parentElement;
+      item.classList.toggle("open");
+      button.setAttribute("aria-expanded",String(item.classList.contains("open")));
+      button.lastElementChild.textContent=item.classList.contains("open")?"−":"+";
+    }));
+  }
 
   function renderHome(t) {
+    const processTitle = lang === "id"
+      ? "Dari brief ke video yang siap diuji."
+      : "From brief to a video ready to test.";
+
     document.querySelector("#pageContent").innerHTML = `
-      <section class="hero"><div class="container hero-inner"><div class="hero-topline"><span class="eyebrow">${t.hero.eyebrow}</span><span class="availability"><span class="status-dot"></span>${t.hero.badge}</span></div><h1>${t.hero.before}<em>${t.hero.highlight}</em>${t.hero.after}</h1><p class="hero-description">${t.hero.description}</p><div class="button-row"><a class="btn btn-primary" href="#work">${t.hero.primary}</a><a class="btn btn-secondary" href="contact.html">${t.hero.secondary}</a></div></div></section>
-      <div class="marquee"><div class="marquee-track container"><span>SPENCERS INDONESIA</span><span>BURNX</span><span>PADEL</span></div></div>
-      <section class="section"><div class="container">${stats(t)}</div></section>
-      <section class="section"><div class="container">${head(t.expertise.label,t.expertise.title)}<div class="expertise-grid">${t.expertise.items.map((item,i)=>`<article class="expertise-item"><span class="number">${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div></div></section>
-      <section class="section"><div class="container">${head(t.about.label,t.about.title)}<div class="about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan" loading="lazy">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></div></section>
-      <section class="section" id="work"><div class="container">${head(t.common.selected,t.portfolio.title)}<div class="portfolio-grid">${projectCards(projects.slice(0,6))}</div><div class="portfolio-more"><a class="btn btn-secondary" href="portfolio.html">${t.common.allWork}</a></div></div></section>
-      <section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>
-      <section class="section cta-band"><div class="container cta-inner"><h2>${t.common.ctaTitle}</h2><a class="btn btn-primary" href="contact.html">${t.common.start}</a></div></section>`;
+      <section class="hero hero-editorial">
+        <div class="container hero-shell">
+          <div class="hero-topline">
+            <span class="eyebrow">${t.hero.eyebrow}</span>
+            <span class="availability"><span class="status-dot"></span>${t.hero.badge}</span>
+          </div>
+          <div class="hero-composition">
+            <h1>${t.hero.before}<em>${t.hero.highlight}</em>${t.hero.after}</h1>
+            <div class="hero-intro">
+              <p>${t.hero.description}</p>
+              <div class="button-row">
+                <a class="btn btn-primary" href="#work">${t.hero.primary} <span aria-hidden="true">↘</span></a>
+                <a class="btn btn-secondary" href="packages.html">${t.hero.secondary} <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section proof-section" aria-label="${lang === "id" ? "Bukti pengalaman" : "Experience proof"}">
+        <div class="container">${stats(t)}</div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          ${head(t.expertise.label, t.expertise.title)}
+          <div class="expertise-grid">
+            ${t.expertise.items.map((item, i) => `<article class="expertise-item"><span class="number">${String(i + 1).padStart(2, "0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="section work-index" id="work">
+        <div class="container">
+          ${head(t.common.selected, t.portfolio.title)}
+          <div class="portfolio-grid">${projectCards(projects.slice(0, 6))}</div>
+          <div class="portfolio-more"><a class="btn btn-secondary" href="portfolio.html">${t.common.allWork} <span aria-hidden="true">→</span></a></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          ${head(t.common.process, processTitle)}
+          <div class="process-list">
+            ${t.services.process.map((item, i) => `<div class="process-row"><span>${String(i + 1).padStart(2, "0")}</span><p>${item[0]}</p><small>${item[1]}</small></div>`).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          ${head(t.about.label, t.about.title)}
+          <div class="about-story">
+            <img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan" loading="lazy">
+            <div class="about-copy">${t.about.text.split("\n\n").map(p => `<p>${p}</p>`).join("")}</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta-band">
+        <div class="container cta-inner">
+          <h2>${t.common.ctaTitle}</h2>
+          <a class="btn btn-primary" href="packages.html">${t.common.start} <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <section class="section faq-home" id="faq">
+        <div class="container faq-shell">
+          ${head(t.faqPage.eyebrow, t.faqPage.title)}
+          <p class="faq-intro">${t.faqPage.description}</p>
+          <div class="faq-list">${faqMarkup(t)}</div>
+        </div>
+      </section>`;
   }
 
   function renderPortfolio(t) {
-    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.portfolio.eyebrow}</span><h1>${t.portfolio.title}</h1></div></section><section class="section"><div class="container"><div class="filters"><button class="filter-button active" data-filter="all">${t.portfolio.all}</button>${[...new Set(projects.map(p=>p.category))].map(category=>`<button class="filter-button" data-filter="${category}">${category}</button>`).join("")}</div><div class="portfolio-grid" id="portfolioGrid">${projectCards(projects)}</div></div></section>`;
+    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.portfolio.eyebrow}</span><h1>${t.portfolio.title}</h1><p class="page-intro">${t.portfolio.description}</p></div></section><section class="section"><div class="container"><div class="filters"><button class="filter-button active" data-filter="all">${t.portfolio.all}</button>${[...new Set(projects.map(p=>p.category))].map(category=>`<button class="filter-button" data-filter="${category}">${category}</button>`).join("")}</div><div class="portfolio-grid" id="portfolioGrid">${projectCards(projects)}</div></div></section>`;
     document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click",()=>{
       document.querySelectorAll("[data-filter]").forEach(item=>item.classList.remove("active")); button.classList.add("active");
       document.querySelectorAll(".project-card").forEach(card=>card.hidden=button.dataset.filter!=="all"&&card.dataset.category!==button.dataset.filter);
     }));
   }
 
+  function renderPackages(t) {
+    const packageCard = (item, index) => `
+      <article class="pricing-card ${item.popular ? "featured" : ""}">
+        <div class="pricing-top">
+          <span class="package-index">${String(index + 1).padStart(2, "0")}</span>
+          ${item.popular ? `<span class="package-badge">${t.packages.popular}</span>` : ""}
+        </div>
+        <h3>${item.name}</h3>
+        <p class="package-summary">${item.summary}</p>
+        <div class="package-price">
+          <small>${t.packages.from}</small>
+          <strong>${item.price}</strong>
+          <span>${item.delivery}</span>
+        </div>
+        <ul class="package-features">${item.features.map(feature => `<li>${feature}</li>`).join("")}</ul>
+        <a class="btn ${item.popular ? "btn-primary" : "btn-secondary"}" href="contact.html?package=${item.id}">
+          ${t.packages.choose}<span aria-hidden="true">↗</span>
+        </a>
+      </article>`;
+
+    document.querySelector("#pageContent").innerHTML = `
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">${t.packages.eyebrow}</span>
+          <h1>${t.packages.title}</h1>
+          <p class="page-intro">${t.packages.description}</p>
+        </div>
+      </section>
+      ${t.packages.groups.map(group => `
+        <section class="section package-group-section" id="${group.id}">
+          <div class="container">
+            <div class="package-group-head">
+              <span class="eyebrow">${group.label}</span>
+              <h2>${group.title}</h2>
+              <p>${group.description}</p>
+            </div>
+            <div class="pricing-grid pricing-grid-${group.items.length}">
+              ${group.items.map(packageCard).join("")}
+            </div>
+          </div>
+        </section>`).join("")}
+      <section class="section custom-offer-section">
+        <div class="container">
+          <div class="custom-offer">
+            <div>
+              <span class="eyebrow">${t.packages.custom.label}</span>
+              <h2>${t.packages.custom.title}</h2>
+              <p>${t.packages.custom.description}</p>
+              <strong>${t.packages.custom.price}</strong>
+            </div>
+            <div>
+              <ul class="package-features">${t.packages.custom.features.map(feature => `<li>${feature}</li>`).join("")}</ul>
+              <a class="btn btn-primary" href="contact.html?package=${t.packages.custom.id}">${t.packages.customCta} <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <p class="package-note">${t.packages.note}</p>
+        </div>
+      </section>`;
+  }
+
   function renderServices(t) {
     document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.services.eyebrow}</span><h1>${t.services.title}</h1></div></section><section class="section"><div class="container"><div class="services-grid">${t.services.items.map((item,i)=>`<article class="service-card"><span class="number">${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div></div></section><section class="section"><div class="container">${head(t.common.process,lang==="id"?"Alur kerja yang jelas, tanpa kerumitan yang tidak perlu.":"A Clear Workflow, without Unnecessary Complexity")}<div class="process-list">${t.services.process.map((item,i)=>`<div class="process-row"><span>${String(i+1).padStart(2,"0")}</span><p>${item[0]}</p><small>${item[1]}</small></div>`).join("")}</div></div></section>`;
   }
   function renderAbout(t) {
-    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.about.label}</span><h1>${t.about.title}</h1></div></section><section class="section"><div class="container about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></section><section class="section"><div class="container">${stats(t)}</div></section><section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>`;
+    document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.about.label}</span><h1>${t.about.title}</h1></div></section><section class="section"><div class="container about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan"><div class="about-copy">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></div></section><section class="section"><div class="container">${stats(t)}</div></section><section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>`;
   }
+  function renderFaq(t) {
+    document.querySelector("#pageContent").innerHTML=`
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">${t.faqPage.eyebrow}</span>
+          <h1>${t.faqPage.title}</h1>
+          <p class="page-intro">${t.faqPage.description}</p>
+        </div>
+      </section>
+      <section class="section faq-page">
+        <div class="container faq-shell">
+          <div class="faq-list">${faqMarkup(t)}</div>
+        </div>
+      </section>`;
+  }
+
   function renderContact(t) {
+    document.querySelector("#contactEyebrow").textContent=t.contact.eyebrow;
     document.querySelector("#contactTitle").innerHTML=t.contact.title;
     document.querySelector("#contactSub").textContent=t.contact.sub;
     document.querySelectorAll("[data-i18n]").forEach(el=>{ const value=get(t,el.dataset.i18n); if(value) el.textContent=value; });
     document.querySelectorAll("#project-type option[data-service]").forEach((option,i)=>option.textContent=t.services.items[i][0]);
     document.querySelectorAll("#budget option[data-budget]").forEach((option,i)=>option.textContent=t.contact.budget[i]);
-    document.querySelector("#faqList").innerHTML=t.faqItems.map(item=>`<div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">${item[0]}</button><div class="faq-answer">${item[1]}</div></div>`).join("");
-    document.querySelectorAll(".faq-question").forEach(button=>button.addEventListener("click",()=>{ const item=button.parentElement; item.classList.toggle("open"); button.setAttribute("aria-expanded",String(item.classList.contains("open"))); }));
+    const packageSelect=document.querySelector("#package-choice");
+    const packageItems=t.packages.groups.flatMap(group=>group.items).concat(t.packages.custom);
+    packageSelect.innerHTML=`<option value="">${t.contact.fields.choose}</option>${packageItems.map(item=>`<option value="${item.id}">${item.name} — ${item.price}</option>`).join("")}`;
+    const requestedPackage=new URLSearchParams(window.location.search).get("package");
+    if(requestedPackage && document.querySelector("#package-choice")) document.querySelector("#package-choice").value=requestedPackage;
+    document.querySelector("#faqTitle").textContent=t.common.faq;
+    document.querySelector("#faqList").innerHTML=faqMarkup(t);
   }
   function renderDetail(t) {
     const slug=document.body.dataset.slug;
     const project=projects.find(item=>item.slug===slug);
     if(!project) return;
     const media=project.videoSource ? `<video controls preload="none" poster="${path(project.thumbnail)}"><source src="${path(project.videoSource)}" type="video/mp4"></video>` : `<iframe src="${drivePreview(project.link)}" title="${project.title}" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-    document.title=`${project.title} | DICKYNISM.INK`;
+    document.title=`${project.title} | DICKYNISM`;
     document.querySelector("meta[name=description]").content=lang==="id"?project.descriptionId:project.description;
     document.querySelector("meta[property='og:title']").content=project.title;
     document.querySelector("meta[property='og:description']").content=lang==="id"?project.descriptionId:project.description;
@@ -110,9 +279,8 @@
         <p>${lang === "id" ? project.descriptionId : project.description}</p>
         ${(lang === "id" ? project.storyId : project.story || "").split("\n\n").map(p => `<p>${p}</p>`).join("")}
         <div class="modal-actions">
-          <a class="btn btn-secondary" href="https://wa.me/6282228009011">${t.common.order}</a>
           <a class="fallback-link" href="${project.link}" target="_blank" rel="noopener">${t.common.fallback}</a>
-          <a class="modal-detail-link" href="${path(`portfolio/${project.slug}.html`)}">${lang === "id" ? "Lihat cerita lengkap" : "View full story"}</a>
+          <a class="modal-detail-link" href="${path(`portfolio/${project.slug}.html`)}">${lang === "id" ? "Lihat detail project" : "View project details"}</a>
         </div>
       </div>`;
     const modal = document.querySelector("#videoModal");
@@ -136,17 +304,50 @@
     });
     document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
   }
-  let revealObserver = null;
-  function initFloat() {
-    if (document.querySelector(".wa-float")) return;
-    const wa = document.createElement("a");
-    wa.className = "wa-float";
-    wa.href = "https://wa.me/6282228009011";
-    wa.target = "_blank"; wa.rel = "noopener";
-    wa.setAttribute("aria-label", "Chat WhatsApp");
-    wa.innerHTML = `<span class="wa-float-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span><span class="wa-float-label">${lang === "id" ? "Chat WhatsApp" : "Chat on WhatsApp"}</span>`;
-    document.body.appendChild(wa);
+
+
+
+  function initProjectPreviews() {
+    const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!supportsHover || reduceMotion) return;
+
+    document.querySelectorAll(".project-card").forEach(card => {
+      const project = projects.find(item => item.slug === card.dataset.slug);
+      if (!project || !project.videoSource) return;
+
+      let preview = null;
+      card.addEventListener("mouseenter", () => {
+        if (preview) return;
+        preview = document.createElement("video");
+        preview.className = "project-hover-video";
+        preview.src = path(project.videoSource);
+        preview.muted = true;
+        preview.loop = true;
+        preview.playsInline = true;
+        preview.preload = "metadata";
+        card.querySelector(".project-thumb").appendChild(preview);
+        preview.play().catch(() => {});
+      });
+
+      card.addEventListener("mouseleave", () => {
+        if (!preview) return;
+        preview.pause();
+        preview.remove();
+        preview = null;
+      });
+    });
   }
+
+  function initImageFallbacks() {
+    document.querySelectorAll(".project-thumb img").forEach(image => {
+      const hideBrokenImage = () => { image.hidden = true; };
+      image.addEventListener("error", hideBrokenImage, { once: true });
+      if (image.complete && image.naturalWidth === 0) hideBrokenImage();
+    });
+  }
+
+  let revealObserver = null;
   function initReveal() {
     if (!("IntersectionObserver" in window)) return;
     if (!revealObserver) revealObserver = new IntersectionObserver(entries => {
@@ -162,8 +363,13 @@
   function render() {
     root.lang=lang; renderChrome();
     const t=translations[lang];
-    if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
-    initModal(); initReveal(); initFloat();
+    if(page!=="detail") {
+      document.title=page==="home"
+        ? (lang==="id" ? "DICKYNISM — AI Video & Editing Profesional" : "DICKYNISM — AI Video & Professional Editing")
+        : `${t.nav[page] || "DICKYNISM"} | DICKYNISM`;
+    }
+    if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="packages") renderPackages(t); else if(page==="faq") renderFaq(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
+    initModal(); initImageFallbacks(); initProjectPreviews(); initFaq(); initReveal();
   }
   render();
 })();
