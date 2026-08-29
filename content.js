@@ -122,12 +122,12 @@ window.siteData = {
   "translations": {
     "id": {
       "nav": {
-        "home": "Home",
-        "portfolio": "Portfolio",
-        "services": "Services",
+        "home": "Beranda",
+        "portfolio": "Portofolio",
+        "services": "Layanan",
         "packages": "Paket",
-        "about": "About",
-        "contact": "Contact",
+        "about": "Profil",
+        "contact": "Kontak",
         "cta": "Lihat Paket",
         "menu": "Buka navigasi",
         "language": "Pilih bahasa"
@@ -138,7 +138,7 @@ window.siteData = {
         "viewProject": "Putar Video",
         "order": "Bahas Project Serupa",
         "start": "Kirim Brief",
-        "ctaTitle": "Punya kebutuhan video? <em>Lihat paketnya.</em>",
+        "ctaTitle": "Punya Kebutuhan Video? <em>Lihat Paketnya.</em>",
         "categories": "Kategori",
         "process": "PROSES",
         "faq": "FAQ",
@@ -148,13 +148,13 @@ window.siteData = {
       },
       // EDIT HERO DI SINI
       "hero": {
-        "eyebrow": "SHORT-FORM VIDEO & CREATIVE ADS · SURABAYA",
+        "eyebrow": "AI VIDEO MAKING & PROFESSIONAL EDITING · SURABAYA",
         "badge": "5+ TAHUN · 40+ PROJECT",
-        "before": "Short-Form Video untuk ",
-        "highlight": "Brand",
-        "after": " dan Campaign.",
-        "description": "Konsep, script, creative direction, dan editing untuk UGC, Reels, Shorts, dan Meta Ads. Dibuat sesuai tujuan campaign dan siap digunakan.",
-        "primary": "Lihat Portfolio",
+        "before": "",
+        "highlight": "AI Video",
+        "after": " dan Editing Profesional untuk Brand.",
+        "description": "Saya membuat Hyper-Realistic AI UGC, AI Product Commercial, dan AI Short Movie tanpa shooting. Sudah punya footage? Saya juga mengedit short-form dan long-form agar lebih rapi, menarik, dan siap dipublikasikan.",
+        "primary": "Lihat Portofolio",
         "secondary": "Lihat Paket"
       },
       "stats": [
@@ -171,13 +171,13 @@ window.siteData = {
           "Layanan video"
         ],
         [
-          "3",
-          "Format video utama"
+          "AI + EDIT",
+          "Dua spesialisasi utama"
         ]
       ],
       "expertise": {
         "label": "CARA KERJA",
-        "title": "Creative video dengan <em>tujuan yang jelas</em>.",
+        "title": "Creative Video dengan <em>Tujuan yang Jelas</em>.",
         "items": [
           [
             "Video Ads",
@@ -200,12 +200,12 @@ window.siteData = {
       // EDIT ABOUT DI SINI
       "about": {
         "label": "PROFIL",
-        "title": "Creative Video Specialist untuk <em>konten dan iklan digital</em>.",
-        "text": "Saya Dicky, Creative Video Specialist berbasis di Surabaya dengan pengalaman lebih dari lima tahun di produksi video, konten sosial, dan campaign brand.\n\nSaya menangani proses dari riset angle, penulisan script, creative direction, hingga editing. Fokus utama saya adalah short-form video untuk UGC, Reels, Shorts, dan Meta Ads.\n\nSetiap project disesuaikan dengan tujuan, platform, dan sumber materi yang tersedia. Produksi dapat menggunakan shooting, motion graphic, footage dari klien, atau AI-assisted video."
+        "title": "Creative Video Specialist untuk <em>Konten dan Iklan Digital</em>.",
+        "text": "Saya Dicky, Creative Video Specialist berbasis di Surabaya dengan pengalaman lebih dari lima tahun mengerjakan video untuk konten sosial, iklan digital, dan kebutuhan brand.\n\nSpesialisasi utama saya adalah membuat Hyper-Realistic AI UGC, AI Product Commercial, dan AI Realistic Short Movie. Saya menangani konsep, script, AI generation, seleksi visual, hingga final editing.\n\nUntuk project non-AI, saya mengedit footage dari klien menjadi short-form, long-form, content repurposing, atau variasi ads. Seluruh layanan berjalan tanpa proses shooting."
       },
       "timeline": {
         "label": "PENGALAMAN",
-        "title": "Pengalaman di produksi video dan <em>konten digital</em>.",
+        "title": "Pengalaman di Produksi Video dan <em>Konten Digital</em>.",
         "roles": [
           "Freelance Videografer & Video Editor",
           "Video Editor",
@@ -216,14 +216,14 @@ window.siteData = {
       },
       "portfolio": {
         "eyebrow": "PORTFOLIO",
-        "title": "Pilihan <em>project video</em>.",
+        "title": "Pilihan <em>Project Video</em>.",
         "description": "Short-form ads, UGC, commercial, event, dan AI video yang dibuat untuk kebutuhan brand dan campaign.",
         "all": "Semua"
       },
       // EDIT SERVICES DI SINI
       "services": {
         "eyebrow": "SERVICES",
-        "title": "AI video dan editing tanpa <em>proses shooting</em>.",
+        "title": "AI Video dan Editing Tanpa <em>Proses Shooting</em>.",
         "items": [
           [
             "Hyper-Realistic AI UGC",
@@ -280,7 +280,7 @@ window.siteData = {
       // EDIT CONTACT DI SINI
       "contact": {
         "eyebrow": "ORDER & CONTACT",
-        "title": "Ceritakan video yang <em>Anda butuhkan</em>.",
+        "title": "Ceritakan Video yang <em>Anda Butuhkan</em>.",
         "sub": "Pilih paket atau kirim brief custom. Informasi produk, tujuan, platform, dan referensi sudah cukup untuk memulai.",
         "fields": {
           "name": "NAMA",
@@ -354,7 +354,7 @@ window.siteData = {
       // EDIT PAKET DAN HARGA DI SINI
       "packages": {
         "eyebrow": "PAKET",
-        "title": "Pilih layanan berdasarkan <em>sumber videonya</em>.",
+        "title": "Pilih Layanan Berdasarkan <em>Sumber Videonya</em>.",
         "description": "Gunakan Creative Editing Only jika Anda sudah memiliki footage. Pilih AI Video jika visual perlu dibuat tanpa shooting.",
         "popular": "Paling dipilih",
         "from": "Harga",
@@ -530,7 +530,7 @@ window.siteData = {
         "viewProject": "Play Video",
         "order": "Discuss a Similar Project",
         "start": "Send Brief",
-        "ctaTitle": "Need a video? <em>View the packages.</em>",
+        "ctaTitle": "Need a Video? <em>View the Packages.</em>",
         "categories": "Categories",
         "process": "PROCESS",
         "faq": "FAQ",
@@ -539,12 +539,12 @@ window.siteData = {
         "back": "Back to Portfolio"
       },
       "hero": {
-        "eyebrow": "SHORT-FORM VIDEO & CREATIVE ADS · SURABAYA",
+        "eyebrow": "AI VIDEO MAKING & PROFESSIONAL EDITING · SURABAYA",
         "badge": "5+ YEARS · 40+ PROJECTS",
-        "before": "Short-Form Video for ",
-        "highlight": "Brands",
-        "after": " and Campaigns.",
-        "description": "Concepts, scripts, creative direction, and editing for UGC, Reels, Shorts, and Meta Ads. Built around campaign goals and ready to use.",
+        "before": "",
+        "highlight": "AI Video",
+        "after": " and Professional Editing for Brands.",
+        "description": "I create hyper-realistic AI UGC, AI product commercials, and AI short movies without a live shoot. Already have footage? I also edit short-form and long-form videos into polished, engaging, publish-ready content.",
         "primary": "View Portfolio",
         "secondary": "View Packages"
       },
@@ -562,13 +562,13 @@ window.siteData = {
           "Video services"
         ],
         [
-          "3",
-          "Core video formats"
+          "AI + EDIT",
+          "Two core specialties"
         ]
       ],
       "expertise": {
         "label": "APPROACH",
-        "title": "Creative video with a <em>clear purpose</em>.",
+        "title": "Creative Video with a <em>Clear Purpose</em>.",
         "items": [
           [
             "Video Ads",
@@ -590,12 +590,12 @@ window.siteData = {
       },
       "about": {
         "label": "PROFILE",
-        "title": "Creative Video Specialist for <em>digital content and advertising</em>.",
-        "text": "I am Dicky, a Surabaya-based Creative Video Specialist with more than five years of experience in video production, social content, and brand campaigns.\n\nI handle the process from angle research and scriptwriting to creative direction and editing. My main focus is short-form video for UGC, Reels, Shorts, and Meta Ads.\n\nEach project is adapted to its goal, platform, and available materials. Production can use filming, motion graphics, client footage, or AI-assisted video."
+        "title": "Creative Video Specialist for <em>Digital Content and Advertising</em>.",
+        "text": "I am Dicky, a Surabaya-based Creative Video Specialist with more than five years of experience creating videos for social content, digital advertising, and brand needs.\n\nMy main specialties are hyper-realistic AI UGC, AI product commercials, and realistic AI short movies. I handle concepts, scripts, AI generation, visual selection, and final editing.\n\nFor non-AI projects, I edit client-supplied footage into short-form, long-form, repurposed content, or ad variations. Every service is completed without a live shoot."
       },
       "timeline": {
         "label": "EXPERIENCE",
-        "title": "Experience in video production and <em>digital content</em>.",
+        "title": "Experience in Video Production and <em>Digital Content</em>.",
         "roles": [
           "Freelance Videographer & Video Editor",
           "Video Editor",
@@ -606,13 +606,13 @@ window.siteData = {
       },
       "portfolio": {
         "eyebrow": "PORTFOLIO",
-        "title": "Selected <em>video projects</em>.",
+        "title": "Selected <em>Video Projects</em>.",
         "description": "Short-form ads, UGC, commercials, events, and AI video created for brands and campaigns.",
         "all": "All"
       },
       "services": {
         "eyebrow": "SERVICES",
-        "title": "AI video and editing with <em>no live shoot</em>.",
+        "title": "AI Video and Editing with <em>No Live Shoot</em>.",
         "items": [
           [
             "Hyper-Realistic AI UGC",
@@ -668,7 +668,7 @@ window.siteData = {
       },
       "contact": {
         "eyebrow": "ORDER & CONTACT",
-        "title": "Tell me what video <em>you need</em>.",
+        "title": "Tell Me What Video <em>You Need</em>.",
         "sub": "Choose a package or send a custom brief. Product details, goals, platform, and references are enough to begin.",
         "fields": {
           "name": "NAME",
@@ -741,7 +741,7 @@ window.siteData = {
       ],
       "packages": {
         "eyebrow": "PACKAGES",
-        "title": "Choose a service based on <em>where the visuals come from</em>.",
+        "title": "Choose a Service Based on <em>Where the Visuals Come From</em>.",
         "description": "Use Creative Editing Only when you already have footage. Choose AI Video when the visuals need to be created without a live shoot.",
         "popular": "Most popular",
         "from": "Price",
