@@ -29,7 +29,7 @@
         </a>
         <button class="menu-toggle" type="button" aria-label="${t.nav.menu}" aria-expanded="false"><span></span><span></span></button>
         <div class="nav-menu" id="navMenu">
-          ${["portfolio", "services", "packages", "about", "contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key + ".html")}">${t.nav[key]}</a>`).join("")}
+          ${["portfolio", "services", "packages", "faq", "about", "contact"].map(key => `<a class="${page === key ? "active" : ""}" href="${path(key + ".html")}">${t.nav[key]}</a>`).join("")}
           <div class="language-toggle" aria-label="${t.nav.language}"><button type="button" data-lang="id">ID</button><button type="button" data-lang="en">EN</button></div>
         </div>
       </nav>`;
@@ -56,6 +56,17 @@
     return `<div class="timeline">${companies.map((item,i) => `<div class="timeline-row"><span class="timeline-year">${item[0]}</span><span class="timeline-company">${item[1]}</span><span class="timeline-role">${t.timeline.roles[i]}</span></div>`).join("")}</div>`;
   }
   function head(label,title,level="h2") { return `<div class="section-head"><span class="eyebrow">${label}</span><${level}>${title}</${level}></div>`; }
+  function faqMarkup(t) {
+    return t.faqItems.map(item => `<div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>${item[0]}</span><span aria-hidden="true">+</span></button><div class="faq-answer"><p>${item[1]}</p></div></div>`).join("");
+  }
+  function initFaq() {
+    document.querySelectorAll(".faq-question").forEach(button => button.addEventListener("click", () => {
+      const item=button.parentElement;
+      item.classList.toggle("open");
+      button.setAttribute("aria-expanded",String(item.classList.contains("open")));
+      button.lastElementChild.textContent=item.classList.contains("open")?"−":"+";
+    }));
+  }
 
   function renderHome(t) {
     const processTitle = lang === "id"
@@ -126,6 +137,13 @@
         <div class="container cta-inner">
           <h2>${t.common.ctaTitle}</h2>
           <a class="btn btn-primary" href="packages.html">${t.common.start} <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <section class="section faq-home" id="faq">
+        <div class="container faq-shell">
+          ${head(t.faqPage.eyebrow, t.faqPage.title)}
+          <p class="faq-intro">${t.faqPage.description}</p>
+          <div class="faq-list">${faqMarkup(t)}</div>
         </div>
       </section>`;
   }
@@ -204,6 +222,22 @@
   function renderAbout(t) {
     document.querySelector("#pageContent").innerHTML = `<section class="page-hero"><div class="container"><span class="eyebrow">${t.about.label}</span><h1>${t.about.title}</h1></div></section><section class="section"><div class="container about-story"><img class="portrait" src="assets/profile.png" alt="Dicky Christa Kurniawan"><div class="about-copy">${t.about.text.split("\n\n").map(p=>`<p>${p}</p>`).join("")}</div></div></section><section class="section"><div class="container">${stats(t)}</div></section><section class="section"><div class="container">${head(t.timeline.label,t.timeline.title)}${timeline(t)}</div></section>`;
   }
+  function renderFaq(t) {
+    document.querySelector("#pageContent").innerHTML=`
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">${t.faqPage.eyebrow}</span>
+          <h1>${t.faqPage.title}</h1>
+          <p class="page-intro">${t.faqPage.description}</p>
+        </div>
+      </section>
+      <section class="section faq-page">
+        <div class="container faq-shell">
+          <div class="faq-list">${faqMarkup(t)}</div>
+        </div>
+      </section>`;
+  }
+
   function renderContact(t) {
     document.querySelector("#contactEyebrow").textContent=t.contact.eyebrow;
     document.querySelector("#contactTitle").innerHTML=t.contact.title;
@@ -217,8 +251,7 @@
     const requestedPackage=new URLSearchParams(window.location.search).get("package");
     if(requestedPackage && document.querySelector("#package-choice")) document.querySelector("#package-choice").value=requestedPackage;
     document.querySelector("#faqTitle").textContent=t.common.faq;
-    document.querySelector("#faqList").innerHTML=t.faqItems.map(item=>`<div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>${item[0]}</span><span aria-hidden="true">+</span></button><div class="faq-answer"><p>${item[1]}</p></div></div>`).join("");
-    document.querySelectorAll(".faq-question").forEach(button=>button.addEventListener("click",()=>{ const item=button.parentElement; item.classList.toggle("open"); button.setAttribute("aria-expanded",String(item.classList.contains("open"))); button.lastElementChild.textContent=item.classList.contains("open")?"−":"+"; }));
+    document.querySelector("#faqList").innerHTML=faqMarkup(t);
   }
   function renderDetail(t) {
     const slug=document.body.dataset.slug;
@@ -335,8 +368,8 @@
         ? (lang==="id" ? "DICKYNISM — AI Video & Editing Profesional" : "DICKYNISM — AI Video & Professional Editing")
         : `${t.nav[page] || "DICKYNISM"} | DICKYNISM`;
     }
-    if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="packages") renderPackages(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
-    initModal(); initImageFallbacks(); initProjectPreviews(); initReveal();
+    if(page==="home") renderHome(t); else if(page==="portfolio") renderPortfolio(t); else if(page==="services") renderServices(t); else if(page==="packages") renderPackages(t); else if(page==="faq") renderFaq(t); else if(page==="about") renderAbout(t); else if(page==="contact") renderContact(t); else if(page==="detail") renderDetail(t);
+    initModal(); initImageFallbacks(); initProjectPreviews(); initFaq(); initReveal();
   }
   render();
 })();
