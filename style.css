@@ -747,8 +747,53 @@ em { color: var(--teal); font-style: normal; font-weight: 600; }
   .section-head h2 { font-size: 34px; }
   .hero-topline { display: grid; }
   .availability { text-align: left; }
+
+  /* MOBILE PROJECT GRID */
+  .work-index .section-head,
+  .portfolio-more { margin-bottom: 0; }
+  .portfolio-grid { gap: 32px; }
+  .project-card-link { min-width: 0; }
+  .project-card[data-orientation="vertical"] .project-card-link {
+    display: grid;
+    grid-template-columns: minmax(112px, 38%) minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+  .project-card[data-orientation="vertical"] .project-caption { padding-top: 0; }
+  .project-caption { min-width: 0; }
+  .project-category {
+    display: block;
+    font-size: 10px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .project-caption h3 {
+    margin: 7px 0;
+    font-size: 18px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+  .project-tagline {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+  }
+  .project-card[data-orientation="landscape"] .project-tagline {
+    -webkit-line-clamp: 3;
+  }
+  .project-card:hover { transform: none; }
+
+  /* MOBILE VIDEO VIEWER */
   .modal { padding: 0; }
   .modal-dialog { max-height: 100vh; min-height: 100vh; }
+  .modal-body { padding: 0 18px 28px; gap: 22px; }
+  .modal-video.vertical { width: min(100%, 260px); }
+  .modal-info h3 { font-size: 26px; }
+  .video-wrap.vertical { width: min(100%, 280px); margin-inline: auto; }
+  .detail-shell { gap: 32px; }
 }
 
 /* REDUCED MOTION SUPPORT */
