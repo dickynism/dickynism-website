@@ -7,7 +7,7 @@
   let lang = localStorage.getItem("lang") || root.lang || "id";
   if (!translations[lang]) lang = "id";
 
-  const path = (value) => depth + value;
+  const path = (value) => /^https?:\/\//i.test(value) ? value : depth + value;
   const favicon = document.createElement("link");
   favicon.rel = "icon";
   favicon.type = "image/svg+xml";
@@ -47,7 +47,12 @@
   }
 
   function projectCards(items) {
-    return items.map(project => `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}"><a class="project-card-link" href="${path("portfolio/" + project.slug + ".html")}"><div class="project-thumb"><img src="${path(project.thumbnail)}" alt="${project.title}" width="1080" height="1920" loading="lazy"></div><div class="project-caption"><span class="project-category">${project.category} · ${project.platform}</span><h3>${project.title}</h3><p class="project-tagline">${lang === "id" ? project.descriptionId : project.description}</p></div></a></article>`).join("");
+    return items.map(project => {
+      const orientation = project.orientation === "landscape" ? "landscape" : "vertical";
+      const width = orientation === "landscape" ? "1920" : "1080";
+      const height = orientation === "landscape" ? "1080" : "1920";
+      return `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}"><a class="project-card-link" href="${path("portfolio/" + project.slug + ".html")}"><div class="project-thumb ${orientation}"><img src="${path(project.thumbnail)}" alt="${project.title}" width="${width}" height="${height}" loading="lazy"></div><div class="project-caption"><span class="project-category">${project.category} · ${project.platform}</span><h3>${project.title}</h3><p class="project-tagline">${lang === "id" ? project.descriptionId : project.description}</p></div></a></article>`;
+    }).join("");
   }
 
   function stats(t) { return `<div class="stats-grid">${t.stats.map(item => `<div class="stat"><div class="stat-value">${item[0]}</div><div class="stat-label">${item[1]}</div></div>`).join("")}</div>`; }
@@ -262,7 +267,7 @@
     document.querySelector("meta[name=description]").content=lang==="id"?project.descriptionId:project.description;
     document.querySelector("meta[property='og:title']").content=project.title;
     document.querySelector("meta[property='og:description']").content=lang==="id"?project.descriptionId:project.description;
-    document.querySelector("#pageContent").innerHTML=`<section class="section" style="padding-top:152px"><div class="container detail-shell"><div class="video-wrap">${media}</div><div class="detail-copy"><span class="eyebrow">${project.category} · ${project.platform}</span><h1>${project.title}</h1><p>${lang==="id"?project.descriptionId:project.description}</p>${(lang==="id"?project.storyId:project.story||"").split("\n\n").map(p=>`<p>${p}</p>`).join("")}<a class="btn btn-secondary" href="https://wa.me/6282228009011">${t.common.order}</a><a class="fallback-link" href="${project.link}" target="_blank" rel="noopener">${t.common.fallback}</a></div></div></section>`;
+    document.querySelector("#pageContent").innerHTML=`<section class="section" style="padding-top:152px"><div class="container detail-shell"><div class="video-wrap ${project.orientation === "landscape" ? "landscape" : "vertical"}">${media}</div><div class="detail-copy"><span class="eyebrow">${project.category} · ${project.platform}</span><h1>${project.title}</h1><p>${lang==="id"?project.descriptionId:project.description}</p>${(lang==="id"?project.storyId:project.story||"").split("\n\n").map(p=>`<p>${p}</p>`).join("")}<a class="btn btn-secondary" href="https://wa.me/6282228009011">${t.common.order}</a><a class="fallback-link" href="${project.link}" target="_blank" rel="noopener">${t.common.fallback}</a></div></div></section>`;
   }
 
   function openModal(slug) {
@@ -272,7 +277,7 @@
       ? `<video controls autoplay muted playsinline preload="auto" poster="${path(project.thumbnail)}"><source src="${path(project.videoSource)}" type="video/mp4"></video>`
       : `<iframe src="${drivePreview(project.link)}" title="${project.title}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
     document.querySelector("#modalBody").innerHTML = `
-      <div class="modal-video">${media}</div>
+      <div class="modal-video ${project.orientation === "landscape" ? "landscape" : "vertical"}">${media}</div>
       <div class="modal-info">
         <span class="eyebrow">${project.category} · ${project.platform}</span>
         <h3>${project.title}</h3>
