@@ -700,7 +700,8 @@ em { color: var(--teal); font-style: normal; font-weight: 600; }
   .hero-shell { padding-top: 112px; padding-bottom: 112px; }
   .hero h1, .page-hero h1 { font-size: 84px; }
   .page-hero { padding: 112px 0 72px; }
-  .portfolio-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 64px 28px; }
+  .portfolio-grid { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 64px 28px; }
+  .project-card[data-orientation="landscape"] { grid-column: span 2; }
   .about-story {
     max-width: 1500px;
     margin-inline: auto;
