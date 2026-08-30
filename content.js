@@ -2,6 +2,58 @@ window.siteData = {
   // EDIT PORTFOLIO DI SINI
   "projects": [
     {
+      "slug": "rkynd-perfume-commercial",
+      "title": "RKYND Perfume Commercial",
+      "category": "AI Commercial",
+      "description": "An AI product commercial for RKYND Perfume with premium visuals that highlight the product's character and appeal in a short-form format.",
+      "descriptionId": "AI product commercial untuk RKYND Perfume dengan visual premium yang menonjolkan karakter dan daya tarik produk dalam format short-form.",
+      "story": "This AI product commercial presents RKYND Perfume through focused product composition, pacing, and polished visual direction for Reels and TikTok.",
+      "storyId": "AI product commercial ini menampilkan RKYND Perfume melalui komposisi produk, ritme, dan arahan visual yang rapi untuk Reels dan TikTok.",
+      "platform": "Instagram Reels, TikTok",
+      "link": "https://drive.google.com/file/d/1C9KFfO-40m4rLF_wepv-sRlRoD-BDd45/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1C9KFfO-40m4rLF_wepv-sRlRoD-BDd45&sz=w1080",
+      "orientation": "vertical"
+    },
+    {
+      "slug": "hectic-brand-commercial",
+      "title": "Hectic Brand Commercial",
+      "category": "AI Commercial",
+      "description": "An AI brand commercial with dynamic pacing and a modern visual style designed to strengthen Hectic's identity on short-form platforms.",
+      "descriptionId": "AI brand commercial dengan ritme visual dinamis dan gaya modern untuk memperkuat identitas Hectic di platform short-form.",
+      "story": "The project uses AI-generated visuals and concise editing to present Hectic in a vertical commercial built for Reels and TikTok.",
+      "storyId": "Project ini menggunakan visual berbasis AI dan editing ringkas untuk menampilkan Hectic dalam commercial vertikal untuk Reels dan TikTok.",
+      "platform": "Instagram Reels, TikTok",
+      "link": "https://drive.google.com/file/d/1D62mEe49x_iA3FiN05tkF6GU5ax68Y6I/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1D62mEe49x_iA3FiN05tkF6GU5ax68Y6I&sz=w1080",
+      "orientation": "vertical"
+    },
+    {
+      "slug": "jodoh-pilihan-ayah-atau-pacarku",
+      "title": "Short Movie: Jodoh Pilihan Ayah atau Pacarku",
+      "category": "AI Short Movie",
+      "description": "An AI short movie about a woman caught between the partner chosen by her father and the person she loves, presented as an accessible vertical drama.",
+      "descriptionId": "AI short movie tentang konflik seorang perempuan yang harus memilih antara pasangan pilihan ayahnya atau orang yang ia cintai, dikemas sebagai drama vertikal dengan alur emosional yang mudah diikuti.",
+      "story": "This narrative project uses AI-generated scenes to build a relationship conflict in a vertical format for YouTube, Reels, and TikTok.",
+      "storyId": "Project naratif ini menggunakan scene berbasis AI untuk membangun konflik hubungan dalam format vertikal untuk YouTube, Reels, dan TikTok.",
+      "platform": "YouTube, Instagram Reels, TikTok",
+      "link": "https://drive.google.com/file/d/1bJjUY3yhCp_555MM5-n3EP0-zA2EiJEc/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1bJjUY3yhCp_555MM5-n3EP0-zA2EiJEc&sz=w1080",
+      "orientation": "vertical"
+    },
+    {
+      "slug": "tiga-hal-yang-bikin-perut-buncit",
+      "title": "3 Hal yang Bikin Perut Buncit",
+      "category": "YouTube Explainer",
+      "description": "A YouTube explainer covering three factors behind belly fat through concise delivery, supporting visuals, and an easy-to-follow information flow.",
+      "descriptionId": "Video explainer yang membahas tiga faktor penyebab perut buncit melalui penyampaian ringkas, visual pendukung, dan alur informasi yang mudah dipahami.",
+      "story": "The video organizes educational information into a clear landscape presentation with supporting graphics and structured pacing for YouTube.",
+      "storyId": "Video ini menyusun informasi edukatif dalam presentasi landscape yang jelas, dilengkapi visual pendukung dan pacing terstruktur untuk YouTube.",
+      "platform": "YouTube",
+      "link": "https://drive.google.com/file/d/1ar60uXUyKul1i91i1DWp1Ia3XrRscWzS/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1ar60uXUyKul1i91i1DWp1Ia3XrRscWzS&sz=w1080",
+      "orientation": "landscape"
+    },
+    {
       "slug": "mealblend-ai-ads",
       "title": "Spencer's MealBlend - AI Short Video Ads",
       "category": "AI Ads",
