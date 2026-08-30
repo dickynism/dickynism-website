@@ -2,6 +2,45 @@ window.siteData = {
   // EDIT PORTFOLIO DI SINI
   "projects": [
     {
+      "slug": "rkynd-perfume-commercial",
+      "title": "RKYND Perfume Commercial",
+      "category": "AI Commercial",
+      "description": "An AI product commercial for RKYND Perfume featuring focused close-ups, premium lighting, and concise visual pacing. The vertical format keeps the brand message clear on Reels and TikTok.",
+      "descriptionId": "AI product commercial untuk RKYND Perfume yang menampilkan produk melalui komposisi close-up, pencahayaan premium, dan ritme visual yang ringkas. Dibuat dalam format vertikal agar pesan brand cepat terbaca di Reels dan TikTok.",
+      "story": "This project introduces RKYND Perfume through a premium presentation without a conventional shoot.\n\nI developed the product visuals, packaging details, transitions, and pacing to translate the brand character into a concise commercial. The final output is optimized vertically for Reels and TikTok.",
+      "storyId": "Project ini dibuat untuk memperkenalkan RKYND Perfume dengan presentasi yang terasa premium tanpa proses shooting konvensional.\n\nSaya menyusun visual produk, detail kemasan, transisi, dan pacing agar karakter brand dapat diterjemahkan secara visual. Output akhir disiapkan dalam format vertikal untuk Reels dan TikTok.",
+      "platform": "Instagram Reels, TikTok",
+      "link": "https://drive.google.com/file/d/1C9KFfO-40m4rLF_wepv-sRlRoD-BDd45/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1C9KFfO-40m4rLF_wepv-sRlRoD-BDd45&sz=w1080",
+      "orientation": "vertical"
+    },
+    {
+      "slug": "hectic-brand-commercial",
+      "title": "Hectic Brand Commercial",
+      "category": "AI Commercial",
+      "description": "An AI brand commercial for Hectic with dynamic visuals, modern composition, and fast pacing. Each scene is designed to reinforce the brand character and hold attention on Reels and TikTok.",
+      "descriptionId": "AI brand commercial untuk Hectic dengan visual dinamis, komposisi modern, dan pacing cepat. Setiap scene dirancang untuk memperkuat karakter brand serta menjaga perhatian audiens di Reels dan TikTok.",
+      "story": "This project required a concise commercial that could introduce Hectic's character quickly on short-form platforms.\n\nI developed the AI-generated visual sequence, transitions, and editing rhythm to keep the brand identity consistent from start to finish. The final output is formatted vertically for Reels and TikTok.",
+      "storyId": "Project ini membutuhkan commercial singkat yang dapat memperkenalkan karakter Hectic secara cepat di platform short-form.\n\nSaya mengembangkan rangkaian visual berbasis AI, menyusun transisi, dan mengatur ritme editing agar identitas brand tetap konsisten dari awal hingga akhir. Output akhir dibuat vertikal untuk Reels dan TikTok.",
+      "platform": "Instagram Reels, TikTok",
+      "link": "https://drive.google.com/file/d/1D62mEe49x_iA3FiN05tkF6GU5ax68Y6I/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1D62mEe49x_iA3FiN05tkF6GU5ax68Y6I&sz=w1080",
+      "orientation": "vertical"
+    },
+    {
+      "slug": "jodoh-pilihan-ayah-atau-pacarku",
+      "title": "Short Movie: Jodoh Pilihan Ayah atau Pacarku",
+      "category": "AI Short Movie",
+      "description": "An AI short movie about a woman caught between the partner chosen by her father and the boyfriend she loves. Family pressure, relationships, and personal choice are presented as an accessible vertical drama.",
+      "descriptionId": "AI short movie tentang seorang perempuan yang menghadapi pilihan antara pasangan pilihan ayah dan pacar yang ia cintai. Konflik keluarga, hubungan, dan keputusan pribadi dikemas sebagai drama vertikal dengan alur emosional yang mudah diikuti.",
+      "story": "This project was developed as a short narrative centered on family conflict and a difficult relationship decision.\n\nI structured the story, characters, AI-generated scenes, dialogue, and editing rhythm so the conflict develops clearly. Character and visual consistency help keep the story easy to follow on YouTube, Reels, and TikTok.",
+      "storyId": "Project ini dikembangkan sebagai cerita pendek yang berpusat pada konflik keluarga dan keputusan dalam hubungan.\n\nSaya menyusun struktur cerita, karakter, scene berbasis AI, dialog, dan ritme editing agar konflik berkembang dengan jelas. Konsistensi karakter dan kesinambungan visual dijaga agar cerita tetap mudah diikuti di YouTube, Reels, dan TikTok.",
+      "platform": "YouTube, Instagram Reels, TikTok",
+      "link": "https://drive.google.com/file/d/1bJjUY3yhCp_555MM5-n3EP0-zA2EiJEc/view?usp=sharing",
+      "thumbnail": "assets/thumbnails/jodoh-pilihan-ayah-atau-pacarku.jpg",
+      "orientation": "vertical"
+    },
+    {
       "slug": "mealblend-ai-ads",
       "title": "Spencer's MealBlend - AI Short Video Ads",
       "category": "AI Ads",
@@ -13,6 +52,32 @@ window.siteData = {
       "link": "https://drive.google.com/open?id=1102dQFULTB5iDX33KWeBiZ7N1WhQWKWe&usp=drive_fs",
       "videoSource": "assets/videos/mealblend-ai-ads.mp4",
       "thumbnail": "assets/thumbnails/mealblend-ai-ads.jpg"
+    },
+    {
+      "slug": "tiga-hal-yang-bikin-perut-buncit",
+      "title": "3 Hal yang Bikin Perut Buncit",
+      "category": "YouTube Explainer",
+      "description": "A YouTube educational video explaining three factors behind belly fat through a concise and accessible structure. Supporting visuals, on-screen text, and controlled pacing help viewers follow the information through to the end.",
+      "descriptionId": "Video edukasi YouTube yang membahas tiga faktor penyebab perut buncit melalui struktur informasi yang ringkas dan mudah dipahami. Editing menggunakan visual pendukung, teks penjelas, dan pacing terarah agar penonton tetap mengikuti materi sampai selesai.",
+      "story": "This project required an educational video that explains a health topic clearly without making the delivery feel heavy.\n\nI organized the footage, supporting visuals, on-screen text, and editing rhythm so each point is easy to understand. The landscape output is prepared for a comfortable YouTube viewing experience.",
+      "storyId": "Project ini membutuhkan video edukasi yang menjelaskan topik kesehatan secara runtut tanpa membuat penyampaian terasa berat.\n\nSaya menyusun footage, visual pendukung, teks penjelas, dan ritme editing agar setiap poin tersampaikan dengan jelas. Output landscape disiapkan untuk pengalaman menonton yang nyaman di YouTube.",
+      "platform": "YouTube",
+      "link": "https://drive.google.com/file/d/1ar60uXUyKul1i91i1DWp1Ia3XrRscWzS/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1ar60uXUyKul1i91i1DWp1Ia3XrRscWzS&sz=w1080",
+      "orientation": "landscape"
+    },
+    {
+      "slug": "slmco-product-commercial",
+      "title": "SLM.CO Product Commercial",
+      "category": "AI Commercial",
+      "description": "An AI product commercial for SLM.CO that introduces its green coffee drink through ingredient visuals, preparation, packaging, and everyday use. Product shots, typography, transitions, and concise pacing communicate the key product benefits quickly.",
+      "descriptionId": "AI product commercial untuk SLM.CO yang memperkenalkan minuman green coffee melalui visual bahan utama, proses penyajian, kemasan, dan penggunaan produk dalam rutinitas sehari-hari. Product shot, typography, transisi, dan pacing ringkas digunakan untuk menyampaikan manfaat utama produk dengan cepat.",
+      "story": "This project presents SLM.CO as a green coffee drink through a warm, modern commercial focused on the product.\n\nThe video combines green coffee ingredients, drink preparation, benefit messaging, and packaging in a concise sequence. Pacing, typography, sound, and product shots deliver the main information in approximately 20 seconds. The final landscape output is prepared for Instagram Reels and YouTube.",
+      "storyId": "Project ini dibuat untuk menampilkan SLM.CO sebagai minuman green coffee melalui commercial yang hangat, modern, dan berfokus pada produk.\n\nVideo menampilkan bahan green coffee, proses pembuatan minuman, pesan manfaat, dan identitas kemasan dalam alur singkat. Pacing, typography, sound, dan product shot disusun untuk menyampaikan informasi utama dalam durasi sekitar 20 detik. Output akhir menggunakan format landscape untuk Instagram Reels dan YouTube.",
+      "platform": "Instagram Reels, YouTube",
+      "link": "https://drive.google.com/file/d/1uRftNpNGbDxWDiYPslDSmY4Qu78yGtJQ/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1uRftNpNGbDxWDiYPslDSmY4Qu78yGtJQ&sz=w1080",
+      "orientation": "landscape"
     },
     {
       "slug": "burnx-matcha-ugc",
@@ -444,12 +509,12 @@ window.siteData = {
               {
                 "id": "ai-ugc",
                 "name": "Hyper-Realistic AI UGC",
-                "price": "Rp349K–Rp899K",
+                "price": "Rp499K–Rp1.500K",
                 "summary": "Video bergaya creator dengan talent virtual untuk testimonial, demo, atau ads.",
-                "delivery": "3-7 hari kerja",
+                "delivery": "1-2 hari kerja",
                 "popular": true,
                 "features": [
-                  "1 video 15-30 detik",
+                  "1 video 15-45 detik",
                   "1 konsep dan script singkat",
                   "1 talent virtual",
                   "AI voice dan basic lip-sync",
@@ -462,11 +527,11 @@ window.siteData = {
               {
                 "id": "ai-commercial",
                 "name": "AI Product Commercial",
-                "price": "Rp499K–Rp1.499K",
+                "price": "Rp699K–Rp2.999K",
                 "summary": "Commercial produk dengan scene AI untuk launch, ads, dan social media.",
-                "delivery": "5-10 hari kerja",
+                "delivery": "2-4 hari kerja",
                 "features": [
-                  "1 video 15-30 detik",
+                  "1 video 15-60 detik",
                   "1 konsep dan storyboard",
                   "4-6 scene AI",
                   "Integrasi product asset dari klien",
@@ -479,11 +544,11 @@ window.siteData = {
               {
                 "id": "ai-short-movie",
                 "name": "AI Realistic Short Movie",
-                "price": "Rp1.199K–Rp3.999K",
+                "price": "Rp1.199K–Rp4.099K",
                 "summary": "Cerita pendek cinematic dengan karakter dan rangkaian scene berbasis AI.",
                 "delivery": "7-21 hari kerja",
                 "features": [
-                  "1 video 30-60 detik",
+                  "1 video 1-2 menit",
                   "Konsep, script, dan storyboard",
                   "1 karakter utama",
                   "6-10 scene AI",
@@ -837,12 +902,12 @@ window.siteData = {
               {
                 "id": "ai-ugc",
                 "name": "Hyper-Realistic AI UGC",
-                "price": "Rp349K–Rp899K",
+                "price": "Rp499K–Rp1,500K",
                 "summary": "Creator-style video with a virtual talent for testimonials, demos, or ads.",
-                "delivery": "3-7 working days",
+                "delivery": "1-2 working days",
                 "popular": true,
                 "features": [
-                  "1 video between 15-30 seconds",
+                  "1 video between 15-45 seconds",
                   "1 concept and short script",
                   "1 virtual talent",
                   "AI voice and basic lip-sync",
@@ -855,11 +920,11 @@ window.siteData = {
               {
                 "id": "ai-commercial",
                 "name": "AI Product Commercial",
-                "price": "Rp499K–Rp1,499K",
+                "price": "Rp699K–Rp2,999K",
                 "summary": "An AI-scene product commercial for launches, ads, and social media.",
-                "delivery": "5-10 working days",
+                "delivery": "2-4 working days",
                 "features": [
-                  "1 video between 15-30 seconds",
+                  "1 video between 15-60 seconds",
                   "1 concept and storyboard",
                   "4-6 AI scenes",
                   "Client-supplied product asset integration",
@@ -872,11 +937,11 @@ window.siteData = {
               {
                 "id": "ai-short-movie",
                 "name": "AI Realistic Short Movie",
-                "price": "Rp1,199K–Rp3,999K",
+                "price": "Rp1,199K–Rp4,099K",
                 "summary": "A cinematic short story using AI-generated characters and scenes.",
                 "delivery": "7-21 working days",
                 "features": [
-                  "1 video between 30-60 seconds",
+                  "1 video between 1-2 minutes",
                   "Concept, script, and storyboard",
                   "1 main character",
                   "6-10 AI scenes",
