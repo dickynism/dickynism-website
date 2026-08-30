@@ -444,12 +444,12 @@ window.siteData = {
               {
                 "id": "ai-ugc",
                 "name": "Hyper-Realistic AI UGC",
-                "price": "Rp349K–Rp899K",
+                "price": "Rp499K–Rp1.500K",
                 "summary": "Video bergaya creator dengan talent virtual untuk testimonial, demo, atau ads.",
-                "delivery": "3-7 hari kerja",
+                "delivery": "1-2 hari kerja",
                 "popular": true,
                 "features": [
-                  "1 video 15-30 detik",
+                  "1 video 15-45 detik",
                   "1 konsep dan script singkat",
                   "1 talent virtual",
                   "AI voice dan basic lip-sync",
@@ -462,11 +462,11 @@ window.siteData = {
               {
                 "id": "ai-commercial",
                 "name": "AI Product Commercial",
-                "price": "Rp499K–Rp1.499K",
+                "price": "Rp699K–Rp2.999K",
                 "summary": "Commercial produk dengan scene AI untuk launch, ads, dan social media.",
-                "delivery": "5-10 hari kerja",
+                "delivery": "2-4 hari kerja",
                 "features": [
-                  "1 video 15-30 detik",
+                  "1 video 15-60 detik",
                   "1 konsep dan storyboard",
                   "4-6 scene AI",
                   "Integrasi product asset dari klien",
@@ -479,11 +479,11 @@ window.siteData = {
               {
                 "id": "ai-short-movie",
                 "name": "AI Realistic Short Movie",
-                "price": "Rp1.199K–Rp3.999K",
+                "price": "Rp1.199K–Rp4.099K",
                 "summary": "Cerita pendek cinematic dengan karakter dan rangkaian scene berbasis AI.",
                 "delivery": "7-21 hari kerja",
                 "features": [
-                  "1 video 30-60 detik",
+                  "1 video 1-2 menit",
                   "Konsep, script, dan storyboard",
                   "1 karakter utama",
                   "6-10 scene AI",
@@ -837,12 +837,12 @@ window.siteData = {
               {
                 "id": "ai-ugc",
                 "name": "Hyper-Realistic AI UGC",
-                "price": "Rp349K–Rp899K",
+                "price": "Rp499K–Rp1,500K",
                 "summary": "Creator-style video with a virtual talent for testimonials, demos, or ads.",
-                "delivery": "3-7 working days",
+                "delivery": "1-2 working days",
                 "popular": true,
                 "features": [
-                  "1 video between 15-30 seconds",
+                  "1 video between 15-45 seconds",
                   "1 concept and short script",
                   "1 virtual talent",
                   "AI voice and basic lip-sync",
@@ -855,11 +855,11 @@ window.siteData = {
               {
                 "id": "ai-commercial",
                 "name": "AI Product Commercial",
-                "price": "Rp499K–Rp1,499K",
+                "price": "Rp699K–Rp2,999K",
                 "summary": "An AI-scene product commercial for launches, ads, and social media.",
-                "delivery": "5-10 working days",
+                "delivery": "2-4 working days",
                 "features": [
-                  "1 video between 15-30 seconds",
+                  "1 video between 15-60 seconds",
                   "1 concept and storyboard",
                   "4-6 AI scenes",
                   "Client-supplied product asset integration",
@@ -872,11 +872,11 @@ window.siteData = {
               {
                 "id": "ai-short-movie",
                 "name": "AI Realistic Short Movie",
-                "price": "Rp1,199K–Rp3,999K",
+                "price": "Rp1,199K–Rp4,099K",
                 "summary": "A cinematic short story using AI-generated characters and scenes.",
                 "delivery": "7-21 working days",
                 "features": [
-                  "1 video between 30-60 seconds",
+                  "1 video between 1-2 minutes",
                   "Concept, script, and storyboard",
                   "1 main character",
                   "6-10 AI scenes",
