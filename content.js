@@ -37,7 +37,7 @@ window.siteData = {
       "storyId": "Project ini dikembangkan sebagai cerita pendek yang berpusat pada konflik keluarga dan keputusan dalam hubungan.\n\nSaya menyusun struktur cerita, karakter, scene berbasis AI, dialog, dan ritme editing agar konflik berkembang dengan jelas. Konsistensi karakter dan kesinambungan visual dijaga agar cerita tetap mudah diikuti di YouTube, Reels, dan TikTok.",
       "platform": "YouTube, Instagram Reels, TikTok",
       "link": "https://drive.google.com/file/d/1bJjUY3yhCp_555MM5-n3EP0-zA2EiJEc/view?usp=sharing",
-      "thumbnail": "https://drive.google.com/thumbnail?id=1bJjUY3yhCp_555MM5-n3EP0-zA2EiJEc&sz=w1080",
+      "thumbnail": "assets/thumbnails/jodoh-pilihan-ayah-atau-pacarku.jpg",
       "orientation": "vertical"
     },
     {
