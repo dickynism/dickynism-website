@@ -41,6 +41,19 @@ window.siteData = {
       "orientation": "vertical"
     },
     {
+      "slug": "mealblend-ai-ads",
+      "title": "Spencer's MealBlend - AI Short Video Ads",
+      "category": "AI Ads",
+      "description": "A series of AI-assisted vertical ads with multiple hooks and angles for Meta campaign testing.",
+      "descriptionId": "Seri iklan vertikal berbantuan AI dengan beberapa hook dan angle untuk pengujian campaign Meta.",
+      "story": "The goal was to prepare fresh creative variations for Meta campaigns without slowing production.\n\nI developed multiple hooks, angles, and AI-assisted visuals. The final output was a series of vertical videos ready for media testing.",
+      "storyId": "Tujuan project ini adalah menyiapkan variasi creative baru untuk campaign Meta tanpa memperlambat produksi.\n\nSaya mengembangkan beberapa hook, angle, dan visual berbantuan AI. Hasil akhirnya berupa seri video vertikal yang siap diuji oleh tim media.",
+      "platform": "Meta Ads, Instagram Reels",
+      "link": "https://drive.google.com/open?id=1102dQFULTB5iDX33KWeBiZ7N1WhQWKWe&usp=drive_fs",
+      "videoSource": "assets/videos/mealblend-ai-ads.mp4",
+      "thumbnail": "assets/thumbnails/mealblend-ai-ads.jpg"
+    },
+    {
       "slug": "tiga-hal-yang-bikin-perut-buncit",
       "title": "3 Hal yang Bikin Perut Buncit",
       "category": "YouTube Explainer",
@@ -54,17 +67,17 @@ window.siteData = {
       "orientation": "landscape"
     },
     {
-      "slug": "mealblend-ai-ads",
-      "title": "Spencer's MealBlend - AI Short Video Ads",
-      "category": "AI Ads",
-      "description": "A series of AI-assisted vertical ads with multiple hooks and angles for Meta campaign testing.",
-      "descriptionId": "Seri iklan vertikal berbantuan AI dengan beberapa hook dan angle untuk pengujian campaign Meta.",
-      "story": "The goal was to prepare fresh creative variations for Meta campaigns without slowing production.\n\nI developed multiple hooks, angles, and AI-assisted visuals. The final output was a series of vertical videos ready for media testing.",
-      "storyId": "Tujuan project ini adalah menyiapkan variasi creative baru untuk campaign Meta tanpa memperlambat produksi.\n\nSaya mengembangkan beberapa hook, angle, dan visual berbantuan AI. Hasil akhirnya berupa seri video vertikal yang siap diuji oleh tim media.",
-      "platform": "Meta Ads, Instagram Reels",
-      "link": "https://drive.google.com/open?id=1102dQFULTB5iDX33KWeBiZ7N1WhQWKWe&usp=drive_fs",
-      "videoSource": "assets/videos/mealblend-ai-ads.mp4",
-      "thumbnail": "assets/thumbnails/mealblend-ai-ads.jpg"
+      "slug": "slmco-product-commercial",
+      "title": "SLM.CO Product Commercial",
+      "category": "AI Commercial",
+      "description": "An AI product commercial for SLM.CO that introduces its green coffee drink through ingredient visuals, preparation, packaging, and everyday use. Product shots, typography, transitions, and concise pacing communicate the key product benefits quickly.",
+      "descriptionId": "AI product commercial untuk SLM.CO yang memperkenalkan minuman green coffee melalui visual bahan utama, proses penyajian, kemasan, dan penggunaan produk dalam rutinitas sehari-hari. Product shot, typography, transisi, dan pacing ringkas digunakan untuk menyampaikan manfaat utama produk dengan cepat.",
+      "story": "This project presents SLM.CO as a green coffee drink through a warm, modern commercial focused on the product.\n\nThe video combines green coffee ingredients, drink preparation, benefit messaging, and packaging in a concise sequence. Pacing, typography, sound, and product shots deliver the main information in approximately 20 seconds. The final landscape output is prepared for Instagram Reels and YouTube.",
+      "storyId": "Project ini dibuat untuk menampilkan SLM.CO sebagai minuman green coffee melalui commercial yang hangat, modern, dan berfokus pada produk.\n\nVideo menampilkan bahan green coffee, proses pembuatan minuman, pesan manfaat, dan identitas kemasan dalam alur singkat. Pacing, typography, sound, dan product shot disusun untuk menyampaikan informasi utama dalam durasi sekitar 20 detik. Output akhir menggunakan format landscape untuk Instagram Reels dan YouTube.",
+      "platform": "Instagram Reels, YouTube",
+      "link": "https://drive.google.com/file/d/1uRftNpNGbDxWDiYPslDSmY4Qu78yGtJQ/view?usp=sharing",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1uRftNpNGbDxWDiYPslDSmY4Qu78yGtJQ&sz=w1080",
+      "orientation": "landscape"
     },
     {
       "slug": "burnx-matcha-ugc",
