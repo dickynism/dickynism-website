@@ -287,6 +287,9 @@ em { color: var(--teal); font-style: normal; font-weight: 600; }
   outline: 1px solid transparent;
   transition: outline-color 300ms ease;
 }
+.project-thumb.vertical { aspect-ratio: 9 / 16; }
+.project-thumb.landscape { aspect-ratio: 16 / 9; }
+
 .project-thumb::after {
   content: "PLAY";
   position: absolute;
@@ -559,6 +562,8 @@ em { color: var(--teal); font-style: normal; font-weight: 600; }
 /* DETAIL AND VIDEO MODAL */
 .detail-shell { display: grid; grid-template-columns: 1fr; gap: 32px; }
 .video-wrap { width: min(100%, 430px); aspect-ratio: 9 / 16; background: var(--ink); }
+.video-wrap.landscape { width: min(100%, 760px); aspect-ratio: 16 / 9; }
+
 .video-wrap video, .video-wrap iframe { width: 100%; height: 100%; display: block; border: 0; object-fit: cover; }
 .detail-copy h1 { margin: 18px 0 24px; font-size: 42px; font-weight: 300; line-height: 1.08; }
 .detail-copy p { color: var(--graphite); }
@@ -595,6 +600,8 @@ em { color: var(--teal); font-style: normal; font-weight: 600; }
 }
 .modal-body { padding: 0 20px 28px; display: grid; grid-template-columns: 1fr; gap: 28px; }
 .modal-video { width: min(100%, 360px); aspect-ratio: 9 / 16; margin-inline: auto; background: var(--ink); }
+.modal-video.landscape { width: min(100%, 720px); aspect-ratio: 16 / 9; }
+
 .modal-video video, .modal-video iframe { width: 100%; height: 100%; display: block; border: 0; object-fit: cover; }
 .modal-info { align-self: center; }
 .modal-info h3 { margin: 16px 0; font-size: 32px; font-weight: 300; }
