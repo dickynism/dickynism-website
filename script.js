@@ -51,7 +51,7 @@
       const orientation = project.orientation === "landscape" ? "landscape" : "vertical";
       const width = orientation === "landscape" ? "1920" : "1080";
       const height = orientation === "landscape" ? "1080" : "1920";
-      return `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}"><a class="project-card-link" href="${path("portfolio/" + project.slug + ".html")}"><div class="project-thumb ${orientation}"><img src="${path(project.thumbnail)}" alt="${project.title}" width="${width}" height="${height}" loading="lazy"></div><div class="project-caption"><span class="project-category">${project.category} · ${project.platform}</span><h3>${project.title}</h3><p class="project-tagline">${lang === "id" ? project.descriptionId : project.description}</p></div></a></article>`;
+      return `<article class="project-card" data-category="${project.category}" data-slug="${project.slug}" data-orientation="${orientation}"><a class="project-card-link" href="${path("portfolio/" + project.slug + ".html")}"><div class="project-thumb ${orientation}"><img src="${path(project.thumbnail)}" alt="${project.title}" width="${width}" height="${height}" loading="lazy"></div><div class="project-caption"><span class="project-category">${project.category} · ${project.platform}</span><h3>${project.title}</h3><p class="project-tagline">${lang === "id" ? project.descriptionId : project.description}</p></div></a></article>`;
     }).join("");
   }
 
